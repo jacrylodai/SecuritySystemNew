@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	     xmlns:aop="http://www.springframework.org/schema/aop"
+	     xmlns:tx="http://www.springframework.org/schema/tx"
+	     xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
+           http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.0.xsd
+           http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.0.xsd">
+
+	<!-- basedata -->
+
+	<bean name="/basedata/department/departmentFunc" 
+		class="com.ldp.security.basedata.action.DepartmentAction" scope="singleton">
+		
+		<property name="departmentManager" ref="departmentManager"/>
+		<property name="staPeriodInfoManager" ref="staPeriodInfoManager"/>
+		<property name="staPeriodSecurityManager" ref="staPeriodSecurityManager"/>
+		<property name="securityFormManager" ref="securityFormManager"/>
+		<property name="userManager" ref="userManager"/>
+	</bean>
+		
+	<bean name="/basedata/user/userFunc" 
+		class="com.ldp.security.basedata.action.UserAction" scope="singleton">
+		
+		<property name="userManager" ref="userManager"/>
+		<property name="departmentManager" ref="departmentManager"/>
+	</bean>
+	
+	<!-- system -->
+	
+	<bean name="/system/login/loginFunc"
+		class="com.ldp.security.system.action.LoginAction" scope="singleton">
+		
+		<property name="userManager" ref="userManager"/>	
+	</bean>
+	
+	<bean name="/system/siteIndex/siteIndexFunc"
+		class="com.ldp.security.system.action.SiteIndexAction" scope="singleton">
+		
+	</bean>
+	
+	<bean name="/system/password/passwordFunc"
+		class="com.ldp.security.system.action.PasswordAction" scope="singleton">
+		
+		<property name="userManager" ref="userManager"/>	
+	</bean>
+	
+	<!-- report -->
+		
+	<bean name="/report/securityForm/departmentSecurityFormFunc" 
+		class="com.ldp.security.report.action.DepartmentSecurityFormAction" scope="singleton">
+		
+		<property name="departmentManager" ref="departmentManager"/>
+		<property name="securityFormManager" ref="securityFormManager"/>
+	</bean>
+		
+	<bean name="/report/securityForm/stationSecurityFormFunc" 
+		class="com.ldp.security.report.action.StationSecurityFormAction" scope="singleton">
+		
+		<property name="departmentManager" ref="departmentManager"/>
+		<property name="securityFormManager" ref="securityFormManager"/>
+	</bean>
+	
+	<bean name="/report/specialPeopleInfo/departmentSpecialPeopleInfoFunc" 
+		class="com.ldp.security.report.action.DepartmentSpecialPeopleInfoAction"
+			 scope="singleton">
+		
+		<property name="specialPeopleInfoManager" ref="specialPeopleInfoManager"/>
+		<property name="departmentManager" ref="departmentManager"/>
+	</bean>
+	
+	<!-- sta -->
+	
+	<bean name="/sta/staPeriodSecurity/customStaPeriodSecurityFunc" 
+		class="com.ldp.security.sta.action.CustomStaPeriodSecurityAction"
+			 scope="singleton">
+		
+		<property name="staPeriodInfoManager" ref="staPeriodInfoManager"/>
+		<property name="staPeriodSecurityManager" ref="staPeriodSecurityManager"/>
+	</bean>
+</beans>

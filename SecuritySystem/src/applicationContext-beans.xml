@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	     xmlns:aop="http://www.springframework.org/schema/aop"
+	     xmlns:tx="http://www.springframework.org/schema/tx"
+	     xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
+           http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.0.xsd
+           http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.0.xsd">
+
+	<!-- basedata -->
+	
+	<bean id="departmentDao" class="com.ldp.security.basedata.dao.DepartmentDaoImpl">
+	</bean>
+	
+	<bean id="userDao" class="com.ldp.security.basedata.dao.UserDaoImpl">
+	</bean>	
+	
+	<bean id="departmentManager" class="com.ldp.security.basedata.manager.DepartmentManagerImpl">
+		<property name="sessionFactory" ref="sessionFactory"/>
+		<property name="departmentDao" ref="departmentDao"/>
+	</bean>
+	
+	<bean id="userManager" class="com.ldp.security.basedata.manager.UserManagerImpl">
+		<property name="sessionFactory" ref="sessionFactory"/>
+		<property name="userDao" ref="userDao"/>		
+	</bean>
+	
+	<!-- report -->
+	
+	<bean id="securityFormDao" class="com.ldp.security.report.dao.SecurityFormDaoImpl">
+	</bean>
+	
+	<bean id="commonFormDao" class="com.ldp.security.report.dao.CommonFormDaoImpl">
+	</bean>
+	
+	<bean id="keyunFormDao" class="com.ldp.security.report.dao.KeyunFormDaoImpl">
+	</bean>
+	
+	<bean id="specialPeopleInfoDao" class="com.ldp.security.report.dao.SpecialPeopleInfoDaoImpl">
+	</bean>
+	
+	<bean id="securityFormManager"
+		 class="com.ldp.security.report.manager.SecurityFormManagerImpl">
+		<property name="sessionFactory" ref="sessionFactory"/>
+		<property name="securityFormDao" ref="securityFormDao"/>
+		<property name="commonFormDao" ref="commonFormDao"/>
+		<property name="keyunFormDao" ref="keyunFormDao"/>
+		<property name="departmentManager" ref="departmentManager"></property>
+	</bean>
+	
+	<bean id="specialPeopleInfoManager"
+		 class="com.ldp.security.report.manager.SpecialPeopleInfoManagerImpl">
+		 <property name="sessionFactory" ref="sessionFactory"/>
+		 <property name="specialPeopleInfoDao" ref="specialPeopleInfoDao"></property>
+	</bean>
+	
+	<!-- sta -->
+	
+	<bean id="staPeriodInfoDao" class="com.ldp.security.sta.dao.StaPeriodInfoDaoImpl">
+	</bean>
+	
+	<bean id="staPeriodSecurityDao" class="com.ldp.security.sta.dao.StaPeriodSecurityDaoImpl">
+	</bean>
+	
+	<bean id="commonStaDao" class="com.ldp.security.sta.dao.CommonStaDaoImpl">
+	</bean>
+	
+	<bean id="keyunStaDao" class="com.ldp.security.sta.dao.KeyunStaDaoImpl">
+	</bean>
+	
+	<bean id="staPeriodSecurityManager"
+		 class="com.ldp.security.sta.manager.StaPeriodSecurityManagerImpl">
+		<property name="sessionFactory" ref="sessionFactory"/>
+		<property name="staPeriodSecurityDao" ref="staPeriodSecurityDao"/>
+		<property name="commonStaDao" ref="commonStaDao"/>
+		<property name="keyunStaDao" ref="keyunStaDao"/>
+		<property name="departmentManager" ref="departmentManager"/>
+		<property name="securityFormManager" ref="securityFormManager"/>
+		<property name="staPeriodInfoManager" ref="staPeriodInfoManager"></property>
+	</bean>
+	
+	<bean id="staPeriodInfoManager"
+		 class="com.ldp.security.sta.manager.StaPeriodInfoManagerImpl">
+		<property name="sessionFactory" ref="sessionFactory"/>
+		<property name="staPeriodInfoDao" ref="staPeriodInfoDao"/>
+	</bean>
+	
+</beans>

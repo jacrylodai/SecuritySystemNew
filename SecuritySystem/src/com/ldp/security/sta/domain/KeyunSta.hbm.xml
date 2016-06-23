@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.ldp.security.sta.domain.KeyunSta" table="t_keyun_sta">
+		<id name="keyunStaId" column="keyun_sta_id">
+			<generator class="identity"/>			
+		</id>
+		
+		<property name="periodNumberOfPassengers" column="period_number_of_passengers"></property>
+		<property name="squareSpecialPeopleNum" column="square_special_people_num"/>
+		<property name="squareCheckPeopleNum" column="square_check_people_num"/>
+		<property name="squareDangerousObjectNumString" column="square_dangerous_object_num_string"/>
+		<property name="specialCodePeopleNumString" column="special_code_people_num_string"/>
+		<property name="yanzhengUsingFakePaperNum" column="yanzheng_using_fake_paper_num"/>
+		<property name="arrestPeopleNum" column="arrest_people_num"/>
+		<property name="finePeopleNum" column="fine_people_num"/>
+		<property name="studyPeopleNum" column="study_people_num"/>
+		<property name="saleUsingFakePaperNum" column="sale_using_fake_paper_num"/>
+		<property name="saleSpecialPeopleNum" column="sale_special_people_num"></property>
+		<property name="waitingHallCheckPeopleNum" column="wating_hall_check_people_num"/>
+		<property name="waitingHallXianzaPeopleNum" column="waiting_hall_xianza_people_num"/>
+		<property name="jianpiaoWeisuiPeopleNum" column="jianpiao_weisui_people_num"/>
+		<property name="specialTrainIdentityWrongPeopleNum"
+			 column="special_train_identity_wrong_people_num"/>
+		
+	</class>
+	
+</hibernate-mapping>

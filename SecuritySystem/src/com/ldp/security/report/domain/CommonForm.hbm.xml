@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.ldp.security.report.domain.CommonForm" table="t_common_form">
+		<id name="commonFormId" column="common_form_id">
+			<generator class="identity"/>			
+		</id>
+		
+		<property name="securityMachineCheckNumString" column="security_machine_check_num_string"/>
+		<property name="securityMachineTroubleNum" column="security_machine_trouble_num"/>
+		<property name="checkDangerousObjectNumString" column="check_dangerous_object_num_string"/>
+		<property name="zhanquCheckNum" column="zhanqu_check_num"/>
+		<property name="cctvCheckNum" column="cctv_check_num"/>
+		<property name="cctvTroubleNum" column="cctv_trouble_num"/>
+		<property name="equipmentCheckNum" column="equipment_check_num"/>
+		<property name="equipmentTroubleNum" column="equipment_trouble_num"/>
+		<property name="militiamanCheckNum" column="militiaman_check_num"/>
+		<property name="trainningPeopleNum" column="trainning_people_num"/>
+		<property name="practicePeopleNum" column="practice_people_num"/>
+		<property name="otherWorkInfo" column="other_work_info"/>
+		
+	</class>
+	
+</hibernate-mapping>

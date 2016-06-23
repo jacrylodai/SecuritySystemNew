@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.ldp.security.sta.domain.StaPeriodSecurity"
+		 table="t_sta_period_security">
+		<id name="staPeriodSecurityId" column="sta_period_security_id">
+			<generator class="identity"/>			
+		</id>
+		
+		<many-to-one name="staDepartment" column="sta_department_id"></many-to-one>
+		<many-to-one name="staPeriodInfo" column="sta_period_info_id"/>
+		<many-to-one name="commonSta" column="common_sta_id"/>
+		<many-to-one name="keyunSta" column="keyun_sta_id"/>
+		
+		<property name="estimateStaDays" column="estimate_sta_days"></property>
+		<property name="actualStaDays" column="actual_sta_days"></property>
+		
+	</class>
+	
+</hibernate-mapping>

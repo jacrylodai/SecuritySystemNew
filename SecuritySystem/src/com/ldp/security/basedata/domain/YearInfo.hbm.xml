@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.ldp.security.basedata.domain.YearInfo" table="t_year_info">
+		<id name="yearInfoId" column="year_info_id">
+			<generator class="identity"/>			
+		</id>
+		
+		<property name="year" column="year"/>	
+		<property name="staType" column="sta_type"/>	
+		<property name="weekStaPoint" column="week_sta_point"/>		
+	</class>
+	
+</hibernate-mapping>

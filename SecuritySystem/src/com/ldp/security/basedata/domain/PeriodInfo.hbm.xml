@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.ldp.security.basedata.domain.PeriodInfo" table="t_period_info">
+		<id name="periodInfoId" column="period_info_id">
+			<generator class="identity"/>			
+		</id>
+		
+		<many-to-one name="yearInfo" column="year_info_id" lazy="false"/>
+				
+		<property name="startDateString" column="start_date"/>			
+		<property name="endDateString" column="end_date"/>			
+		<property name="lastDays" column="last_days"/>			
+	</class>
+	
+</hibernate-mapping>

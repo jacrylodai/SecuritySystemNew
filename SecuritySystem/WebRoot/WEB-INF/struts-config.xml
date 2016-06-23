@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE struts-config PUBLIC
+          "-//Apache Software Foundation//DTD Struts Configuration 1.2//EN"
+          "http://jakarta.apache.org/struts/dtds/struts-config_1_2.dtd">
+
+
+<struts-config>
+
+    <form-beans>
+    	<form-bean name="departmentForm" 
+    		type="com.ldp.security.basedata.actionform.DepartmentActionForm"></form-bean>
+    		
+    	<form-bean name="userForm" 
+    		type="com.ldp.security.basedata.actionform.UserActionForm"></form-bean>
+    		
+    	<form-bean name="loginForm" 
+    		type="com.ldp.security.system.actionform.LoginActionForm"></form-bean>
+    		
+    	<form-bean name="securityFormActionForm" 
+    		type="com.ldp.security.report.actionform.SecurityFormActionForm"></form-bean>
+    		
+    	<form-bean name="specialPeopleInfoForm"
+    		type="com.ldp.security.report.actionform.SpecialPeopleInfoActionForm"></form-bean>
+    		 
+    	<form-bean name="staPeriodSecurityActionForm" 
+    		type="com.ldp.security.sta.actionform.StaPeriodSecurityActionForm"></form-bean>
+    		
+    	<form-bean name="passwordActionForm" 
+    		type="com.ldp.security.system.actionform.PasswordActionForm"></form-bean>
+    	
+	</form-beans>
+
+	<global-exceptions>
+	</global-exceptions>
+
+<!-- =========================================== Global Forward Definitions -->
+
+    <global-forwards>
+        <forward name="showMessage" path="/message.jsp"/>
+       	<forward name="viewStaPeriodSecurity"
+       		 path="/sta/staPeriodSecurity/common_sta_period_security_view.jsp"/>
+        
+    </global-forwards>
+
+
+<!-- =========================================== Action Mapping Definitions -->
+
+    <action-mappings>
+ 		 		
+ 		<action 			
+ 			path="/basedata/department/departmentFunc" 	
+ 			name="departmentForm"
+ 			type="org.springframework.web.struts.DelegatingActionProxy"
+ 			parameter="command"
+ 			scope="request"
+ 		>
+        	<forward name="saveDepartmentPrepare" path="/basedata/department/department_save.jsp"/> 
+        	<forward name="listDepartment" path="/basedata/department/department_list.jsp"/>
+        	<forward name="updateDepartmentPrepare" path="/basedata/department/department_update.jsp"/> 
+ 		</action>
+ 		
+ 		<action 			
+ 			path="/basedata/user/userFunc" 	
+ 			name="userForm"
+ 			type="org.springframework.web.struts.DelegatingActionProxy"
+ 			parameter="command"
+ 			scope="request"
+ 		>
+        	<forward name="saveUserPrepare" path="/basedata/user/user_save.jsp"/> 
+        	<forward name="listUser" path="/basedata/user/user_list.jsp"/>
+        	<forward name="updateUserPrepare" path="/basedata/user/user_update.jsp"/> 
+        	<forward name="updateUserPasswordPrepare" 
+        		path="/basedata/user/user_password_update.jsp"/> 
+ 		</action>
+ 		
+ 		<action 			
+ 			path="/system/login/loginFunc" 	
+ 			name="loginForm"
+ 			type="org.springframework.web.struts.DelegatingActionProxy"
+ 			parameter="command"
+ 			scope="request"
+ 		>
+        	<forward name="loginCheckPrepare" path="/system/login/login_check.jsp"/> 
+        	<forward name="departmentSiteIndex" 
+        		path="/system/siteIndex/siteIndexFunc.do?command=departmentSiteIndex" 
+        		redirect="true"/> 
+        	<forward name="stationSiteIndex" 
+        		path="/system/siteIndex/siteIndexFunc.do?command=stationSiteIndex" 
+        		redirect="true"/>
+        	<forward name="railwaySiteIndex" 
+        		path="/system/siteIndex/siteIndexFunc.do?command=railwaySiteIndex" 
+        		redirect="true"/>
+        	<forward name="countrySiteIndex" 
+        		path="/system/siteIndex/siteIndexFunc.do?command=countrySiteIndex" 
+        		redirect="true"/>
+ 		</action>
+ 		
+ 		<action 			
+ 			path="/system/siteIndex/siteIndexFunc" 	
+ 			type="org.springframework.web.struts.DelegatingActionProxy"
+ 			parameter="command"
+ 			scope="request"
+ 		>
+        	<forward name="countrySiteIndex" path="/system/siteIndex/country_site_index.jsp"/>
+        	<forward name="railwaySiteIndex" path="/system/siteIndex/railway_site_index.jsp"/>
+        	<forward name="stationSiteIndex" path="/system/siteIndex/station_site_index.jsp"/>
+        	<forward name="departmentSiteIndex" path="/system/siteIndex/department_site_index.jsp"/> 
+ 		</action>
+ 		
+ 		<action 			
+ 			path="/system/password/passwordFunc"
+ 			name="passwordActionForm" 	
+ 			type="org.springframework.web.struts.DelegatingActionProxy"
+ 			parameter="command"
+ 			scope="request"
+ 		>
+        	<forward name="updatePasswordPrepare" 
+        		path="/system/password/password_update.jsp"/> 
+ 		</action>
+ 		
+ 		<action 			
+ 			path="/report/securityForm/departmentSecurityFormFunc" 	
+ 			name="securityFormActionForm"
+ 			type="org.springframework.web.struts.DelegatingActionProxy"
+ 			parameter="command"
+ 			scope="request"
+ 		>
+        	<forward name="saveDepartmentSecurityFormPrepare"
+        		 path="/report/securityForm/department_security_form_save.jsp"/>
+        	<forward name="listDepartmentNotConfirmSecurityForm"
+        		 path="/report/securityForm/department_not_confirm_security_form_list.jsp"/> 
+        	<forward name="listDepartmentConfirmSecurityForm"
+        		 path="/report/securityForm/department_confirm_security_form_list.jsp"/>
+        	<forward name="listDepartmentVerifySecurityForm"
+        		 path="/report/securityForm/department_verify_security_form_list.jsp"/>
+        	<forward name="updateDepartmentSecurityFormPrepare"
+        		 path="/report/securityForm/department_security_form_update.jsp"/> 
+        	<forward name="viewDepartmentSecurityForm"
+        		 path="/report/securityForm/common_security_form_view.jsp"/> 
+ 		</action>
+ 		
+ 		<action 			
+ 			path="/report/securityForm/stationSecurityFormFunc" 	
+ 			name="securityFormActionForm"
+ 			type="org.springframework.web.struts.DelegatingActionProxy"
+ 			parameter="command"
+ 			scope="request"
+ 		>
+        	<forward name="listStationNotConfirmSecurityForm"
+        		 path="/report/securityForm/station_not_confirm_security_form_list.jsp"/>
+        	<forward name="listStationConfirmSecurityForm"
+        		 path="/report/securityForm/station_confirm_security_form_list.jsp"/>
+        	<forward name="viewStationSecurityForm"
+        		 path="/report/securityForm/common_security_form_view.jsp"/>
+        	<forward name="updateStationSecurityFormPrepare"
+        		 path="/report/securityForm/station_security_form_update.jsp"/> 
+        	<forward name="listStationVerifySecurityForm"
+        		 path="/report/securityForm/station_verify_security_form_list.jsp"/>
+        	<forward name="listStationImportSecurityForm"
+        		 path="/report/securityForm/station_import_security_form_list.jsp"/>
+        	<forward name="uploadStationSecurityFormPrepare"
+        		 path="/report/securityForm/station_security_form_upload.jsp"/>
+ 		</action>
+ 		
+ 		<action 			
+ 			path="/report/specialPeopleInfo/departmentSpecialPeopleInfoFunc" 	
+ 			name="specialPeopleInfoForm"
+ 			type="org.springframework.web.struts.DelegatingActionProxy"
+ 			parameter="command"
+ 			scope="request"
+ 		>
+        	<forward name="saveDepartmentSpecialPeopleInfoPrepare"
+        		 path="/report/specialPeopleInfo/department_special_people_info_save.jsp"/>
+        	<forward name="listDepartmentNotConfirmSpecialPeopleInfo"
+        		 path="/report/specialPeopleInfo/department_not_confirm_special_people_info_list.jsp"/>
+ 		</action>
+ 		
+ 		<!-- sta -->
+ 		
+ 		<action 			
+ 			path="/sta/staPeriodSecurity/customStaPeriodSecurityFunc" 	
+ 			name="staPeriodSecurityActionForm"
+ 			type="org.springframework.web.struts.DelegatingActionProxy"
+ 			parameter="command"
+ 			scope="request"
+ 		>
+        	<forward name="saveCustomStaPeriodInfoPrepare"
+        		 path="/sta/staPeriodSecurity/custom_sta_period_info_save.jsp"/>
+        	<forward name="listCustomSubStaPeriodSecurity"
+        		 path="/sta/staPeriodSecurity/custom_sub_sta_period_security_list.jsp"/>
+        	<forward name="listCustomStaPeriodInfo"
+        		 path="/sta/staPeriodSecurity/custom_sta_period_info_list.jsp"/>
+ 		</action>
+ 		
+ 	</action-mappings>
+ 	
+ 	<message-resources parameter="com.ldp.security.resource.ResourceBundle"></message-resources>
+</struts-config>
+

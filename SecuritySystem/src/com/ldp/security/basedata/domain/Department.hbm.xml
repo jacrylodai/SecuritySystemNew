@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.ldp.security.basedata.domain.Department" table="t_department">
+		<id name="departmentId" column="department_id">
+			<generator class="identity"/>			
+		</id>
+		
+		<many-to-one name="parentDepartment" column="parent_id"/>
+		
+		<property name="level" column="level"/>		
+		<property name="isDelete" column="is_delete"/>		
+		<property name="departmentName" column="department_name"/>
+	</class>
+	
+</hibernate-mapping>

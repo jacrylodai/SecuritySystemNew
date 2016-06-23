@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.ldp.security.sta.domain.StaPeriodInfo"
+		 table="t_sta_period_info">
+		<id name="staPeriodInfoId" column="sta_period_info_id">
+			<generator class="identity"/>			
+		</id>
+		
+		<many-to-one name="staUser" column="sta_user_id"/>
+		<many-to-one name="creatorDepartment" column="creator_department_id"/>
+
+		<property name="staType" column="sta_type"/>	
+		<property name="startDateString" column="start_date"/>
+		<property name="endDateString" column="end_date"/>
+		<property name="lastDays" column="last_days"/>
+		<property name="staTimeString" column="sta_time"/>
+		
+	</class>
+	
+</hibernate-mapping>

@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.ldp.security.basedata.domain.User" table="t_user">
+		<id name="userId" column="user_id">
+			<generator class="identity"/>			
+		</id>
+		
+		<property name="isDelete" column="is_delete"/>		
+		<property name="userAuthorityType" column="user_authority_type"/>	
+				
+		<many-to-one name="department" column="department_id" lazy="false"/>
+				
+		<property name="username" column="username"/>			
+		<property name="password" column="password"/>			
+		<property name="contactPeople" column="contact_people"/>			
+		<property name="mobilePhone" column="mobile_phone"/>			
+		<property name="officePhone" column="office_phone"/>		
+	</class>
+	
+</hibernate-mapping>
