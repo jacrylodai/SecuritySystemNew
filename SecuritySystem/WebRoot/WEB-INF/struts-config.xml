@@ -19,9 +19,6 @@
     		
     	<form-bean name="securityFormActionForm" 
     		type="com.ldp.security.report.actionform.SecurityFormActionForm"></form-bean>
-    		
-    	<form-bean name="specialPeopleInfoForm"
-    		type="com.ldp.security.report.actionform.SpecialPeopleInfoActionForm"></form-bean>
     		 
     	<form-bean name="staPeriodSecurityActionForm" 
     		type="com.ldp.security.sta.actionform.StaPeriodSecurityActionForm"></form-bean>
@@ -161,19 +158,6 @@
         		 path="/report/securityForm/station_import_security_form_list.jsp"/>
         	<forward name="uploadStationSecurityFormPrepare"
         		 path="/report/securityForm/station_security_form_upload.jsp"/>
- 		</action>
- 		
- 		<action 			
- 			path="/report/specialPeopleInfo/departmentSpecialPeopleInfoFunc" 	
- 			name="specialPeopleInfoForm"
- 			type="org.springframework.web.struts.DelegatingActionProxy"
- 			parameter="command"
- 			scope="request"
- 		>
-        	<forward name="saveDepartmentSpecialPeopleInfoPrepare"
-        		 path="/report/specialPeopleInfo/department_special_people_info_save.jsp"/>
-        	<forward name="listDepartmentNotConfirmSpecialPeopleInfo"
-        		 path="/report/specialPeopleInfo/department_not_confirm_special_people_info_list.jsp"/>
  		</action>
  		
  		<!-- sta -->

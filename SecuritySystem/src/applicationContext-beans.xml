@@ -37,9 +37,6 @@
 	<bean id="keyunFormDao" class="com.ldp.security.report.dao.KeyunFormDaoImpl">
 	</bean>
 	
-	<bean id="specialPeopleInfoDao" class="com.ldp.security.report.dao.SpecialPeopleInfoDaoImpl">
-	</bean>
-	
 	<bean id="securityFormManager"
 		 class="com.ldp.security.report.manager.SecurityFormManagerImpl">
 		<property name="sessionFactory" ref="sessionFactory"/>
@@ -47,12 +44,6 @@
 		<property name="commonFormDao" ref="commonFormDao"/>
 		<property name="keyunFormDao" ref="keyunFormDao"/>
 		<property name="departmentManager" ref="departmentManager"></property>
-	</bean>
-	
-	<bean id="specialPeopleInfoManager"
-		 class="com.ldp.security.report.manager.SpecialPeopleInfoManagerImpl">
-		 <property name="sessionFactory" ref="sessionFactory"/>
-		 <property name="specialPeopleInfoDao" ref="specialPeopleInfoDao"></property>
 	</bean>
 	
 	<!-- sta -->

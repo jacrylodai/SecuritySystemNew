@@ -57,10 +57,8 @@
   		p.addButton('images/netm.gif','已导入-车站反恐报表维护','parent.frames.main.location.href="<%=basePath %>report/securityForm/stationSecurityFormFunc.do?command=listStationImportSecurityForm"');
   	</c:when>
   </c:choose>
-  <%--
   p.addButton('images/netm.gif','未上报-车站反恐报表维护','parent.frames.main.location.href="<%=basePath %>report/securityForm/stationSecurityFormFunc.do?command=listStationNotConfirmSecurityForm&startDateString=&endDateString=&departmentId=-1"');
   p.addButton('images/netm.gif','已上报-车站反恐报表维护','parent.frames.main.location.href="<%=basePath %>report/securityForm/stationSecurityFormFunc.do?command=listStationConfirmSecurityForm&startDateString=&endDateString=&departmentId=-1"');
-  --%>
   p.addButton('images/netm.gif','已审核-车站反恐报表维护','parent.frames.main.location.href="<%=basePath %>report/securityForm/stationSecurityFormFunc.do?command=listStationVerifySecurityForm&startDateString=&endDateString=&departmentId=-1"');
   p.addButton('images/netm.gif','自定义统计维护','parent.frames.main.location.href="<%=basePath %>sta/staPeriodSecurity/customStaPeriodSecurityFunc.do?command=listCustomStaPeriodInfo&startDateString=&endDateString="');
   

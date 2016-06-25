@@ -25,7 +25,6 @@
 		<mapping resource="com/ldp/security/report/domain/SecurityForm.hbm.xml"/>
 		<mapping resource="com/ldp/security/report/domain/CommonForm.hbm.xml"/>
 		<mapping resource="com/ldp/security/report/domain/KeyunForm.hbm.xml"/>
-		<mapping resource="com/ldp/security/report/domain/SpecialPeopleInfo.hbm.xml"/>
 		
 		<mapping resource="com/ldp/security/sta/domain/StaPeriodInfo.hbm.xml"/>
 		<mapping resource="com/ldp/security/sta/domain/CommonSta.hbm.xml"/>

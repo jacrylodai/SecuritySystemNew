@@ -62,14 +62,6 @@
 		<property name="securityFormManager" ref="securityFormManager"/>
 	</bean>
 	
-	<bean name="/report/specialPeopleInfo/departmentSpecialPeopleInfoFunc" 
-		class="com.ldp.security.report.action.DepartmentSpecialPeopleInfoAction"
-			 scope="singleton">
-		
-		<property name="specialPeopleInfoManager" ref="specialPeopleInfoManager"/>
-		<property name="departmentManager" ref="departmentManager"/>
-	</bean>
-	
 	<!-- sta -->
 	
 	<bean name="/sta/staPeriodSecurity/customStaPeriodSecurityFunc" 
