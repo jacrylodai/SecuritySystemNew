@@ -172,13 +172,13 @@
 			                
 			<table width="80%" border="0" cellpadding="0" cellspacing="0">
 				<tr>
-					<td width="20%" height="30px" align="right">报表起始时间：</td>
+					<td width="20%" height="30px" align="right">报表起始日期：</td>
 					<td width="30%" align="left">
 						<input id="startDateString" name="startDateString"
 							 class="Wdate" type="text" onClick="WdatePicker()"
 							 value="${param.startDateString }">
 					</td>
-					<td width="20%" height="30px" align="right">报表终止时间：</td>
+					<td width="20%" height="30px" align="right">报表终止日期：</td>
 					<td width="30%" align="left">
 						<input id="endDateString" name="endDateString"
 							 class="Wdate" type="text" onClick="WdatePicker()"

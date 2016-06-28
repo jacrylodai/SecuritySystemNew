@@ -107,14 +107,14 @@
 				<c:choose>
 					<c:when test="${checkInfoListLength>0}">
 					
-						<table width="80%" border="0" cellpadding="0" cellspacing="0">
+						<table width="95%" border="0" cellpadding="0" cellspacing="0">
 				
 							<c:forEach varStatus="var" begin="0" end="${checkInfoListLength-1 }" step="2">
 							<tr>
 								<c:forEach varStatus="varInside" begin="${var.index}" 
 									end="${(var.index+1)>(checkInfoListLength-1) ? (checkInfoListLength-1):(var.index+1)}" step="1">
-									<td width="20%" height="30px" align="right">${commonSta.securityMachineCheckInfoList[varInside.index].name }：</td>
-									<td width="13%" align="left">${commonSta.securityMachineCheckInfoList[varInside.index].checkNum }</td>
+									<td width="40%" height="30px" align="right">${commonSta.securityMachineCheckInfoList[varInside.index].name }：</td>
+									<td width="10%" align="left">${commonSta.securityMachineCheckInfoList[varInside.index].checkNum }</td>
 								</c:forEach>
 							</tr>
 							</c:forEach>
