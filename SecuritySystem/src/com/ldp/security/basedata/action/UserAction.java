@@ -6,19 +6,18 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
-import org.apache.struts.actions.DispatchAction;
 
 import com.ldp.security.basedata.actionform.UserActionForm;
 import com.ldp.security.basedata.domain.Department;
 import com.ldp.security.basedata.domain.User;
 import com.ldp.security.basedata.manager.DepartmentManager;
 import com.ldp.security.basedata.manager.UserManager;
+import com.ldp.security.common.action.BaseAction;
 import com.ldp.security.util.PageModel;
 import com.ldp.security.util.constants.Constants;
 import com.ldp.security.util.encrypt.EncryptUtils;
-import com.ldp.security.util.validate.ClientValidate;
 
-public class UserAction extends DispatchAction{
+public class UserAction extends BaseAction{
 
 	private static final String LIST_USER_PATH = 
 		"basedata/user/userFunc.do?command=listUser";
@@ -84,7 +83,7 @@ public class UserAction extends DispatchAction{
 		
 		User user = new User();
 		user.setIsDelete(Constants.VALUE_NO);
-		user.setUserAuthorityType(userActionForm.getUserAuthorityType());
+		//TODO ROLE
 		
 		user.setDepartment(department);
 		
@@ -190,7 +189,7 @@ public class UserAction extends DispatchAction{
 		
 		userActionForm.validateDataUpdate();
 		
-		user.setUserAuthorityType(userActionForm.getUserAuthorityType());
+		//TODO ROLE
 		
 		user.setContactPeople(userActionForm.getContactPeople());
 		user.setMobilePhone(userActionForm.getMobilePhone());

@@ -8,12 +8,10 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
-import org.apache.struts.actions.DispatchAction;
 
 import com.ldp.security.basedata.domain.Department;
 import com.ldp.security.basedata.domain.User;
-import com.ldp.security.basedata.manager.DepartmentManager;
-import com.ldp.security.report.actionform.SecurityFormActionForm;
+import com.ldp.security.common.action.BaseAction;
 import com.ldp.security.sta.actionform.StaPeriodSecurityActionForm;
 import com.ldp.security.sta.domain.StaPeriodInfo;
 import com.ldp.security.sta.domain.StaPeriodSecurity;
@@ -30,11 +28,11 @@ import com.ldp.security.util.file.FileUtil;
 import com.ldp.security.util.xml.XMLConfigReader;
 
 /**
- * 只能被车站级别的用户调用
+ * 自定义统计功能
  * @author Administrator
  *
  */
-public class CustomStaPeriodSecurityAction extends DispatchAction{
+public class CustomStaPeriodSecurityAction extends BaseAction{
 
 	private static final String LIST_CUSTOM_STA_PERIOD_INFO_PATH = 
 		"sta/staPeriodSecurity/customStaPeriodSecurityFunc.do?command=listCustomStaPeriodInfo";

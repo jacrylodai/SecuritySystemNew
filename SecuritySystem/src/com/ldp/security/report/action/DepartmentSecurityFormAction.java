@@ -9,26 +9,23 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
-import org.apache.struts.actions.DispatchAction;
-import org.apache.tools.ant.util.DateUtils;
 
 import com.ldp.security.basedata.domain.Department;
 import com.ldp.security.basedata.domain.User;
 import com.ldp.security.basedata.manager.DepartmentManager;
-import com.ldp.security.basedata.manager.UserManager;
+import com.ldp.security.common.action.BaseAction;
 import com.ldp.security.report.actionform.SecurityFormActionForm;
 import com.ldp.security.report.domain.CommonForm;
 import com.ldp.security.report.domain.KeyunForm;
 import com.ldp.security.report.domain.SecurityForm;
 import com.ldp.security.report.manager.SecurityFormManager;
 import com.ldp.security.util.PageModel;
-import com.ldp.security.util.business.CaculateUtil;
 import com.ldp.security.util.constants.Constants;
 import com.ldp.security.util.date.DateUtil;
 import com.ldp.security.util.validate.ClientValidate;
 import com.ldp.security.util.xml.XMLConfigReader;
 
-public class DepartmentSecurityFormAction extends DispatchAction{
+public class DepartmentSecurityFormAction extends BaseAction{
 	
 	private static final String LIST_DEPARTMENT_NOT_CONFIRM_SECURITY_FORM_PATH = 
 		"report/securityForm/departmentSecurityFormFunc.do?command=listDepartmentNotConfirmSecurityForm";

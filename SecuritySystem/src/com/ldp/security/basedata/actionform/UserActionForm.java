@@ -15,10 +15,7 @@ public class UserActionForm extends ActionForm {
 	
 	//用户id
 	private long userId;	
-	
-	//用户权限类型：V-查看。M-管理
-	private int userAuthorityType;
-	
+		
 	//用户部门id
 	private long departmentId;
 	
@@ -48,14 +45,6 @@ public class UserActionForm extends ActionForm {
 
 	public void setUserId(long userId) {
 		this.userId = userId;
-	}
-
-	public int getUserAuthorityType() {
-		return userAuthorityType;
-	}
-
-	public void setUserAuthorityType(int userAuthorityType) {
-		this.userAuthorityType = userAuthorityType;
 	}
 
 	public long getDepartmentId() {
@@ -154,19 +143,10 @@ public class UserActionForm extends ActionForm {
 		if(!affirmPassword.equals(password)){
 			throw new RuntimeException("密码和确认密码不一致");	
 		}
-		
-		if(userAuthorityType != User.USER_AUTHORITY_TYPE_VIEWER
-				&& userAuthorityType != User.USER_AUTHORITY_TYPE_MANAGER){
-			throw new RuntimeException("用户权限类型没有选择");	
-		}
 	}
 	
 	public void validateDataUpdate(){
 		
-		if(userAuthorityType != User.USER_AUTHORITY_TYPE_VIEWER
-				&& userAuthorityType != User.USER_AUTHORITY_TYPE_MANAGER){
-			throw new RuntimeException("用户权限类型没有选择");	
-		}
 	}
 
 	

@@ -9,15 +9,14 @@ import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 import org.apache.struts.action.ActionMessage;
 import org.apache.struts.action.ActionMessages;
-import org.apache.struts.actions.DispatchAction;
 
-import com.ldp.security.basedata.domain.Department;
 import com.ldp.security.basedata.domain.User;
 import com.ldp.security.basedata.manager.UserManager;
+import com.ldp.security.common.action.BaseAction;
 import com.ldp.security.system.actionform.LoginActionForm;
 import com.ldp.security.util.encrypt.EncryptUtils;
 
-public class LoginAction extends DispatchAction{
+public class LoginAction extends BaseAction{
 	
 	private UserManager userManager;
 
@@ -53,32 +52,7 @@ public class LoginAction extends DispatchAction{
 				HttpSession session = request.getSession();
 				session.setAttribute(User.USER_SESSION_ID, user);
 				
-				int level = user.getDepartment().getLevel();
-				String forwardPath = null;
-				
-				switch(level){
-				
-				case Department.LEVEL_COUNTRY:
-					forwardPath = "countrySiteIndex";
-					break;
-				
-				case Department.LEVEL_RAILWAY:
-					forwardPath = "railwaySiteIndex";
-					break;
-					
-				case Department.LEVEL_STATION:
-					forwardPath = "stationSiteIndex";
-					break;
-					
-				case Department.LEVEL_DEPARTMENT:
-					forwardPath = "departmentSiteIndex";
-					break;
-					
-				default:
-					throw new RuntimeException("错误的部门级别");
-				}
-				
-				return mapping.findForward(forwardPath);
+				return mapping.findForward("siteIndex");
 			}else{
 				errors.add("passwordWrong",new ActionMessage("error.message","密码错误"));
 			}

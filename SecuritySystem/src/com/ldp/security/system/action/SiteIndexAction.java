@@ -1,49 +1,51 @@
 package com.ldp.security.system.action;
 
+import java.util.List;
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
-import org.apache.struts.action.ActionMessage;
-import org.apache.struts.action.ActionMessages;
-import org.apache.struts.actions.DispatchAction;
 
+import com.ldp.security.basedata.domain.Resource;
+import com.ldp.security.basedata.domain.Role;
+import com.ldp.security.basedata.domain.RoleResourceAuthority;
 import com.ldp.security.basedata.domain.User;
-import com.ldp.security.basedata.manager.UserManager;
-import com.ldp.security.system.actionform.LoginActionForm;
-import com.ldp.security.util.encrypt.EncryptUtils;
+import com.ldp.security.common.action.BaseAction;
 
-public class SiteIndexAction extends DispatchAction{
-	
-	public ActionForward departmentSiteIndex(ActionMapping mapping, ActionForm form,
+public class SiteIndexAction extends BaseAction{
+
+	public ActionForward siteIndex(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
 
-		return mapping.findForward("departmentSiteIndex");
+		return mapping.findForward("siteIndex");
 	}
 
-	public ActionForward stationSiteIndex(ActionMapping mapping, ActionForm form,
+	public ActionForward siteMenu(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
 
-		return mapping.findForward("stationSiteIndex");
-	}
+		User user = (User) request.getSession().getAttribute(User.USER_SESSION_ID);
+		Role role = user.getRole();
 
-	public ActionForward railwaySiteIndex(ActionMapping mapping, ActionForm form,
-			HttpServletRequest request, HttpServletResponse response)
-			throws Exception {
-
-		return mapping.findForward("railwaySiteIndex");
-	}
-
-	public ActionForward countrySiteIndex(ActionMapping mapping, ActionForm form,
-			HttpServletRequest request, HttpServletResponse response)
-			throws Exception {
-
-		return mapping.findForward("countrySiteIndex");
+		List<Resource> resourceTree = resourceManager.getAllMenuResourceTreeInList();
+		
+		List<RoleResourceAuthority> authorityList = 
+			roleResourceAuthorityManager.getAuthorityListByRoleId(
+					Resource.RESOURCE_TYPE_MENU,role.getRoleId());
+		
+		Map<Long, RoleResourceAuthority> authorityMap = 
+			roleResourceAuthorityManager
+			.getAuthorityMapByResourceTreeAuthorityList(resourceTree,authorityList);
+		
+		request.setAttribute("resourceTree", resourceTree);
+		request.setAttribute("authorityMap", authorityMap);
+				
+		return mapping.findForward("siteMenu");
 	}
 	
 }

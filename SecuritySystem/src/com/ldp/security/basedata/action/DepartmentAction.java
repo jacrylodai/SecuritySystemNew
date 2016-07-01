@@ -9,13 +9,13 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
-import org.apache.struts.actions.DispatchAction;
 
 import com.ldp.security.basedata.actionform.DepartmentActionForm;
 import com.ldp.security.basedata.domain.Department;
 import com.ldp.security.basedata.domain.User;
 import com.ldp.security.basedata.manager.DepartmentManager;
 import com.ldp.security.basedata.manager.UserManager;
+import com.ldp.security.common.action.BaseAction;
 import com.ldp.security.report.domain.SecurityForm;
 import com.ldp.security.report.manager.SecurityFormManager;
 import com.ldp.security.sta.domain.StaPeriodInfo;
@@ -27,7 +27,7 @@ import com.ldp.security.util.constants.Constants;
 import com.ldp.security.util.constants.FileNameConstants;
 import com.ldp.security.util.file.DownloadUtil;
 
-public class DepartmentAction extends DispatchAction {
+public class DepartmentAction extends BaseAction {
 
 	private static final String LIST_DEPARTMENT_PATH = 
 		"basedata/department/departmentFunc.do?command=listDepartment";

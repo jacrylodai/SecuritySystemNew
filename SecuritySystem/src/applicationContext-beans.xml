@@ -16,6 +16,19 @@
 	<bean id="userDao" class="com.ldp.security.basedata.dao.UserDaoImpl">
 	</bean>	
 	
+	<bean id="roleDao" class="com.ldp.security.basedata.dao.RoleDaoImpl">
+	</bean>	
+	
+	<bean id="dataDictDao" class="com.ldp.security.basedata.dao.DataDictDaoImpl">
+	</bean>
+	
+	<bean id="resourceDao" class="com.ldp.security.basedata.dao.ResourceDaoImpl">
+	</bean>
+	
+	<bean id="roleResourceAuthorityDao" 
+		class="com.ldp.security.basedata.dao.RoleResourceAuthorityDaoImpl">
+	</bean>	
+	
 	<bean id="departmentManager" class="com.ldp.security.basedata.manager.DepartmentManagerImpl">
 		<property name="sessionFactory" ref="sessionFactory"/>
 		<property name="departmentDao" ref="departmentDao"/>
@@ -24,6 +37,28 @@
 	<bean id="userManager" class="com.ldp.security.basedata.manager.UserManagerImpl">
 		<property name="sessionFactory" ref="sessionFactory"/>
 		<property name="userDao" ref="userDao"/>		
+	</bean>
+	
+	<bean id="roleManager" class="com.ldp.security.basedata.manager.RoleManagerImpl">
+		<property name="sessionFactory" ref="sessionFactory"/>
+		<property name="roleDao" ref="roleDao"/>
+		<property name="dataDictManager" ref="dataDictManager"/>		
+	</bean>
+	
+	<bean id="dataDictManager" class="com.ldp.security.basedata.manager.DataDictManagerImpl">
+		<property name="sessionFactory" ref="sessionFactory"/>
+		<property name="dataDictDao" ref="dataDictDao"/>		
+	</bean>
+	
+	<bean id="resourceManager" class="com.ldp.security.basedata.manager.ResourceManagerImpl">
+		<property name="sessionFactory" ref="sessionFactory"/>
+		<property name="resourceDao" ref="resourceDao"/>		
+	</bean>
+	
+	<bean id="roleResourceAuthorityManager" 
+		class="com.ldp.security.basedata.manager.RoleResourceAuthorityManagerImpl">
+		<property name="sessionFactory" ref="sessionFactory"/>
+		<property name="roleResourceAuthorityDao" ref="roleResourceAuthorityDao"/>		
 	</bean>
 	
 	<!-- report -->

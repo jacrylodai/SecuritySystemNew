@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.ldp.security.basedata.domain.Role" table="t_role">
+		<id name="roleId" column="role_id">
+			<generator class="identity"/>			
+		</id>
+		
+		<property name="roleName" column="role_name"/>
+		<many-to-one name="roleType" column="role_type_id" lazy="false"/>	
+	</class>
+	
+</hibernate-mapping>

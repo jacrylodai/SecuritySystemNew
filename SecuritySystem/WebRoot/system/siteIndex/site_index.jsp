@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ include file="../../common/common.jsp" %>
 <HTML>
 <!--
  ---------------------------------------------------------------------------
@@ -15,6 +16,7 @@
  ---------------------------------------------------------------------------
 -->
 <HEAD>
+		<base href="<%=basePath %>">
 <META HTTP-EQUIV="Content-Type" CONTENT="text/html;CHARSET=UTF-8">
 <TITLE>反恐数据统计系统</TITLE>
 </HEAD>
@@ -22,16 +24,16 @@
 
 	<frameset rows="50,*" cols="*" frameborder="NO" border="0"
 		framespacing="0">
-		<frame src="head.jsp" name="topFrame" frameborder="no" scrolling="NO"
+		<frame src="system/siteIndex/head.jsp" name="topFrame" frameborder="no" scrolling="NO"
 			noresize marginwidth="0" marginheight="0">
 		<frameset cols="120,*" frameborder="NO" border="0" framespacing="0"
 			rows="*" name="workaround">
-		     <FRAME SRC="country_menu.jsp" NAME="Links" SCROLLING="No">
+		     <FRAME SRC="system/siteIndex/siteIndexFunc.do?command=siteMenu" NAME="Links" SCROLLING="No">
 			<FRAMESET  rows = "34,*" frameborder=yes bordercolor=silver>
-				<frame src="toolbar.jsp" name="toolBar" frameborder="no"
+				<frame src="system/siteIndex/toolbar.jsp" name="toolBar" frameborder="no"
 						scrolling="no" noresize marginwidth="0" marginheight="0"
 						id="toolBar">	
-			     <FRAME SRC="blank_page.jsp" NAME="main" SCROLLING="AUTO">
+			     <FRAME SRC="system/siteIndex/blank_page.jsp" NAME="main" SCROLLING="AUTO">
 			  </FRAMESET>	
 			
 		</frameset>

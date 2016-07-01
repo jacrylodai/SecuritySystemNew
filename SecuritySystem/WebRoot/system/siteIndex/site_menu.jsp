@@ -49,18 +49,29 @@
 
   var p
 
+  //create first panel
 
-  p = new createPanel('p2','统计管理');
-  p.addButton('images/netm.gif','自定义统计维护','parent.frames.main.location.href="<%=basePath %>sta/staPeriodSecurity/customStaPeriodSecurityFunc.do?command=listCustomStaPeriodSecurity"');
-  o.addPanel(p);
+  <c:forEach var="topResource" items="${resourceTree }">
+  	<c:choose>
+  		<c:when test="${authorityMap[topResource.resourceId].showMenu}">
+  			p = new createPanel('p2','${topResource.resourceName }');
+  			
+  			<c:forEach var="subResource" items="${topResource.subResourceList}">
+  			
+  				<c:choose>
+	  				<c:when test="${authorityMap[subResource.resourceId].showMenu}">
+	  					p.addButton('images/netm.gif','${subResource.resourceName }','parent.frames.main.location.href="<%=basePath %>${subResource.resourceUrlPath }"');
+	  
+	  				</c:when>
+  				</c:choose>
+  			</c:forEach>
+  			
+  			o.addPanel(p);
+  			
+  		</c:when>
+  	</c:choose>
+  </c:forEach>
 
-  p = new createPanel('p2','基础数据管理');
-  p.addButton('images/netm.gif','车站维护','parent.frames.main.location.href="basedata/department/departmentFunc.do?command=listDepartment"');
-  o.addPanel(p);
-
-  p = new createPanel('p2','系统功能');
-  p.addButton('images/netm.gif','修改密码','parent.frames.main.location.href="<%=basePath %>system/password/passwordFunc.do?command=updatePasswordPrepare"');
-  o.addPanel(p);
   
   o.draw();         //draw the OutlookBar
 
@@ -98,6 +109,7 @@ function myOnResize() {
 <!-- need an onResize event to redraw outlookbar after pagesize changes! -->
 <!-- OP5 does not support onResize event! use setTimeout every 100ms -->
 <body onLoad="resize_op5();" onResize="myOnResize();">
+
 </body>
 </html>
 

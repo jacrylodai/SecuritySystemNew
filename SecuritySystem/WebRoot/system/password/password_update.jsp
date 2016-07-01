@@ -88,7 +88,7 @@
 	}
 	
 	var isCorrect= false;
-	var userId = "${USER_SESSION_ID.userId}";
+	var userId = "${sessionScope[USER_SESSION_ID].userId}";
 	
 	function checkUserPassword(){
 		

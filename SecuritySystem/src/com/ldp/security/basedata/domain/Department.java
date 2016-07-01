@@ -8,9 +8,14 @@ package com.ldp.security.basedata.domain;
 public class Department {
 	
 	/**
-	 * 全国类的id
+	 * 根节点的id
 	 */
-	public static final long ID_COUNTRY = 1;
+	public static final long ID_ROOT = 0;
+
+	/**
+	 * 根节点
+	 */
+	public static final int LEVEL_ROOT = 0;
 	
 	/**
 	 * 全国

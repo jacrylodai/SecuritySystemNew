@@ -37,7 +37,7 @@ function showTimeRefresh(){
 
 function logout(){
 
-	window.top.location.href="<%=basePath %>"+"system/login/loginFunc.do?command=logout";
+	window.top.location.href="<%=basePath %>system/login/loginFunc.do?command=logout";
 }
 
 </script>
@@ -54,22 +54,14 @@ function logout(){
 					当前时间：<span id="dateMsg"></span>
 				</td>
 				<td width="20%">
-					部门名称:${USER_SESSION_ID.department.departmentName }
+					用户名:${sessionScope[USER_SESSION_ID].username }
 				</td>
 				<td width="20%">
-					用户名:${USER_SESSION_ID.username }
+					部门名称:${sessionScope[USER_SESSION_ID].department.departmentName }
 				</td>
 				
 				<td width="15%">
-					当前用户权限:
-					<c:choose>
-						<c:when test="${USER_SESSION_ID.userAuthorityType == User_USER_AUTHORITY_TYPE_MANAGER}">
-						管理
-						</c:when>
-						<c:when test="${USER_SESSION_ID.userAuthorityType == User_USER_AUTHORITY_TYPE_VIEWER}">
-						查看
-						</c:when>
-					</c:choose>
+					角色:${sessionScope[USER_SESSION_ID].role.roleName }
 				</td>
 				<td align="center">
 					<a href="javascript:logout();">注销</a>

@@ -4,43 +4,16 @@
 	<head>
 		<base href="<%=basePath %>">
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-		<title>部门维护</title>
+		<title>角色维护</title>
 		<link rel="stylesheet" href="style/drp.css">
 		<script type="text/javascript">
 	
-	function saveDepartment() {
+	function saveRole() {
 		window.location.href="<%=basePath %>"
-			+"basedata/department/departmentFunc.do?command=saveDepartmentPrepare"
-			+"&parentId=${parentDepartment.departmentId }";	
+			+"basedata/role/roleFunc.do?command=saveRolePrepare";
 	}
 	
-	function updateDepartment() {
-		var checkFlags=document.getElementsByName("selectFlag");
-		var count=0;
-		var selectedId;
-		for(var i=0;i<checkFlags.length;i++){
-			var checkElt = checkFlags[i];
-			if(checkElt.checked){
-				count++;
-				selectedId = checkElt.value;
-			}
-		}
-		if(count<1){
-			alert("没有选择数据");
-		}else
-			if(count>1){
-				alert("只能选择一条数据");
-			}else{
-				with(document.departmentForm){
-					action="basedata/department/departmentFunc.do?command=updateDepartmentPrepare"
-						+"&departmentId="+selectedId;
-					method="post";
-					submit();
-				}
-			}
-	}
-	
-	function deleteDepartment() {
+	function deleteRole() {
 		var checkFlags=document.getElementsByName("selectFlag");
 		var count=0;
 		for(var i=0;i<checkFlags.length;i++){
@@ -56,14 +29,14 @@
 			return;
 		}
 		if(count>0){
-			with(document.departmentForm){
-				action="basedata/department/departmentFunc.do?command=deleteDepartment";
+			with(document.roleForm){
+				action="sta/staPeriodSecurity/customStaPeriodSecurityFunc.do?command=deleteRole";
 				method="post";
 				submit();
 			}
 		}
 	}
-		
+			
 	function checkAll() {
 		var ifAll=document.getElementById("ifAll");
 		var checkFlags=document.getElementsByName("selectFlag");
@@ -76,7 +49,7 @@
 	</head>
 
 	<body class="body1">
-		<form name="departmentForm" id="departmentForm">
+		<form name="roleForm" id="roleForm">
 			<div align="center">
 				<table width="95%" border="0" cellspacing="0" cellpadding="0"
 					height="35">
@@ -89,35 +62,17 @@
 						<td width="522" class="p1" height="17" nowrap>
 							<img src="images/mark_arrow_02.gif" width="14" height="14">
 							&nbsp;
-							<b>基础数据管理&gt;&gt;部门维护</b>
-						</td>
-					</tr>
-				</table>
-				
-				<table width="95%" border="0" cellspacing="0" cellpadding="0"
-					height="25">
-					<tr>
-						<td width="522" class="p1" height="25" nowrap>
-							<img src="images/mark_arrow_03.gif" width="14" height="14">
-							&nbsp;
-							<b>上级部门&gt;&gt;${parentDepartment.departmentName }</b>
-						</td>
-					</tr>
-				</table>
-				<table width="95%" border="0" cellspacing="0" cellpadding="0"
-					height="25">
-					<tr>
-						<td width="522" class="p1" height="25" nowrap>
-							<c:if test="${not empty parentDepartment.parentDepartment }">
-								<b><a href="basedata/department/departmentFunc.do?command=listDepartment&parentId=${parentDepartment.parentDepartment.departmentId }">
-								返回上级部门列表</a></b>
-							</c:if>							
+							<b>基础数据管理&gt;&gt;角色维护</b>
 						</td>
 					</tr>
 				</table>
 			</div>
 				
 			<hr width="97%" align="center" size=0>
+			
+			<c:set var="tdShortWidth" value="9" scope="page"></c:set>
+			<c:set var="tdBaseWidth" value="33" scope="page"></c:set>
+			<c:set var="tdLongWidth" value="20" scope="page"></c:set>
 			
 			<table width="95%" border="1" cellspacing="0" cellpadding="0"
 				align="center" class="table1">
@@ -126,8 +81,11 @@
 						<input type="checkbox" id="ifAll" name="ifAll"
 							 onClick="checkAll()">
 					</td>
-					<td class="rd6" width="40%">
-						部门名称
+					<td class="rd6" width="${tdBaseWidth }%">
+						角色名称
+					</td>
+					<td class="rd6" width="${tdBaseWidth }%">
+						角色类别
 					</td>
 					<td class="rd6">
 						操作
@@ -136,40 +94,25 @@
 				<c:choose>
 					<c:when test="${empty pageModel.data }">
 						<tr>
-							<td colspan="6">没有信息</td>
+							<td colspan="7">没有信息</td>
 						</tr>
 					</c:when>
 					<c:otherwise>
-						<c:forEach var="department" items="${pageModel.data }">
+						<c:forEach var="role" items="${pageModel.data }">
 							<tr>
 								<td class="rd8">
-									<input type="checkbox" id="checkbox${department.departmentId }" name="selectFlag" class="checkbox1"
-										value="${department.departmentId }">
-								</td>
-								
-								<td class="rd8">
-								<c:choose>
-									<c:when test="${department.level lt Department_LEVEL_DEPARTMENT }">
-										<a href="basedata/department/departmentFunc.do?command=listDepartment&parentId=${department.departmentId }">
-										${department.departmentName }
-										</a>
-									</c:when>
-									<c:otherwise>
-										${department.departmentName }
-									</c:otherwise>
-								</c:choose>
+									<input type="checkbox" id="checkbox${role.roleId }" name="selectFlag" class="checkbox1"
+										value="${role.roleId }">
 								</td>
 								<td class="rd8">
-								<a href="basedata/user/userFunc.do?command=listUser&departmentId=${department.departmentId }">
-								用户管理</a>&nbsp;
-								
-								<c:choose>
-									<c:when test="${department.level eq Department_LEVEL_DEPARTMENT }">
-										<a href="basedata/department/departmentFunc.do?command=downloadDepartmentExcelTemplate&departmentId=${department.departmentId }">
-										下载填报表模板</a>
-									</c:when>
-								</c:choose>
-								
+								${role.roleName }
+								</td>
+								<td class="rd8">
+								${role.roleType.dataDictName }
+								</td>
+								<td class="rd8">
+								<a href="basedata/role/roleFunc.do?command=updateMenuAuthorityPrepare&roleId=${role.roleId }">设置菜单权限</a>
+								<a href="basedata/role/roleFunc.do?command=updateActionAuthorityPrepare&roleId=${role.roleId }">设置访问资源权限</a>
 								</td>
 							</tr>
 						</c:forEach>
@@ -195,9 +138,8 @@
 					
 						<pg:pager items="${pageModel.totalCount }" maxPageItems="${pageModel.pageSize }" 
 			            	maxIndexPages="10" export="currentPageNumber=pageNumber"
-			            	url="basedata/department/departmentFunc.do">
-			            <pg:param name="command" value="listDepartment"/>
-			            <pg:param name="parentId" value="${parentDepartment.departmentId }"/>
+			            	url="basedata/role/roleFunc.do">
+			            <pg:param name="command" value="listRole"/>
 						<pg:first>
 							<a href="${pageUrl }">首页</a>
 						</pg:first>
@@ -224,11 +166,9 @@
 							
 						&nbsp;
 						<input name="btnAdd" type="button" class="button1" id="btnAdd"
-							value="添加" onClick="saveDepartment()">&nbsp;
-						<input name="btnModify" class="button1" type="button"
-							id="btnModify" value="修改" onClick="updateDepartment()">&nbsp;
+							value="添加" onClick="saveRole()">&nbsp;
 						<input name="btnDelete" class="button1" type="button"
-							id="btnDelete" value="删除" onClick="deleteDepartment()">
+							id="btnDelete" value="删除" onClick="deleteRole()">&nbsp;
 					</td>
 				</tr>
 			</table>

@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.ldp.security.basedata.domain.Resource" table="t_resource">
+		<id name="resourceId" column="resource_id">
+			<generator class="identity"/>			
+		</id>
+		
+		<many-to-one name="parentResource" column="parent_resource_id"/>
+		
+		<property name="resourceName" column="resource_name"/>	
+		<property name="resourceUrlPath" column="resource_url_path"/>	
+		<property name="orderNumber" column="order_number"/>
+		<property name="resourceType" column="resource_type"></property>	
+	</class>
+	
+</hibernate-mapping>

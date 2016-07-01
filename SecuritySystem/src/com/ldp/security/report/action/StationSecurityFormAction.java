@@ -14,12 +14,12 @@ import org.apache.log4j.Logger;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
-import org.apache.struts.actions.DispatchAction;
 import org.apache.struts.upload.FormFile;
 
 import com.ldp.security.basedata.domain.Department;
 import com.ldp.security.basedata.domain.User;
 import com.ldp.security.basedata.manager.DepartmentManager;
+import com.ldp.security.common.action.BaseAction;
 import com.ldp.security.report.actionform.SecurityFormActionForm;
 import com.ldp.security.report.domain.CommonForm;
 import com.ldp.security.report.domain.KeyunForm;
@@ -35,7 +35,7 @@ import com.ldp.security.util.file.FileUtil;
 import com.ldp.security.util.validate.ClientValidate;
 import com.ldp.security.util.xml.XMLConfigReader;
 
-public class StationSecurityFormAction extends DispatchAction{
+public class StationSecurityFormAction extends BaseAction{
 	
 	private static final Logger logger = Logger.getLogger(StationSecurityFormAction.class);
 

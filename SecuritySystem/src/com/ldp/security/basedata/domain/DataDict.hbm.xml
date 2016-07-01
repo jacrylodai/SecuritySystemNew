@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.ldp.security.basedata.domain.DataDict" table="t_data_dict">
+		<id name="dataDictId" column="data_dict_id">
+			<generator class="assigned"/>			
+		</id>
+		
+		<property name="dataDictName" column="data_dict_name"/>	
+		<property name="dataDictCategory" column="data_dict_category"/>	
+	</class>
+	
+</hibernate-mapping>

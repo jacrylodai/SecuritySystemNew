@@ -9,9 +9,9 @@
 		</id>
 		
 		<property name="isDelete" column="is_delete"/>		
-		<property name="userAuthorityType" column="user_authority_type"/>	
 				
 		<many-to-one name="department" column="department_id" lazy="false"/>
+		<many-to-one name="role" column="role_id" lazy="false"/>
 				
 		<property name="username" column="username"/>			
 		<property name="password" column="password"/>			

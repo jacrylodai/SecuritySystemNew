@@ -14,6 +14,9 @@
     	<form-bean name="userForm" 
     		type="com.ldp.security.basedata.actionform.UserActionForm"></form-bean>
     		
+    	<form-bean name="roleForm" 
+    		type="com.ldp.security.basedata.actionform.RoleActionForm"></form-bean>
+    		
     	<form-bean name="loginForm" 
     		type="com.ldp.security.system.actionform.LoginActionForm"></form-bean>
     		
@@ -72,6 +75,20 @@
  		</action>
  		
  		<action 			
+ 			path="/basedata/role/roleFunc" 	
+ 			name="roleForm"
+ 			type="org.springframework.web.struts.DelegatingActionProxy"
+ 			parameter="command"
+ 			scope="request"
+ 		>
+        	<forward name="saveRolePrepare" path="/basedata/role/role_save.jsp"/>
+        	<forward name="listRole" path="/basedata/role/role_list.jsp"/> 
+        	<forward name="updateRolePrepare" path="/basedata/role/role_update.jsp"/> 
+        	<forward name="updateMenuAuthorityPrepare" path="/basedata/role/menu_authority_update.jsp"/>
+        	<forward name="updateActionAuthorityPrepare" path="/basedata/role/action_authority_update.jsp"/>     
+ 		</action>
+ 		
+ 		<action 			
  			path="/system/login/loginFunc" 	
  			name="loginForm"
  			type="org.springframework.web.struts.DelegatingActionProxy"
@@ -79,17 +96,8 @@
  			scope="request"
  		>
         	<forward name="loginCheckPrepare" path="/system/login/login_check.jsp"/> 
-        	<forward name="departmentSiteIndex" 
-        		path="/system/siteIndex/siteIndexFunc.do?command=departmentSiteIndex" 
-        		redirect="true"/> 
-        	<forward name="stationSiteIndex" 
-        		path="/system/siteIndex/siteIndexFunc.do?command=stationSiteIndex" 
-        		redirect="true"/>
-        	<forward name="railwaySiteIndex" 
-        		path="/system/siteIndex/siteIndexFunc.do?command=railwaySiteIndex" 
-        		redirect="true"/>
-        	<forward name="countrySiteIndex" 
-        		path="/system/siteIndex/siteIndexFunc.do?command=countrySiteIndex" 
+        	<forward name="siteIndex" 
+        		path="/system/siteIndex/siteIndexFunc.do?command=siteIndex" 
         		redirect="true"/>
  		</action>
  		
@@ -99,10 +107,8 @@
  			parameter="command"
  			scope="request"
  		>
-        	<forward name="countrySiteIndex" path="/system/siteIndex/country_site_index.jsp"/>
-        	<forward name="railwaySiteIndex" path="/system/siteIndex/railway_site_index.jsp"/>
-        	<forward name="stationSiteIndex" path="/system/siteIndex/station_site_index.jsp"/>
-        	<forward name="departmentSiteIndex" path="/system/siteIndex/department_site_index.jsp"/> 
+        	<forward name="siteIndex" path="/system/siteIndex/site_index.jsp"/>
+        	<forward name="siteMenu" path="/system/siteIndex/site_menu.jsp"/>
  		</action>
  		
  		<action 			

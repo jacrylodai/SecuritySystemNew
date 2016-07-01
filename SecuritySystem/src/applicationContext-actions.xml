@@ -13,6 +13,10 @@
 	<bean name="/basedata/department/departmentFunc" 
 		class="com.ldp.security.basedata.action.DepartmentAction" scope="singleton">
 		
+		<property name="resourceManager" ref="resourceManager"></property>
+		<property name="roleResourceAuthorityManager" 
+			ref="roleResourceAuthorityManager"/>
+			
 		<property name="departmentManager" ref="departmentManager"/>
 		<property name="staPeriodInfoManager" ref="staPeriodInfoManager"/>
 		<property name="staPeriodSecurityManager" ref="staPeriodSecurityManager"/>
@@ -22,9 +26,23 @@
 		
 	<bean name="/basedata/user/userFunc" 
 		class="com.ldp.security.basedata.action.UserAction" scope="singleton">
-		
+				
+		<property name="resourceManager" ref="resourceManager"></property>
+		<property name="roleResourceAuthorityManager" 
+			ref="roleResourceAuthorityManager"/>
+			
 		<property name="userManager" ref="userManager"/>
 		<property name="departmentManager" ref="departmentManager"/>
+	</bean>
+	
+	<bean name="/basedata/role/roleFunc" 
+		class="com.ldp.security.basedata.action.RoleAction" scope="singleton">
+		
+		<property name="resourceManager" ref="resourceManager"></property>
+		<property name="roleResourceAuthorityManager" 
+			ref="roleResourceAuthorityManager"/>
+			
+		<property name="roleManager" ref="roleManager"/>
 	</bean>
 	
 	<!-- system -->
@@ -32,17 +50,29 @@
 	<bean name="/system/login/loginFunc"
 		class="com.ldp.security.system.action.LoginAction" scope="singleton">
 		
+		<property name="resourceManager" ref="resourceManager"></property>
+		<property name="roleResourceAuthorityManager" 
+			ref="roleResourceAuthorityManager"/>
+			
 		<property name="userManager" ref="userManager"/>	
 	</bean>
 	
 	<bean name="/system/siteIndex/siteIndexFunc"
 		class="com.ldp.security.system.action.SiteIndexAction" scope="singleton">
 		
+		<property name="resourceManager" ref="resourceManager"></property>
+		<property name="roleResourceAuthorityManager" 
+			ref="roleResourceAuthorityManager"></property>
+			
 	</bean>
 	
 	<bean name="/system/password/passwordFunc"
 		class="com.ldp.security.system.action.PasswordAction" scope="singleton">
 		
+		<property name="resourceManager" ref="resourceManager"></property>
+		<property name="roleResourceAuthorityManager" 
+			ref="roleResourceAuthorityManager"/>
+			
 		<property name="userManager" ref="userManager"/>	
 	</bean>
 	
@@ -51,6 +81,10 @@
 	<bean name="/report/securityForm/departmentSecurityFormFunc" 
 		class="com.ldp.security.report.action.DepartmentSecurityFormAction" scope="singleton">
 		
+		<property name="resourceManager" ref="resourceManager"></property>
+		<property name="roleResourceAuthorityManager" 
+			ref="roleResourceAuthorityManager"/>
+			
 		<property name="departmentManager" ref="departmentManager"/>
 		<property name="securityFormManager" ref="securityFormManager"/>
 	</bean>
@@ -58,6 +92,10 @@
 	<bean name="/report/securityForm/stationSecurityFormFunc" 
 		class="com.ldp.security.report.action.StationSecurityFormAction" scope="singleton">
 		
+		<property name="resourceManager" ref="resourceManager"></property>
+		<property name="roleResourceAuthorityManager" 
+			ref="roleResourceAuthorityManager"/>
+			
 		<property name="departmentManager" ref="departmentManager"/>
 		<property name="securityFormManager" ref="securityFormManager"/>
 	</bean>
@@ -68,6 +106,10 @@
 		class="com.ldp.security.sta.action.CustomStaPeriodSecurityAction"
 			 scope="singleton">
 		
+		<property name="resourceManager" ref="resourceManager"></property>
+		<property name="roleResourceAuthorityManager" 
+			ref="roleResourceAuthorityManager"/>
+			
 		<property name="staPeriodInfoManager" ref="staPeriodInfoManager"/>
 		<property name="staPeriodSecurityManager" ref="staPeriodSecurityManager"/>
 	</bean>

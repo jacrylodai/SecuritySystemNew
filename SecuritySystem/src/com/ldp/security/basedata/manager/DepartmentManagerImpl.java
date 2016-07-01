@@ -44,7 +44,7 @@ public class DepartmentManagerImpl extends AbstractManager<Department> implement
 					"from Department department" +
 					" where department.parentDepartment.departmentId=?" +
 					" and department.isDelete=?" +
-					" order by department.departmentId asc"
+					" order by department.departmentName asc"
 					, new Object[]{parentId,Constants.VALUE_NO} );
 		return pageModel;
 	}
@@ -100,7 +100,7 @@ public class DepartmentManagerImpl extends AbstractManager<Department> implement
 			return true;
 		}
 		
-		while(parentDepartment.getDepartmentId() != Department.ID_COUNTRY){
+		while(parentDepartment.getDepartmentId() != Department.ID_ROOT){
 			parentDepartment = parentDepartment.getParentDepartment();
 			if(department.equals(parentDepartment)){
 				return true;

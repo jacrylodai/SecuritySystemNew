@@ -78,11 +78,7 @@ public class InitSystemServlet implements Servlet {
 		servletContext.setAttribute("Department_LEVEL_STATION"
 				, Department.LEVEL_STATION);
 		
-		servletContext.setAttribute("User_USER_AUTHORITY_TYPE_MANAGER"
-				, User.USER_AUTHORITY_TYPE_MANAGER);
-		
-		servletContext.setAttribute("User_USER_AUTHORITY_TYPE_VIEWER"
-				, User.USER_AUTHORITY_TYPE_VIEWER);
+		servletContext.setAttribute("USER_SESSION_ID", User.USER_SESSION_ID);
 		
 	}
 

@@ -6,15 +6,15 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
-import org.apache.struts.actions.DispatchAction;
 
 import com.ldp.security.basedata.domain.User;
 import com.ldp.security.basedata.manager.UserManager;
+import com.ldp.security.common.action.BaseAction;
 import com.ldp.security.system.actionform.PasswordActionForm;
 import com.ldp.security.util.constants.Constants;
 import com.ldp.security.util.encrypt.EncryptUtils;
 
-public class PasswordAction extends DispatchAction {
+public class PasswordAction extends BaseAction {
 	
 	private static final String UPDATE_PASSWORD_PATH = 
 		"system/password/passwordFunc.do?command=updatePasswordPrepare";

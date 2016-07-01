@@ -19,8 +19,10 @@
 
 		<mapping resource="com/ldp/security/basedata/domain/Department.hbm.xml"/>
 		<mapping resource="com/ldp/security/basedata/domain/User.hbm.xml"/>
-		<mapping resource="com/ldp/security/basedata/domain/YearInfo.hbm.xml"/>
-		<mapping resource="com/ldp/security/basedata/domain/PeriodInfo.hbm.xml"/>
+		<mapping resource="com/ldp/security/basedata/domain/Role.hbm.xml"/>
+		<mapping resource="com/ldp/security/basedata/domain/DataDict.hbm.xml"/>
+		<mapping resource="com/ldp/security/basedata/domain/Resource.hbm.xml"/>
+		<mapping resource="com/ldp/security/basedata/domain/RoleResourceAuthority.hbm.xml"/>
 		
 		<mapping resource="com/ldp/security/report/domain/SecurityForm.hbm.xml"/>
 		<mapping resource="com/ldp/security/report/domain/CommonForm.hbm.xml"/>
