@@ -56,5 +56,16 @@ public interface DepartmentManager {
 	 * @return
 	 */
 	public String getExcelTemplateFilePath(long departmentId);
+
+	public String getWholeYearExcelTemplateFolderPath(long departmentId);
+
+	/**
+	 * 生成整年反恐报表
+	 * @param department
+	 * @param currDepartmentWholeYearFolderPath
+	 * @param sourceTemplateFile
+	 */
+	public void createWholeYearDepartmentExcelTemplate(Department department,
+			String currDepartmentWholeYearFolderPath, File sourceTemplateFile);
 	
 }

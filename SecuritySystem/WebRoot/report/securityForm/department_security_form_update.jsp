@@ -529,7 +529,7 @@
 				<div align="center">
 					<input name="btnAdd" class="button1" type="button" id="btnAdd"
 						value="保存" onClick="updateSecurityForm()">
-					&nbsp;&nbsp;&nbsp;&nbsp;
+					&nbsp;
 					<input name="btnBack" class="button1" type="button" id="btnBack"
 						value="返回" onclick="goBack()" />
 				</div>

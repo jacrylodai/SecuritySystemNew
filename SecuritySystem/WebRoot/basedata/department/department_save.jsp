@@ -28,6 +28,10 @@
 		if(!checkForm()){
 			return;
 		}else{
+		
+			var btnSave = document.getElementById("btnSave");
+			btnSave.disabled = true;
+			
 			with(document.departmentForm){
 				action="basedata/department/departmentFunc.do?command=saveDepartment";
 				method="post";
@@ -82,13 +86,20 @@
 								size="20" maxlength="20">					
 						</td>
 					</tr>
+					<tr>
+						<td width="20%" height="30px" align="right">
+						</td>
+						<td width="40px" align="left">
+							<font color="red">注意，保存时间需要1分钟左右，因为要生成反恐报表模板文件，请耐心等待</font>
+						</td>
+					</tr>
 					
 				</table>
 				
 				<div align="center">
-					<input name="btnAdd" class="button1" type="button" id="btnAdd"
+					<input name="btnSave" class="button1" type="button" id="btnSave"
 						value="保存" onClick="saveDepartment()">
-					&nbsp;&nbsp;&nbsp;&nbsp;
+					&nbsp;
 					<input name="btnBack" class="button1" type="button" id="btnBack"
 						value="返回" onclick="goBack()" />
 				</div>

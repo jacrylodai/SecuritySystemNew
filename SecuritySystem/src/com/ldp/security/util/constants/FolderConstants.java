@@ -19,6 +19,12 @@ public class FolderConstants {
 		"departmentExcelTemplateFolder";
 
 	/**
+	 * 部门整年反恐报表模板目录
+	 */
+	public static final String DEPARTMENT_WHOLE_YEAR_EXCEL_TEMPLATE_FOLDER = 
+		"departmentWholeYearExcelTemplateFolder";
+
+	/**
 	 * 部门统计报表目录
 	 */
 	public static final String DEPARTMENT_STA_EXCEL_REPORT_FOLDER = 

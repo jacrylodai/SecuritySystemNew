@@ -41,18 +41,12 @@ public class UserManagerImpl extends AbstractManager<User>
 	}
 
 	public PageModel<User> listUserInPage(long departmentId) {
-		
-//		return findDataByHqlInPage(
-//				"from User user" +
-//				" where user.department.departmentId=? and user.isDelete=?" +
-//				" order by user.userAuthorityType asc,user.userId asc"
-//				, new Object[]{departmentId,Constants.VALUE_NO} );
-		
+				
 		String hql = 
 			"from User user" +
 			" where user.department.departmentId=:departmentId" +
 			" and user.isDelete=:isDelete" +
-			" order by user.userAuthorityType asc,user.userId asc";
+			" order by user.role.roleId asc,user.username asc";
 		
 		List<ParameterObject> paraObjList = new ArrayList<ParameterObject>();
 		ParameterObject paraObj = null;

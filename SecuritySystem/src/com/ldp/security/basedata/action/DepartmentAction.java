@@ -12,8 +12,10 @@ import org.apache.struts.action.ActionMapping;
 
 import com.ldp.security.basedata.actionform.DepartmentActionForm;
 import com.ldp.security.basedata.domain.Department;
+import com.ldp.security.basedata.domain.Role;
 import com.ldp.security.basedata.domain.User;
 import com.ldp.security.basedata.manager.DepartmentManager;
+import com.ldp.security.basedata.manager.RoleManager;
 import com.ldp.security.basedata.manager.UserManager;
 import com.ldp.security.common.action.BaseAction;
 import com.ldp.security.report.domain.SecurityForm;
@@ -23,9 +25,12 @@ import com.ldp.security.sta.domain.StaPeriodSecurity;
 import com.ldp.security.sta.manager.StaPeriodInfoManager;
 import com.ldp.security.sta.manager.StaPeriodSecurityManager;
 import com.ldp.security.util.PageModel;
+import com.ldp.security.util.compress.ZipUtil;
 import com.ldp.security.util.constants.Constants;
 import com.ldp.security.util.constants.FileNameConstants;
+import com.ldp.security.util.date.DateUtil;
 import com.ldp.security.util.file.DownloadUtil;
+import com.ldp.security.util.file.FileUtil;
 
 public class DepartmentAction extends BaseAction {
 
@@ -89,9 +94,9 @@ public class DepartmentAction extends BaseAction {
 				!departmentManager.compareDepartmentIsParentOfDepartment(
 						userDepartment, parentDepartment)){
 			throw new RuntimeException("你没有权限访问当前部门数据");
-		}		
+		}
 		
-		request.setAttribute("parentDepartment", parentDepartment);		
+		request.setAttribute("parentDepartment", parentDepartment);	
 		return mapping.findForward("saveDepartmentPrepare");
 	}
 
@@ -126,6 +131,8 @@ public class DepartmentAction extends BaseAction {
 		departmentManager.saveDepartment(department);
 		
 		createDepartmentExcelTemplate(request, department);
+
+		createWholeYearDepartmentExcelTemplate(request, department);
 		
 		request.setAttribute(Constants.MESSAGE_KEY, Constants.MESSAGE_SAVE_SUCCESS);
 		
@@ -133,6 +140,47 @@ public class DepartmentAction extends BaseAction {
 		request.setAttribute(Constants.REDIRECT_URL_KEY, redirectUrl);
 		
 		return mapping.findForward("showMessage");
+	}
+
+	private void createWholeYearDepartmentExcelTemplate(
+			HttpServletRequest request, Department department) {
+
+		//如果是车间，就创建车间的反恐填报表模板
+		if(department.getLevel() == Department.LEVEL_DEPARTMENT){
+
+			String sourceTemplateFileFolderPath = 
+				request.getSession().getServletContext()
+					.getRealPath("/securitySystemData/templateFile");
+			File sourceTemplateFile = new File(sourceTemplateFileFolderPath,
+					FileNameConstants.SOURCE_DEPARTMENT_TEMPLATE_FILE_NAME);
+			
+			long departmentId = department.getDepartmentId();
+			String wholeYearExcelTemplateFolderPath = 
+				departmentManager.getWholeYearExcelTemplateFolderPath(departmentId);
+			FileUtil.buildFolder(wholeYearExcelTemplateFolderPath, true);
+
+			String currDepartmentWholeYearZipFilePath = 
+				wholeYearExcelTemplateFolderPath + '/'
+				+ "wholeYearExcelTemplateZipFile_" + department.getDepartmentId() +".zip";
+			File currDepartmentWholeYearZipFile = new File(currDepartmentWholeYearZipFilePath);
+			if(currDepartmentWholeYearZipFile.exists()){
+				currDepartmentWholeYearZipFile.delete();
+			}
+			
+			int currYear = DateUtil.getCurrentYear();
+			
+			String currDepartmentWholeYearFolderPath = 
+				wholeYearExcelTemplateFolderPath + '/' 
+				+ department.getDepartmentName() +'_' +currYear+"年_反恐统计报表模板";
+			
+			departmentManager.createWholeYearDepartmentExcelTemplate(
+					department,currDepartmentWholeYearFolderPath,sourceTemplateFile);
+			
+			ZipUtil.zipEntry(currDepartmentWholeYearZipFilePath, ""
+					, currDepartmentWholeYearFolderPath);
+			FileUtil.deleteFolder(new File(currDepartmentWholeYearFolderPath));
+			
+		}
 	}
 
 	public ActionForward listDepartment(ActionMapping mapping, ActionForm form,
@@ -226,7 +274,9 @@ public class DepartmentAction extends BaseAction {
 		departmentManager.updateDepartment(department);
 		
 		createDepartmentExcelTemplate(request,department);
-				
+
+		createWholeYearDepartmentExcelTemplate(request, department);
+		
 		request.setAttribute(Constants.MESSAGE_KEY, Constants.MESSAGE_UPDATE_SUCCESS);
 
 		String redirectUrl = LIST_DEPARTMENT_PATH + "&parentId=" 
@@ -302,6 +352,43 @@ public class DepartmentAction extends BaseAction {
 			'_' +"反恐填报表模板" +'_' + departmentId + ".xls";
 
 		DownloadUtil.downloadFileFromServer(response, sourceFile, fileName);
+		return null;
+	}
+
+	/**
+	 * 下载整年反恐报表模板
+	 * @param mapping
+	 * @param form
+	 * @param request
+	 * @param response
+	 * @return
+	 * @throws Exception
+	 */
+	public ActionForward downloadWholeYearDepartmentExcelTemplate(ActionMapping mapping, ActionForm form,
+			HttpServletRequest request, HttpServletResponse response)
+			throws Exception {
+
+		DepartmentActionForm departmentActionForm = (DepartmentActionForm)form;
+		long departmentId = departmentActionForm.getDepartmentId();
+		
+		Department department = departmentManager.loadDepartmentById(departmentId);
+		if(department.getLevel()!= Department.LEVEL_DEPARTMENT){
+			throw new RuntimeException("只有车间才能下载反恐填报表模板");
+		}
+		
+		String wholeYearExcelTemplateFolderPath = 
+			departmentManager.getWholeYearExcelTemplateFolderPath(departmentId);
+
+		String currDepartmentWholeYearZipFilePath = 
+			wholeYearExcelTemplateFolderPath + '/'
+			+ "wholeYearExcelTemplateZipFile_" + department.getDepartmentId() +".zip";
+		File currDepartmentWholeYearZipFile = new File(currDepartmentWholeYearZipFilePath);
+		
+		String fileName = 
+			department.getDepartmentName() +"_整年_反恐报表模板.zip";
+
+		DownloadUtil.downloadFileFromServer(response, currDepartmentWholeYearZipFile
+				, fileName);
 		return null;
 	}
 	
@@ -385,6 +472,21 @@ public class DepartmentAction extends BaseAction {
 				// 创建file对象
 				File excelTemplateFile = new File(excelTemplateFilePath);
 				excelTemplateFile.delete();
+			}
+			
+			//如果是车间，还要删除整年反恐统计模板
+			if(department.getLevel() == Department.LEVEL_DEPARTMENT){
+				
+				String wholeYearExcelTemplateFolderPath = 
+					departmentManager.getWholeYearExcelTemplateFolderPath(departmentId);
+
+				String currDepartmentWholeYearZipFilePath = 
+					wholeYearExcelTemplateFolderPath + '/'
+					+ "wholeYearExcelTemplateZipFile_" + department.getDepartmentId() +".zip";
+				File currDepartmentWholeYearZipFile = new File(currDepartmentWholeYearZipFilePath);
+				if(currDepartmentWholeYearZipFile.exists()){
+					currDepartmentWholeYearZipFile.delete();
+				}
 			}
 			
 			//删除部门

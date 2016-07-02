@@ -19,5 +19,7 @@ public interface RoleManager {
 	public DataDict getRoleTypeDataDictById(String roleTypeDataDictId);
 
 	public PageModel<Role> listRoleInPage();
+
+	public List<Role> getRoleListByRoleTypeId(String roleTypeId);
 	
 }

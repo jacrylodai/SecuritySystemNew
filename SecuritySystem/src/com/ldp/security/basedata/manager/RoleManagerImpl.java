@@ -58,4 +58,15 @@ public class RoleManagerImpl extends AbstractManager<Role>
 		return findDataByHqlParameterListInPage(hql, paraObjList);
 	}
 
+	public List<Role> getRoleListByRoleTypeId(String roleTypeId) {
+
+		String hql = 
+			"from Role role" +
+			" where role.roleType.dataDictId=:roleTypeId" +
+			" order by role.roleName asc";
+		List<ParameterObject> paraObjList = new ArrayList<ParameterObject>();
+		paraObjList.add(new ParameterObject("roleTypeId",roleTypeId));
+		return findDataByHqlParameterListInList(hql, paraObjList);
+	}
+
 }

@@ -126,7 +126,7 @@
 						<input type="checkbox" id="ifAll" name="ifAll"
 							 onClick="checkAll()">
 					</td>
-					<td class="rd6" width="40%">
+					<td class="rd6" width="30%">
 						部门名称
 					</td>
 					<td class="rd6">
@@ -166,7 +166,9 @@
 								<c:choose>
 									<c:when test="${department.level eq Department_LEVEL_DEPARTMENT }">
 										<a href="basedata/department/departmentFunc.do?command=downloadDepartmentExcelTemplate&departmentId=${department.departmentId }">
-										下载填报表模板</a>
+										下载反恐报表模板</a>
+										<a href="basedata/department/departmentFunc.do?command=downloadWholeYearDepartmentExcelTemplate&departmentId=${department.departmentId }">
+										下载整年反恐报表模板</a>
 									</c:when>
 								</c:choose>
 								
@@ -185,7 +187,7 @@
 							<font color="black">
 							&nbsp;共&nbsp;${pageModel.pageCount }&nbsp;页
 							&nbsp;总共&nbsp;${pageModel.totalCount }&nbsp;条记录
-							</font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							</font>&nbsp;
 							<font color="black">当前第</font>&nbsp;
 							<font color="red">${pageModel.currentPageNumber }</font>&nbsp;
 							<font color="black">页</font>

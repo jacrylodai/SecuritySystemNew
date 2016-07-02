@@ -2,9 +2,9 @@ package com.ldp.security.basedata.manager;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Calendar;
 import java.util.List;
 
-import jxl.Sheet;
 import jxl.Workbook;
 import jxl.read.biff.BiffException;
 import jxl.write.WritableSheet;
@@ -17,13 +17,13 @@ import org.apache.log4j.Logger;
 import com.ldp.security.basedata.dao.DepartmentDao;
 import com.ldp.security.basedata.domain.Department;
 import com.ldp.security.common.manager.AbstractManager;
-import com.ldp.security.sta.manager.StaPeriodInfoManager;
-import com.ldp.security.sta.manager.StaPeriodSecurityManager;
 import com.ldp.security.util.PageModel;
 import com.ldp.security.util.business.excel.departmentTemplateOutput.DepartmentTemplateExcelUtil;
+import com.ldp.security.util.business.excel.departmentTemplateWithDayInfoOut.DepartmentTemplateWithDayInfoExcelUtil;
 import com.ldp.security.util.constants.Constants;
-import com.ldp.security.util.constants.FileNameConstants;
 import com.ldp.security.util.constants.FolderConstants;
+import com.ldp.security.util.date.DateUtil;
+import com.ldp.security.util.file.FileUtil;
 import com.ldp.security.util.xml.XMLConfigReader;
 
 public class DepartmentManagerImpl extends AbstractManager<Department> implements
@@ -177,6 +177,94 @@ public class DepartmentManagerImpl extends AbstractManager<Department> implement
 			excelTemplateFolderPath + '/'+ excelTemplateFileName;
 		return excelTemplateFilePath;
 		
+	}
+
+	public String getWholeYearExcelTemplateFolderPath(long departmentId) {
+
+		long folderIndex = departmentId % 100;
+		
+		String systemDataFolder = 
+			XMLConfigReader.getInstance().getSystemConfig().getSystemDataFolder();
+		
+		String excelTemplateFolderPath = 
+			systemDataFolder +'/' 
+			+ FolderConstants.DEPARTMENT_WHOLE_YEAR_EXCEL_TEMPLATE_FOLDER
+			+ '/' + folderIndex;
+		
+		return excelTemplateFolderPath;
+		
+	}
+
+	public void createWholeYearDepartmentExcelTemplate(Department department,
+			String currDepartmentWholeYearFolderPath, File sourceTemplateFile) {
+
+		if(department.getLevel() != Department.LEVEL_DEPARTMENT){
+			throw new RuntimeException("只有车间才能创建反恐填报表excel模板");
+		}
+		
+		int currYear = DateUtil.getCurrentYear();
+		int nextYear = currYear+1;
+		Calendar calendar = Calendar.getInstance();
+		calendar.set(currYear, Calendar.JANUARY, 1);
+
+		Workbook sourceWorkbook = null;
+		WritableWorkbook destWorkbook = null;
+		try{
+			sourceWorkbook = Workbook.getWorkbook(sourceTemplateFile);
+			
+			int preYear = calendar.get(Calendar.YEAR);
+			//得到的月份值是Calendar专用类型，如Calender.JANUARY,实际值为0
+			//应此数值结果应该加1
+			int preMonth = calendar.get(Calendar.MONTH)+1;
+			int preDay = calendar.get(Calendar.DAY_OF_MONTH);
+			
+			while(preYear == currYear || ( preYear == nextYear && preMonth ==1) ){
+				
+				String currDepartmentExcelTemplateFolderPath = 
+					currDepartmentWholeYearFolderPath + '/' + preYear + '-' + preMonth;
+				FileUtil.buildFolder(currDepartmentExcelTemplateFolderPath, true);
+				
+				String currDepartmentExcelTemplateFilePath = 
+					currDepartmentExcelTemplateFolderPath + '/' 
+					+ preYear + '-' + preMonth+'-'+preDay+'_'
+					+department.getDepartmentName()+'_'+"反恐报表.xls";
+				File excelTemplateFile = new File(currDepartmentExcelTemplateFilePath);
+								
+				destWorkbook = Workbook.createWorkbook(
+						excelTemplateFile, sourceWorkbook);
+				
+				WritableSheet sheet = destWorkbook.getSheet(0);
+				
+				DepartmentTemplateWithDayInfoExcelUtil
+					.writeDepartmentTemplateToExcelWithDayInfo(
+							sheet, department,preYear,preMonth,preDay);
+				destWorkbook.write();
+				destWorkbook.close();
+							
+				calendar.add(Calendar.DAY_OF_YEAR, 1);
+				
+				preYear = calendar.get(Calendar.YEAR);
+				preMonth = calendar.get(Calendar.MONTH)+1;
+				preDay = calendar.get(Calendar.DAY_OF_MONTH);
+			}
+		} catch (BiffException e) {
+			e.printStackTrace();
+			throw new RuntimeException(e);
+		} catch (IOException e) {
+			e.printStackTrace();
+			throw new RuntimeException(e);
+		} catch (RowsExceededException e) {
+			e.printStackTrace();
+			throw new RuntimeException(e);
+		} catch (WriteException e) {
+			e.printStackTrace();
+			throw new RuntimeException(e);
+		}finally{
+			if(null != sourceWorkbook){
+				sourceWorkbook.close();
+			}
+		}
+			
 	}
 
 }

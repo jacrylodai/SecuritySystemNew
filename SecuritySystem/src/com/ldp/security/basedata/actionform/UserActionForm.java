@@ -19,6 +19,9 @@ public class UserActionForm extends ActionForm {
 	//用户部门id
 	private long departmentId;
 	
+	//角色id
+	private long roleId; 
+	
 	//用户名
 	private String username;
 	
@@ -111,6 +114,14 @@ public class UserActionForm extends ActionForm {
 		this.selectFlag = selectFlag;
 	}
 
+	public long getRoleId() {
+		return roleId;
+	}
+
+	public void setRoleId(long roleId) {
+		this.roleId = roleId;
+	}
+
 	public void validateData(){
 		
 		if(ClientValidate.isEmpty(username)){
@@ -143,10 +154,17 @@ public class UserActionForm extends ActionForm {
 		if(!affirmPassword.equals(password)){
 			throw new RuntimeException("密码和确认密码不一致");	
 		}
+		
+		if(roleId == -1){
+			throw new RuntimeException("请选择角色");
+		}
 	}
 	
 	public void validateDataUpdate(){
-		
+
+		if(roleId == -1){
+			throw new RuntimeException("请选择角色");
+		}
 	}
 
 	

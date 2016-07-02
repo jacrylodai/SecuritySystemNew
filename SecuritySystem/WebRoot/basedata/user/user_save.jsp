@@ -17,12 +17,12 @@
 		history.back(1);
 	}
 
-	var isUsernameUnique = false;
+	var isUsernameUnique = true;
 	
 	function checkUsernameUnique(){
 	
 		if(!validateUsername()){
-			isUsernameUnique = false;
+			isUsernameUnique = true;
 			clearUsernameMsg();
 			return;
 		}
@@ -114,18 +114,12 @@
 			return false;
 		}
 		
+		var roleIdSelector = document.getElementById("roleIdSelector");
+		if(roleIdSelector.selectedIndex == 0){
 		
-		var userAuthTypeEltList=document.getElementsByName("userAuthorityType");
-		var count=0;
-		for(var i=0;i<userAuthTypeEltList.length;i++){
-			if(userAuthTypeEltList[i].checked){
-				count++;
-			}
-		}
-		if(count<1){
-			alert("请选择用户权限类型");
+			alert("请选择角色");
 			return false;
-		}
+		}		
 		
 		return true;
 	}	
@@ -213,11 +207,15 @@
 					
 					<tr>
 						<td width="20%" height="30px" align="right">
-							<font color="#FF0000">*</font>用户权限类型:&nbsp;
+							<font color="#FF0000">*</font>角色:&nbsp;
 						</td>
 						<td width="40px" align="left">
-							<input type="radio" name="userAuthorityType" value="<%=User.USER_AUTHORITY_TYPE_VIEWER %>">查看&nbsp;&nbsp;
-							<input type="radio" name="userAuthorityType" value="<%=User.USER_AUTHORITY_TYPE_MANAGER %>">管理
+							<select name="roleId" id="roleIdSelector">
+								<option value="-1">请选择</option>
+								<c:forEach var="role" items="${availableRoleList}">
+									<option value="${role.roleId }">${role.roleName }</option>
+								</c:forEach>
+							</select>
 						</td>
 					</tr>
 					
@@ -255,7 +253,7 @@
 				<div align="center">
 					<input name="btnAdd" class="button1" type="button" id="btnAdd"
 						value="保存" onClick="saveUser()">
-					&nbsp;&nbsp;&nbsp;&nbsp;
+					&nbsp;
 					<input name="btnBack" class="button1" type="button" id="btnBack"
 						value="返回" onclick="goBack()" />
 				</div>

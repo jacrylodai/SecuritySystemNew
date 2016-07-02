@@ -158,7 +158,7 @@
 							<font color="black">
 							&nbsp;共&nbsp;${pageModel.pageCount }&nbsp;页
 							&nbsp;总共&nbsp;${pageModel.totalCount }&nbsp;条记录
-							</font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							</font>&nbsp;&nbsp;
 							<font color="black">当前第</font>&nbsp;
 							<font color="red">${pageModel.currentPageNumber }</font>&nbsp;
 							<font color="black">页</font>

@@ -1,5 +1,4 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%@page import="com.ldp.security.basedata.domain.User"%>
 <%@include file="../../common/common.jsp" %>
 <html>
 	<head>
@@ -15,18 +14,13 @@
 	}
 
 	function checkForm(){
-			
-		var userAuthTypeEltList=document.getElementsByName("userAuthorityType");
-		var count=0;
-		for(var i=0;i<userAuthTypeEltList.length;i++){
-			if(userAuthTypeEltList[i].checked){
-				count++;
-			}
-		}
-		if(count<1){
-			alert("请选择用户权限类型");
+					
+		var roleIdSelector = document.getElementById("roleIdSelector");
+		if(roleIdSelector.selectedIndex == 0){
+		
+			alert("请选择角色");
 			return false;
-		}
+		}		
 		
 		return true;
 	}	
@@ -47,12 +41,13 @@
 	
 	function pageOnLoad(){
 	
-		var userAuthTypeEltList=document.getElementsByName("userAuthorityType");
-		for(var i=0;i<userAuthTypeEltList.length;i++){
-			
-			var userAuthTypeElt = userAuthTypeEltList[i];
-			if(userAuthTypeElt.value == ${user.userAuthorityType}){
-				userAuthTypeElt.checked = true;
+		var roleIdSelector = document.getElementById("roleIdSelector");
+		var optionArr = roleIdSelector.options;
+		for(var i=0;i<optionArr.length;i++){
+			var option = optionArr[i];
+			if(option.value == ${user.role.roleId}){
+				option.selected = true;
+				break;
 			}
 		}
 	}
@@ -87,7 +82,7 @@
 						<td width="522" class="p1" height="25" nowrap>
 							<img src="images/mark_arrow_03.gif" width="14" height="14">
 							&nbsp;
-							<b>所属部门&gt;&gt;${user.department.departmentName }</b>
+							<b>所属部门&gt;&gt;${department.departmentName }</b>
 						</td>
 					</tr>
 				</table>
@@ -106,11 +101,15 @@
 					
 					<tr>
 						<td width="20%" height="30px" align="right">
-							<font color="#FF0000">*</font>用户权限类型:&nbsp;
+							<font color="#FF0000">*</font>角色:&nbsp;
 						</td>
 						<td width="40px" align="left">
-							<input type="radio" name="userAuthorityType" value="<%=User.USER_AUTHORITY_TYPE_VIEWER %>">查看&nbsp;&nbsp;
-							<input type="radio" name="userAuthorityType" value="<%=User.USER_AUTHORITY_TYPE_MANAGER %>">管理
+							<select name="roleId" id="roleIdSelector">
+								<option value="-1">请选择</option>
+								<c:forEach var="role" items="${availableRoleList}">
+									<option value="${role.roleId }">${role.roleName }</option>
+								</c:forEach>
+							</select>
 						</td>
 					</tr>
 					
@@ -148,7 +147,7 @@
 				<div align="center">
 					<input name="btnAdd" class="button1" type="button" id="btnAdd"
 						value="保存" onClick="updateUser()">
-					&nbsp;&nbsp;&nbsp;&nbsp;
+					&nbsp;
 					<input name="btnBack" class="button1" type="button" id="btnBack"
 						value="返回" onclick="goBack()" />
 				</div>

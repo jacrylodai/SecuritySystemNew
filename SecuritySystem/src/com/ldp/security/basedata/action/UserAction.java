@@ -1,5 +1,7 @@
 package com.ldp.security.basedata.action;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -9,8 +11,10 @@ import org.apache.struts.action.ActionMapping;
 
 import com.ldp.security.basedata.actionform.UserActionForm;
 import com.ldp.security.basedata.domain.Department;
+import com.ldp.security.basedata.domain.Role;
 import com.ldp.security.basedata.domain.User;
 import com.ldp.security.basedata.manager.DepartmentManager;
+import com.ldp.security.basedata.manager.RoleManager;
 import com.ldp.security.basedata.manager.UserManager;
 import com.ldp.security.common.action.BaseAction;
 import com.ldp.security.util.PageModel;
@@ -25,6 +29,8 @@ public class UserAction extends BaseAction{
 	private UserManager userManager;
 	
 	private DepartmentManager departmentManager;
+	
+	private RoleManager roleManager;
 
 	public void setUserManager(UserManager userManager) {
 		this.userManager = userManager;
@@ -32,6 +38,10 @@ public class UserAction extends BaseAction{
 
 	public void setDepartmentManager(DepartmentManager departmentManager) {
 		this.departmentManager = departmentManager;
+	}
+
+	public void setRoleManager(RoleManager roleManager) {
+		this.roleManager = roleManager;
 	}
 
 	public ActionForward saveUserPrepare(ActionMapping mapping, ActionForm form,
@@ -49,8 +59,16 @@ public class UserAction extends BaseAction{
 				userDepartment, department)){
 			throw new RuntimeException("你没有权限访问当前部门数据");
 		}
-		
+
+		int departmentLevel = department.getLevel();
+		String availableRoleTypeId = 
+			Role.getAvailableRoleTypeByUserDepartmentLevel(departmentLevel);
+		List<Role> availableRoleList = 
+			roleManager.getRoleListByRoleTypeId(availableRoleTypeId);
+				
 		request.setAttribute("department", department);
+		request.setAttribute("availableRoleList", availableRoleList);
+		
 		return mapping.findForward("saveUserPrepare");
 	}
 
@@ -83,7 +101,24 @@ public class UserAction extends BaseAction{
 		
 		User user = new User();
 		user.setIsDelete(Constants.VALUE_NO);
-		//TODO ROLE
+		
+		//当前选择的角色
+		long roleId = userActionForm.getRoleId();
+		Role role = roleManager.loadRoleById(roleId);
+		
+		//取得可用的角色列表
+		int departmentLevel = department.getLevel();
+		String availableRoleTypeId = 
+			Role.getAvailableRoleTypeByUserDepartmentLevel(departmentLevel);
+		List<Role> availableRoleList = 
+			roleManager.getRoleListByRoleTypeId(availableRoleTypeId);
+		
+		//比较当前选择的角色是否在许可的角色以内
+		if(!availableRoleList.contains(role)){
+			throw new RuntimeException("你选择的角色不在许可的角色以内");
+		}
+		
+		user.setRole(role);
 		
 		user.setDepartment(department);
 		
@@ -155,8 +190,16 @@ public class UserAction extends BaseAction{
 				userDepartment, department)){
 			throw new RuntimeException("你没有权限对当前用户进行修改");
 		}
+
+		int departmentLevel = department.getLevel();
+		String availableRoleTypeId = 
+			Role.getAvailableRoleTypeByUserDepartmentLevel(departmentLevel);
+		List<Role> availableRoleList = 
+			roleManager.getRoleListByRoleTypeId(availableRoleTypeId);
 		
 		request.setAttribute("user", user);
+		request.setAttribute("department", department);
+		request.setAttribute("availableRoleList", availableRoleList);
 		
 		return mapping.findForward("updateUserPrepare");
 	}
@@ -179,6 +222,7 @@ public class UserAction extends BaseAction{
 		
 		UserActionForm userActionForm = (UserActionForm)form;
 		long userId = userActionForm.getUserId();
+		
 		User user = userManager.loadUserById(userId);
 		Department department = user.getDepartment();
 		
@@ -189,7 +233,24 @@ public class UserAction extends BaseAction{
 		
 		userActionForm.validateDataUpdate();
 		
-		//TODO ROLE
+
+		//当前选择的角色
+		long roleId = userActionForm.getRoleId();
+		Role role = roleManager.loadRoleById(roleId);
+		
+		//取得可用的角色列表
+		int departmentLevel = department.getLevel();
+		String availableRoleTypeId = 
+			Role.getAvailableRoleTypeByUserDepartmentLevel(departmentLevel);
+		List<Role> availableRoleList = 
+			roleManager.getRoleListByRoleTypeId(availableRoleTypeId);
+		
+		//比较当前选择的角色是否在许可的角色以内
+		if(!availableRoleList.contains(role)){
+			throw new RuntimeException("你选择的角色不在许可的角色以内");
+		}
+		
+		user.setRole(role);
 		
 		user.setContactPeople(userActionForm.getContactPeople());
 		user.setMobilePhone(userActionForm.getMobilePhone());

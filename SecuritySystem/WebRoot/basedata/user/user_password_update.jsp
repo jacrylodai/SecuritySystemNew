@@ -1,5 +1,4 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%@page import="com.ldp.security.basedata.domain.User"%>
 <%@include file="../../common/common.jsp" %>
 <html>
 	<head>
@@ -142,7 +141,7 @@
 				<div align="center">
 					<input name="btnAdd" class="button1" type="button" id="btnAdd"
 						value="保存" onClick="updateUserPassword()">
-					&nbsp;&nbsp;&nbsp;&nbsp;
+					&nbsp;
 					<input name="btnBack" class="button1" type="button" id="btnBack"
 						value="返回" onclick="goBack()" />
 				</div>

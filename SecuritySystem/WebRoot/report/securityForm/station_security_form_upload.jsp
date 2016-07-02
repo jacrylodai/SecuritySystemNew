@@ -125,7 +125,7 @@
 				<div align="center">
 					<input name="btnUpload" class="button1" type="button" id="btnUpload"
 						value="上传" onClick="uploadSecurityForm()">
-					&nbsp;&nbsp;&nbsp;&nbsp;
+					&nbsp;
 					<input name="btnBack" class="button1" type="button" id="btnBack"
 						value="返回" onclick="goBack()" />
 				</div>

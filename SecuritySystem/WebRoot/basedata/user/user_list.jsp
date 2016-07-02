@@ -156,7 +156,7 @@
 						用户名
 					</td>
 					<td class="rd6" width="18%">
-						用户权限类型
+						角色
 					</td>
 					<td class="rd6" width="18%">
 						责任人
@@ -185,7 +185,7 @@
 									${user.username }
 								</td>
 								<td class="rd8">
-									${user.userAuthorityTypeDesc }
+									${user.role.roleName }
 								</td>
 								<td class="rd8">
 									${user.contactPeople }
@@ -210,7 +210,7 @@
 							<font color="black">
 							&nbsp;共&nbsp;${pageModel.pageCount }&nbsp;页
 							&nbsp;总共&nbsp;${pageModel.totalCount }&nbsp;条记录
-							</font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							</font>&nbsp;&nbsp;
 							<font color="black">当前第</font>&nbsp;
 							<font color="red">${pageModel.currentPageNumber }</font>&nbsp;
 							<font color="black">页</font>
@@ -246,8 +246,11 @@
 							<a href="${pageUrl }">尾页</a>
 						</pg:last>
 						</pg:pager>	
-							
-						&nbsp;
+						
+					</td>
+				</tr>
+				<tr>
+					<td nowrap class="rd19" align="right">
 						<input name="btnAdd" type="button" class="button1" id="btnAdd"
 							value="添加" onClick="saveUser()">&nbsp;
 						<input name="btnModify" class="button1" type="button"

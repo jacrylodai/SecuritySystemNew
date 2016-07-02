@@ -38,7 +38,7 @@ public class DateUtil {
 	}
 
 	/**
-	 * 取得指定日期之后几天的日期
+	 * 取得指定日期之前几天的日期
 	 * @param specifiedDay
 	 * @param days
 	 * @return
@@ -241,6 +241,15 @@ public class DateUtil {
 		
 		String dateStr = year+"-"+month+"-"+day;
 		return parseDateFromDateString(dateStr);
+	}
+	
+	public static int getCurrentYear(){
+		
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTime(new Date(System.currentTimeMillis()));
+		
+		int currYear = calendar.get(Calendar.YEAR);
+		return currYear;
 	}
 
 }
