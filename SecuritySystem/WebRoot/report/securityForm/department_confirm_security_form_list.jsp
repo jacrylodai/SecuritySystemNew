@@ -52,13 +52,13 @@
 					height="35">
 					<tr>
 						<td class="p1" height="18" nowrap>
-							&nbsp;
+							
 						</td>
 					</tr>
 					<tr>
 						<td width="522" class="p1" height="17" nowrap>
 							<img src="images/mark_arrow_02.gif" width="14" height="14">
-							&nbsp;
+							
 							<b>反恐报表管理&gt;&gt;已上报-车间反恐报表维护</b>
 						</td>
 					</tr>
@@ -69,7 +69,7 @@
 					<tr>
 						<td width="522" class="p1" height="25" nowrap>
 							<img src="images/mark_arrow_03.gif" width="14" height="14">
-							&nbsp;
+							
 							<b>关联车间&gt;&gt;${department.departmentName }</b>
 						</td>
 					</tr>
@@ -142,11 +142,11 @@
 					<td nowrap class="rd19" height="2">
 						<div align="left">
 							<font color="black">
-							&nbsp;共&nbsp;${pageModel.pageCount }&nbsp;页
-							&nbsp;总共&nbsp;${pageModel.totalCount }&nbsp;条记录
-							</font>&nbsp;&nbsp;
-							<font color="black">当前第</font>&nbsp;
-							<font color="red">${pageModel.currentPageNumber }</font>&nbsp;
+							共${pageModel.pageCount }页
+							总共${pageModel.totalCount }条记录
+							</font>
+							<font color="black">当前第</font>
+							<font color="red">${pageModel.currentPageNumber }</font>
 							<font color="black">页</font>
 						</div>
 					</td>
@@ -182,7 +182,7 @@
 						</pg:pager>	
 							
 						<input name="btnView" class="button1" type="button"
-							id="btnView" value="查看" onClick="viewDepartmentSecurityForm()">&nbsp;
+							id="btnView" value="查看" onClick="viewDepartmentSecurityForm()">
 					</td>
 				</tr>
 			</table>

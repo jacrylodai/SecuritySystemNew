@@ -123,7 +123,7 @@
 				<table width="95%" border="0" cellspacing="2" cellpadding="2">
 					<tr>
 						<td>
-							&nbsp;
+							
 						</td>
 					</tr>
 				</table>
@@ -132,7 +132,7 @@
 					<tr>
 						<td width="522" class="p1" height="25" nowrap>
 							<img src="images/mark_arrow_03.gif" width="14" height="14">
-							&nbsp;
+							
 							<b>反恐报表管理&gt;&gt;反恐报表维护&gt;&gt;添加</b>
 						</td>
 					</tr>
@@ -142,7 +142,7 @@
 					<tr>
 						<td width="522" class="p1" height="25" nowrap>
 							<img src="images/mark_arrow_03.gif" width="14" height="14">
-							&nbsp;
+							
 							<b>关联部门&gt;&gt;${department.departmentName }</b>
 						</td>
 					</tr>
@@ -153,7 +153,7 @@
 					<tr>
 						<td width="522" class="p1" height="25" nowrap>
 							<img src="images/mark_arrow_03.gif" width="14" height="14">
-							&nbsp;
+							
 							<b>上报人&gt;&gt;${reportUser.username }</b>
 						</td>
 					</tr>
@@ -167,7 +167,7 @@
 					
 					<tr>
 						<td width="40%" height="30px" align="right">
-							<font color="#FF0000">*</font>报表起始日期:&nbsp;
+							<font color="#FF0000">*</font>报表起始日期:
 						</td>
 						<td width="40px" align="left">
 							<input id="startDateString" name="startDateString"
@@ -178,7 +178,7 @@
 					
 					<tr>
 						<td width="40%" height="30px" align="right">
-							<font color="#FF0000">*</font>报表终止日期:&nbsp;
+							<font color="#FF0000">*</font>报表终止日期:
 						</td>
 						<td width="40px" align="left">
 							<input id="endDateString" name="endDateString"
@@ -500,7 +500,7 @@
 				<div align="center">
 					<input name="btnAdd" class="button1" type="button" id="btnAdd"
 						value="保存" onClick="saveSecurityForm()">
-					&nbsp;
+					
 					<input name="btnBack" class="button1" type="button" id="btnBack"
 						value="返回" onclick="goBack()" />
 				</div>

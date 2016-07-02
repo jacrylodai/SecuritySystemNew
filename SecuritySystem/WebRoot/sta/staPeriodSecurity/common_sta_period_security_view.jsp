@@ -26,7 +26,7 @@
 				<table width="95%" border="0" cellspacing="2" cellpadding="2">
 					<tr>
 						<td>
-							&nbsp;
+							
 						</td>
 					</tr>
 				</table>
@@ -35,7 +35,7 @@
 					<tr>
 						<td width="522" class="p1" height="25" nowrap>
 							<img src="images/mark_arrow_03.gif" width="14" height="14">
-							&nbsp;
+							
 							<b>统计管理&gt;&gt;统计维护&gt;&gt;查看</b>
 						</td>
 					</tr>
@@ -46,7 +46,7 @@
 					<tr>
 						<td width="522" class="p1" height="25" nowrap>
 							<img src="images/mark_arrow_03.gif" width="14" height="14">
-							&nbsp;
+							
 							<b>被统计部门&gt;&gt;${staPeriodSecurity.staDepartment.departmentName }</b>
 						</td>
 					</tr>

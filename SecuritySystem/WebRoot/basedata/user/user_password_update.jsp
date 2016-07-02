@@ -79,7 +79,7 @@
 				<table width="95%" border="0" cellspacing="2" cellpadding="2">
 					<tr>
 						<td>
-							&nbsp;
+							
 						</td>
 					</tr>
 				</table>
@@ -88,7 +88,7 @@
 					<tr>
 						<td width="522" class="p1" height="25" nowrap>
 							<img src="images/mark_arrow_03.gif" width="14" height="14">
-							&nbsp;
+							
 							<b>基础数据管理&gt;&gt;用户维护&gt;&gt;修改密码</b>
 						</td>
 					</tr>
@@ -98,7 +98,7 @@
 					<tr>
 						<td width="522" class="p1" height="25" nowrap>
 							<img src="images/mark_arrow_03.gif" width="14" height="14">
-							&nbsp;
+							
 							<b>所属部门&gt;&gt;${user.department.departmentName }</b>
 						</td>
 					</tr>
@@ -108,7 +108,7 @@
 					<tr>
 						<td width="522" class="p1" height="25" nowrap>
 							<img src="images/mark_arrow_03.gif" width="14" height="14">
-							&nbsp;
+							
 							<b>用户名&gt;&gt;${user.username }</b>
 						</td>
 					</tr>
@@ -118,7 +118,7 @@
 					
 					<tr>
 						<td width="20%" height="30px" align="right">
-							密码:&nbsp;
+							密码:
 						</td>
 						<td width="40px" align="left">
 							<input name="password" type="password" class="text1" id="password"
@@ -128,7 +128,7 @@
 					
 					<tr>
 						<td width="20%" height="30px" align="right">
-							确认密码:&nbsp;
+							确认密码:
 						</td>
 						<td width="40px" align="left">
 							<input name="affirmPassword" type="password" class="text1" id="affirmPassword"
@@ -141,7 +141,7 @@
 				<div align="center">
 					<input name="btnAdd" class="button1" type="button" id="btnAdd"
 						value="保存" onClick="updateUserPassword()">
-					&nbsp;
+					
 					<input name="btnBack" class="button1" type="button" id="btnBack"
 						value="返回" onclick="goBack()" />
 				</div>

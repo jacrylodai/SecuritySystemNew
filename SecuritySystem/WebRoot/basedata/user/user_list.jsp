@@ -109,13 +109,13 @@
 					height="35">
 					<tr>
 						<td class="p1" height="18" nowrap>
-							&nbsp;
+							
 						</td>
 					</tr>
 					<tr>
 						<td width="522" class="p1" height="17" nowrap>
 							<img src="images/mark_arrow_02.gif" width="14" height="14">
-							&nbsp;
+							
 							<b>基础数据管理&gt;&gt;用户维护</b>
 						</td>
 					</tr>
@@ -126,7 +126,7 @@
 					<tr>
 						<td width="522" class="p1" height="25" nowrap>
 							<img src="images/mark_arrow_03.gif" width="14" height="14">
-							&nbsp;
+							
 							<b>所属部门&gt;&gt;${department.departmentName }</b>
 						</td>
 					</tr>
@@ -208,11 +208,11 @@
 					<td nowrap class="rd19" height="2">
 						<div align="left">
 							<font color="black">
-							&nbsp;共&nbsp;${pageModel.pageCount }&nbsp;页
-							&nbsp;总共&nbsp;${pageModel.totalCount }&nbsp;条记录
-							</font>&nbsp;&nbsp;
-							<font color="black">当前第</font>&nbsp;
-							<font color="red">${pageModel.currentPageNumber }</font>&nbsp;
+							共${pageModel.pageCount }页
+							总共${pageModel.totalCount }条记录
+							</font>
+							<font color="black">当前第</font>
+							<font color="red">${pageModel.currentPageNumber }</font>
 							<font color="black">页</font>
 						</div>
 					</td>
@@ -247,17 +247,13 @@
 						</pg:last>
 						</pg:pager>	
 						
-					</td>
-				</tr>
-				<tr>
-					<td nowrap class="rd19" align="right">
 						<input name="btnAdd" type="button" class="button1" id="btnAdd"
-							value="添加" onClick="saveUser()">&nbsp;
+							value="添加" onClick="saveUser()">
 						<input name="btnModify" class="button1" type="button"
-							id="btnModify" value="修改" onClick="updateUser()">&nbsp;
+							id="btnModify" value="修改" onClick="updateUser()">
 						<input name="btnModifyPassword" class="button1" type="button"
 							id="btnModifyPassword" value="修改密码" 
-							onClick="updateUserPassword()">&nbsp;
+							onClick="updateUserPassword()">
 						<input name="btnDelete" class="button1" type="button"
 							id="btnDelete" value="删除" onClick="deleteUser()">
 					</td>

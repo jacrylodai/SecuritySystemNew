@@ -62,7 +62,7 @@
 				<table width="95%" border="0" cellspacing="2" cellpadding="2">
 					<tr>
 						<td>
-							&nbsp;
+							
 						</td>
 					</tr>
 				</table>
@@ -71,7 +71,7 @@
 					<tr>
 						<td width="522" class="p1" height="25" nowrap>
 							<img src="images/mark_arrow_03.gif" width="14" height="14">
-							&nbsp;
+							
 							<b>基础数据管理&gt;&gt;用户维护&gt;&gt;修改</b>
 						</td>
 					</tr>
@@ -81,7 +81,7 @@
 					<tr>
 						<td width="522" class="p1" height="25" nowrap>
 							<img src="images/mark_arrow_03.gif" width="14" height="14">
-							&nbsp;
+							
 							<b>所属部门&gt;&gt;${department.departmentName }</b>
 						</td>
 					</tr>
@@ -90,7 +90,7 @@
 				<table width="95%" border="0" cellpadding="0" cellspacing="0">
 					<tr>
 						<td width="20%" height="30px" align="right">
-							<font color="#FF0000">*</font>用户名:&nbsp;
+							<font color="#FF0000">*</font>用户名:
 						</td>
 						<td width="40px" align="left">
 							<input name="username" type="text" class="text1" id="username"
@@ -101,7 +101,7 @@
 					
 					<tr>
 						<td width="20%" height="30px" align="right">
-							<font color="#FF0000">*</font>角色:&nbsp;
+							<font color="#FF0000">*</font>角色:
 						</td>
 						<td width="40px" align="left">
 							<select name="roleId" id="roleIdSelector">
@@ -115,7 +115,7 @@
 					
 					<tr>
 						<td width="20%" height="30px" align="right">
-							责任人:&nbsp;
+							责任人:
 						</td>
 						<td width="40px" align="left">
 							<input name="contactPeople" type="text" class="text1" id="contactPeople"
@@ -125,7 +125,7 @@
 					
 					<tr>
 						<td width="20%" height="30px" align="right">
-							手机:&nbsp;
+							手机:
 						</td>
 						<td width="40px" align="left">
 							<input name="mobilePhone" type="text" class="text1" id="mobilePhone"
@@ -135,7 +135,7 @@
 					
 					<tr>
 						<td width="20%" height="30px" align="right">
-							办公电话:&nbsp;
+							办公电话:
 						</td>
 						<td width="40px" align="left">
 							<input name="officePhone" type="text" class="text1" id="officePhone"
@@ -147,7 +147,7 @@
 				<div align="center">
 					<input name="btnAdd" class="button1" type="button" id="btnAdd"
 						value="保存" onClick="updateUser()">
-					&nbsp;
+					
 					<input name="btnBack" class="button1" type="button" id="btnBack"
 						value="返回" onclick="goBack()" />
 				</div>

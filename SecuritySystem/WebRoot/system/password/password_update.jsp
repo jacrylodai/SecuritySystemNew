@@ -139,14 +139,14 @@
 				<table width="95%" border="0" cellspacing="0" cellpadding="0"
 					height="35">
 					<tr>
-						<td class="p1" height="18" nowrap>&nbsp;
+						<td class="p1" height="18" nowrap>
 							
 						</td>
 					</tr>
 					<tr>
 						<td width="522" class="p1" height="17" nowrap>
 							<img src="images/mark_arrow_02.gif" width="14" height="14">
-							&nbsp;
+							
 							<b>系统功能&gt;&gt;修改密码</b>
 						</td>
 					</tr>

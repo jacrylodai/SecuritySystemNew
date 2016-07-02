@@ -82,13 +82,13 @@
 					height="35">
 					<tr>
 						<td class="p1" height="18" nowrap>
-							&nbsp;
+							
 						</td>
 					</tr>
 					<tr>
 						<td width="522" class="p1" height="17" nowrap>
 							<img src="images/mark_arrow_02.gif" width="14" height="14">
-							&nbsp;
+							
 							<b>基础数据管理&gt;&gt;部门维护</b>
 						</td>
 					</tr>
@@ -99,7 +99,7 @@
 					<tr>
 						<td width="522" class="p1" height="25" nowrap>
 							<img src="images/mark_arrow_03.gif" width="14" height="14">
-							&nbsp;
+							
 							<b>上级部门&gt;&gt;${parentDepartment.departmentName }</b>
 						</td>
 					</tr>
@@ -161,7 +161,7 @@
 								</td>
 								<td class="rd8">
 								<a href="basedata/user/userFunc.do?command=listUser&departmentId=${department.departmentId }">
-								用户管理</a>&nbsp;
+								用户管理</a>
 								
 								<c:choose>
 									<c:when test="${department.level eq Department_LEVEL_DEPARTMENT }">
@@ -185,11 +185,11 @@
 					<td nowrap class="rd19" height="2">
 						<div align="left">
 							<font color="black">
-							&nbsp;共&nbsp;${pageModel.pageCount }&nbsp;页
-							&nbsp;总共&nbsp;${pageModel.totalCount }&nbsp;条记录
-							</font>&nbsp;
-							<font color="black">当前第</font>&nbsp;
-							<font color="red">${pageModel.currentPageNumber }</font>&nbsp;
+							共${pageModel.pageCount }页
+							总共${pageModel.totalCount }条记录
+							</font>
+							<font color="black">当前第</font>
+							<font color="red">${pageModel.currentPageNumber }</font>
 							<font color="black">页</font>
 						</div>
 					</td>
@@ -224,11 +224,11 @@
 						</pg:last>
 						</pg:pager>	
 							
-						&nbsp;
+						
 						<input name="btnAdd" type="button" class="button1" id="btnAdd"
-							value="添加" onClick="saveDepartment()">&nbsp;
+							value="添加" onClick="saveDepartment()">
 						<input name="btnModify" class="button1" type="button"
-							id="btnModify" value="修改" onClick="updateDepartment()">&nbsp;
+							id="btnModify" value="修改" onClick="updateDepartment()">
 						<input name="btnDelete" class="button1" type="button"
 							id="btnDelete" value="删除" onClick="deleteDepartment()">
 					</td>

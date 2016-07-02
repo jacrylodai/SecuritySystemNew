@@ -51,7 +51,7 @@
 				<table width="95%" border="0" cellspacing="2" cellpadding="2">
 					<tr>
 						<td>
-							&nbsp;
+							
 						</td>
 					</tr>
 				</table>
@@ -60,7 +60,7 @@
 					<tr>
 						<td width="522" class="p1" height="25" nowrap>
 							<img src="images/mark_arrow_03.gif" width="14" height="14">
-							&nbsp;
+							
 							<b>基础数据管理&gt;&gt;车间维护&gt;&gt;添加</b>
 						</td>
 					</tr>
@@ -70,7 +70,7 @@
 					<tr>
 						<td width="522" class="p1" height="25" nowrap>
 							<img src="images/mark_arrow_03.gif" width="14" height="14">
-							&nbsp;
+							
 							<b>所属上级部门&gt;&gt;${parentDepartment.departmentName }</b>
 						</td>
 					</tr>
@@ -79,7 +79,7 @@
 				<table width="95%" border="0" cellpadding="0" cellspacing="0">
 					<tr>
 						<td width="20%" height="30px" align="right">
-							<font color="#FF0000">*</font>部门名称:&nbsp;
+							<font color="#FF0000">*</font>部门名称:
 						</td>
 						<td width="40px" align="left">
 							<input name="departmentName" type="text" class="text1" id="departmentName"
@@ -99,7 +99,7 @@
 				<div align="center">
 					<input name="btnSave" class="button1" type="button" id="btnSave"
 						value="保存" onClick="saveDepartment()">
-					&nbsp;
+					
 					<input name="btnBack" class="button1" type="button" id="btnBack"
 						value="返回" onclick="goBack()" />
 				</div>

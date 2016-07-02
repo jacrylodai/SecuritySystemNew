@@ -143,13 +143,13 @@
 					height="35">
 					<tr>
 						<td class="p1" height="18" nowrap>
-							&nbsp;
+							
 						</td>
 					</tr>
 					<tr>
 						<td width="522" class="p1" height="17" nowrap>
 							<img src="images/mark_arrow_02.gif" width="14" height="14">
-							&nbsp;
+							
 							<b>反恐报表管理&gt;&gt;已导入-车站反恐报表维护</b>
 						</td>
 					</tr>
@@ -160,7 +160,7 @@
 					<tr>
 						<td width="522" class="p1" height="25" nowrap>
 							<img src="images/mark_arrow_03.gif" width="14" height="14">
-							&nbsp;
+							
 							<b>所属车站&gt;&gt;${station.departmentName }</b>
 						</td>
 					</tr>
@@ -263,8 +263,8 @@
 						<div align="left">
 							<font color="black">
 							共${pageModel.pageCount }页
-							&nbsp;总共${pageModel.totalCount }条记录
-							</font>&nbsp;
+							总共${pageModel.totalCount }条记录
+							</font>
 							<font color="black">当前第</font>
 							<font color="red">${pageModel.currentPageNumber }</font>
 							<font color="black">页</font>

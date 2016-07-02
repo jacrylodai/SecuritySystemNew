@@ -11,7 +11,7 @@
 							<em><strong><font color="#FFFFFF" size="+3"
 									face="宋体">
 									<IMG height=1 src="images/spacer.gif" width=5
-											border=0>反&nbsp;恐&nbsp;数&nbsp;据&nbsp;统&nbsp;计&nbsp;系&nbsp;统</font> </strong> </em>
+											border=0>反恐数据统计系统</font> </strong> </em>
 						</TD>
 						<TD align=center vAlign=center
 							background="images/logobar_mid.gif">

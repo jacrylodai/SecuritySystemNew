@@ -131,13 +131,13 @@
 					height="35">
 					<tr>
 						<td class="p1" height="18" nowrap>
-							&nbsp;
+							
 						</td>
 					</tr>
 					<tr>
 						<td width="522" class="p1" height="17" nowrap>
 							<img src="images/mark_arrow_02.gif" width="14" height="14">
-							&nbsp;
+							
 							<b>反恐报表管理&gt;&gt;未上报-车间反恐报表维护</b>
 						</td>
 					</tr>
@@ -148,7 +148,7 @@
 					<tr>
 						<td width="522" class="p1" height="25" nowrap>
 							<img src="images/mark_arrow_03.gif" width="14" height="14">
-							&nbsp;
+							
 							<b>关联车间&gt;&gt;${department.departmentName }</b>
 						</td>
 					</tr>
@@ -221,11 +221,11 @@
 					<td nowrap class="rd19" height="2">
 						<div align="left">
 							<font color="black">
-							&nbsp;共&nbsp;${pageModel.pageCount }&nbsp;页
-							&nbsp;总共&nbsp;${pageModel.totalCount }&nbsp;条记录
-							</font>&nbsp;&nbsp;
-							<font color="black">当前第</font>&nbsp;
-							<font color="red">${pageModel.currentPageNumber }</font>&nbsp;
+							共${pageModel.pageCount }页
+							总共${pageModel.totalCount }条记录
+							</font>
+							<font color="black">当前第</font>
+							<font color="red">${pageModel.currentPageNumber }</font>
 							<font color="black">页</font>
 						</div>
 					</td>
@@ -260,15 +260,15 @@
 						</pg:last>
 						</pg:pager>	
 							
-						&nbsp;
+						
 						<input name="btnAdd" type="button" class="button1" id="btnAdd"
-							value="添加" onClick="saveDepartmentSecurityForm()">&nbsp;
+							value="添加" onClick="saveDepartmentSecurityForm()">
 						<input name="btnView" class="button1" type="button"
-							id="btnView" value="查看" onClick="viewDepartmentSecurityForm()">&nbsp;
+							id="btnView" value="查看" onClick="viewDepartmentSecurityForm()">
 						<input name="btnModify" class="button1" type="button"
-							id="btnModify" value="修改" onClick="updateDepartmentSecurityForm()">&nbsp;
+							id="btnModify" value="修改" onClick="updateDepartmentSecurityForm()">
 						<input name="btnDelete" class="button1" type="button"
-							id="btnDelete" value="删除" onClick="deleteDepartmentSecurityForm()">&nbsp;
+							id="btnDelete" value="删除" onClick="deleteDepartmentSecurityForm()">
 						<input name="btnConfirm" class="button1" type="button"
 							id="btnConfirm" value="上报" onClick="confirmDepartmentSecurityForm()">
 					</td>

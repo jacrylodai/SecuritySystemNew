@@ -48,7 +48,7 @@ function logout(){
 			cellspacing="0" bgcolor="gray">
 			<tr>
 				<td width="5%" nowrap>
-					&nbsp;
+					
 				</td>				
 				<td width="30%">
 					当前时间：<span id="dateMsg"></span>

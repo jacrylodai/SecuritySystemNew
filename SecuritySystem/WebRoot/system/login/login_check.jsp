@@ -134,7 +134,7 @@
 										</TD>
 										<TD align=left width=140 bgColor=#000033 colSpan=3>
 											<FONT face="verdana, arial, helvetica, sans-serif"
-												color=#ffffff size=-1>&nbsp;<B>登录系统</B> </FONT>
+												color=#ffffff size=-1><B>登录系统</B> </FONT>
 										</TD>
 										<TD width=11 background="images/right.gif">
 											<IMG height=15 src="images/spacer.gif" width=11 border=0>
