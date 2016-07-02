@@ -28,6 +28,21 @@ public class Resource {
 	 * 资源类型：action资源
 	 */
 	public static final int RESOURCE_TYPE_ACTION_RESOURCE = 2;
+	
+	/**
+	 * 资源级别，根节点级别
+	 */
+	public static final int RESOURCE_LEVEL_ROOT = 1;
+
+	/**
+	 * 资源级别，一级资源
+	 */
+	public static final int RESOURCE_LEVEL_TOP_RESOURCE = 2;
+
+	/**
+	 * 资源级别，二级资源
+	 */
+	public static final int RESOURCE_LEVEL_SECOND_RESOURCE = 3;
 
 	//资源id
 	private long resourceId;
@@ -46,6 +61,9 @@ public class Resource {
 	
 	//资源类型。1-菜单，2-用户对action请求的资源
 	private int resourceType;
+	
+	//资源级别。1-root，2-一级资源，3-二级资源。最多只能有2级资源
+	private int resourceLevel;
 	
 	private List<Resource> subResourceList;
 
@@ -103,6 +121,14 @@ public class Resource {
 
 	public void setResourceType(int resourceType) {
 		this.resourceType = resourceType;
+	}
+
+	public int getResourceLevel() {
+		return resourceLevel;
+	}
+
+	public void setResourceLevel(int resourceLevel) {
+		this.resourceLevel = resourceLevel;
 	}
 	
 }

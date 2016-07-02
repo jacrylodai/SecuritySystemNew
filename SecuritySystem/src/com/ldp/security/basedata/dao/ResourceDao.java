@@ -9,5 +9,7 @@ public interface ResourceDao {
 	public void updateResource(Resource resource);
 	
 	public Resource loadResourceById(long resourceId);
+
+	public void deleteResource(Resource resource);
 	
 }

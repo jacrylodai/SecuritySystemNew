@@ -26,4 +26,10 @@ public class ResourceDaoImpl implements ResourceDao{
 		conn.update(resource);
 	}
 
+	public void deleteResource(Resource resource) {
+
+		HibernateTemplate conn = HibernateSessionHolder.getConn();
+		conn.delete(resource);
+	}
+
 }

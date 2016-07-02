@@ -3,6 +3,7 @@ package com.ldp.security.basedata.manager;
 import java.util.List;
 
 import com.ldp.security.basedata.domain.Resource;
+import com.ldp.security.util.PageModel;
 
 public interface ResourceManager {
 
@@ -39,5 +40,10 @@ public interface ResourceManager {
 	 */
 	public Resource getResourceByResourceUrlPathResourceType(
 			String resourceUrlPath, int resourceType);
+
+	public PageModel<Resource> listResourceInPage(int resourceType,
+			long parentResourceId);
+
+	public void deleteResource(Resource resource);
 	
 }

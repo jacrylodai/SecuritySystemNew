@@ -71,7 +71,7 @@
 				<hr width="97%" align="center" size=0>
 				
 				<c:set var="tdShortWidth" value="12" scope="page"></c:set>
-				<c:set var="tdBaseWidth" value="70" scope="page"></c:set>
+				<c:set var="tdBaseWidth" value="50" scope="page"></c:set>
 				<c:set var="tdLongWidth" value="20" scope="page"></c:set>
 				
 				<table width="95%" border="1" cellspacing="0" cellpadding="0"

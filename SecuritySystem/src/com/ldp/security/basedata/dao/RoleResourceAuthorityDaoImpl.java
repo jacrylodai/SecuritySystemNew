@@ -27,4 +27,10 @@ public class RoleResourceAuthorityDaoImpl implements RoleResourceAuthorityDao{
 		return authority;
 	}
 
+	public void deleteRoleResourceAuthority(RoleResourceAuthority authority) {
+
+		HibernateTemplate conn = HibernateSessionHolder.getConn();
+		conn.delete(authority);
+	}
+
 }

@@ -46,6 +46,14 @@
 		<property name="roleManager" ref="roleManager"/>
 	</bean>
 	
+	<bean name="/basedata/resource/resourceFunc" 
+		class="com.ldp.security.basedata.action.ResourceAction" scope="singleton">
+		
+		<property name="resourceManager" ref="resourceManager"></property>
+		<property name="roleResourceAuthorityManager" 
+			ref="roleResourceAuthorityManager"/>
+	</bean>
+	
 	<!-- system -->
 	
 	<bean name="/system/login/loginFunc"

@@ -48,5 +48,10 @@ public interface RoleResourceAuthorityManager {
 
 	public RoleResourceAuthority loadRoleResourceAuthorityById(
 			long authorityId);
+
+	public List<RoleResourceAuthority> getAuthorityListByResourceId(
+			long resourceId);
+
+	public void deleteRoleResourceAuthority(RoleResourceAuthority authority);
 	
 }

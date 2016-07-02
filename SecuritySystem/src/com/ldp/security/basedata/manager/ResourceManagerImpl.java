@@ -6,6 +6,7 @@ import java.util.List;
 import com.ldp.security.basedata.dao.ResourceDao;
 import com.ldp.security.basedata.domain.Resource;
 import com.ldp.security.common.manager.AbstractManager;
+import com.ldp.security.util.PageModel;
 import com.ldp.security.util.database.ParameterObject;
 
 public class ResourceManagerImpl extends AbstractManager<Resource>
@@ -36,7 +37,7 @@ public class ResourceManagerImpl extends AbstractManager<Resource>
 		String hql = 
 			"from Resource resource" +
 			" where resource.parentResource.resourceId=:resourceId" +
-			" order by resource.orderNumber";
+			" order by resource.orderNumber asc";
 		List<ParameterObject> paraObjList = new ArrayList<ParameterObject>();
 		paraObjList.add(new ParameterObject("resourceId",resourceId));
 		
@@ -86,6 +87,27 @@ public class ResourceManagerImpl extends AbstractManager<Resource>
 			return null;
 		}
 		
+	}
+
+	public PageModel<Resource> listResourceInPage(int resourceType,
+			long parentResourceId) {
+		
+		String hql = 
+			"from Resource resource" +
+			" where resource.resourceType=:resourceType" +
+			" and resource.parentResource.resourceId=:parentResourceId" +
+			" order by resource.orderNumber asc";
+		
+		List<ParameterObject> paraObjList = new ArrayList<ParameterObject>();
+		paraObjList.add(new ParameterObject("resourceType",resourceType));
+		paraObjList.add(new ParameterObject("parentResourceId",parentResourceId));
+
+		return findDataByHqlParameterListInPage(hql, paraObjList);
+	}
+
+	public void deleteResource(Resource resource) {
+		
+		resourceDao.deleteResource(resource);
 	}
 
 }

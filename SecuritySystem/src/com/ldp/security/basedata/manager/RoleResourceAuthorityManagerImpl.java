@@ -120,4 +120,22 @@ public class RoleResourceAuthorityManagerImpl
 		return roleResourceAuthorityDao.loadRoleResourceAuthorityById(authorityId);
 	}
 
+	public void deleteRoleResourceAuthority(RoleResourceAuthority authority) {
+
+		roleResourceAuthorityDao.deleteRoleResourceAuthority(authority);
+	}
+
+	public List<RoleResourceAuthority> getAuthorityListByResourceId(
+			long resourceId) {
+		
+		String hql = 
+			"from RoleResourceAuthority authority" +
+			" where authority.resource.resourceId=:resourceId";
+		
+		List<ParameterObject> paraObjList = new ArrayList<ParameterObject>();
+		paraObjList.add(new ParameterObject("resourceId",resourceId));
+		
+		return findDataByHqlParameterListInList(hql, paraObjList);
+	}
+
 }

@@ -11,6 +11,7 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 
 import com.ldp.security.basedata.domain.Department;
+import com.ldp.security.basedata.domain.Resource;
 import com.ldp.security.basedata.domain.User;
 import com.ldp.security.report.domain.DangerousObjectItem;
 import com.ldp.security.report.domain.SecurityForm;
@@ -79,6 +80,20 @@ public class InitSystemServlet implements Servlet {
 				, Department.LEVEL_STATION);
 		
 		servletContext.setAttribute("USER_SESSION_ID", User.USER_SESSION_ID);
+
+		servletContext.setAttribute("RESOURCE_TYPE_MENU", Resource.RESOURCE_TYPE_MENU);
+		
+		servletContext.setAttribute("RESOURCE_TYPE_ACTION_RESOURCE"
+				, Resource.RESOURCE_TYPE_ACTION_RESOURCE);
+
+		servletContext.setAttribute("RESOURCE_LEVEL_ROOT"
+				, Resource.RESOURCE_LEVEL_ROOT);
+
+		servletContext.setAttribute("RESOURCE_LEVEL_TOP_RESOURCE"
+				, Resource.RESOURCE_LEVEL_TOP_RESOURCE);
+		
+		servletContext.setAttribute("RESOURCE_LEVEL_SECOND_RESOURCE"
+				, Resource.RESOURCE_LEVEL_SECOND_RESOURCE);
 		
 	}
 

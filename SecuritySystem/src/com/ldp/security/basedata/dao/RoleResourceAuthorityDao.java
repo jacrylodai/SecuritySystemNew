@@ -9,5 +9,7 @@ public interface RoleResourceAuthorityDao {
 	public void updateRoleResourceAuthority(RoleResourceAuthority authority);
 
 	public RoleResourceAuthority loadRoleResourceAuthorityById(long authorityId);
+
+	public void deleteRoleResourceAuthority(RoleResourceAuthority authority);
 	
 }

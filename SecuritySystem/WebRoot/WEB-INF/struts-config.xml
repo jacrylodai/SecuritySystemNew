@@ -17,6 +17,9 @@
     	<form-bean name="roleForm" 
     		type="com.ldp.security.basedata.actionform.RoleActionForm"></form-bean>
     		
+    	<form-bean name="resourceForm" 
+    		type="com.ldp.security.basedata.actionform.ResourceActionForm"></form-bean>
+    		
     	<form-bean name="loginForm" 
     		type="com.ldp.security.system.actionform.LoginActionForm"></form-bean>
     		
@@ -86,6 +89,19 @@
         	<forward name="updateRolePrepare" path="/basedata/role/role_update.jsp"/> 
         	<forward name="updateMenuAuthorityPrepare" path="/basedata/role/menu_authority_update.jsp"/>
         	<forward name="updateActionAuthorityPrepare" path="/basedata/role/action_authority_update.jsp"/>     
+ 		</action>
+ 		
+ 		<action 			
+ 			path="/basedata/resource/resourceFunc" 	
+ 			name="resourceForm"
+ 			type="org.springframework.web.struts.DelegatingActionProxy"
+ 			parameter="command"
+ 			scope="request"
+ 		>
+        	<forward name="saveResourcePrepare" path="/basedata/resource/resource_save.jsp"/>
+        	<forward name="listResource" path="/basedata/resource/resource_list.jsp"/> 
+        	<forward name="updateResourcePrepare" path="/basedata/resource/resource_update.jsp"/> 
+        	<forward name="viewResource" path="/basedata/resource/resource_view.jsp"/> 
  		</action>
  		
  		<action 			
