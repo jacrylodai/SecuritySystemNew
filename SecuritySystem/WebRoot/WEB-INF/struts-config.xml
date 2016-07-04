@@ -104,6 +104,8 @@
         	<forward name="viewResource" path="/basedata/resource/resource_view.jsp"/> 
  		</action>
  		
+ 		<!-- system -->
+ 		
  		<action 			
  			path="/system/login/loginFunc" 	
  			name="loginForm"
@@ -137,6 +139,18 @@
         	<forward name="updatePasswordPrepare" 
         		path="/system/password/password_update.jsp"/> 
  		</action>
+ 		
+ 		<action 			
+ 			path="/system/systemConfig/systemConfigFunc"
+ 			type="org.springframework.web.struts.DelegatingActionProxy"
+ 			parameter="command"
+ 			scope="request"
+ 		>
+        	<forward name="viewSystemConfig" 
+        		path="/system/systemConfig/system_config_view.jsp"/> 
+ 		</action>
+ 		
+ 		<!-- report -->
  		
  		<action 			
  			path="/report/securityForm/departmentSecurityFormFunc" 	

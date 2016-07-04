@@ -2,6 +2,7 @@ package com.ldp.security.basedata.manager;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
@@ -20,8 +21,10 @@ import com.ldp.security.common.manager.AbstractManager;
 import com.ldp.security.util.PageModel;
 import com.ldp.security.util.business.excel.departmentTemplateOutput.DepartmentTemplateExcelUtil;
 import com.ldp.security.util.business.excel.departmentTemplateWithDayInfoOut.DepartmentTemplateWithDayInfoExcelUtil;
+import com.ldp.security.util.compress.ZipUtil;
 import com.ldp.security.util.constants.Constants;
 import com.ldp.security.util.constants.FolderConstants;
+import com.ldp.security.util.database.ParameterObject;
 import com.ldp.security.util.date.DateUtil;
 import com.ldp.security.util.file.FileUtil;
 import com.ldp.security.util.xml.XMLConfigReader;
@@ -111,11 +114,22 @@ public class DepartmentManagerImpl extends AbstractManager<Department> implement
 	}
 
 	public void createDepartmentExcelTemplate(Department department,
-			File sourceTemplateFile, File excelTemplateFile){
+			File sourceTemplateFile){
 			
 		if(department.getLevel() != Department.LEVEL_DEPARTMENT){
 			throw new RuntimeException("只有车间才能创建反恐填报表excel模板");
 		}
+
+		long departmentId = department.getDepartmentId();
+		String excelTemplateFilePath = getExcelTemplateFilePath(departmentId);
+		
+		File excelTemplateFile = new File(excelTemplateFilePath);
+		
+		File excelTemplateFolder = excelTemplateFile.getParentFile();
+		excelTemplateFolder.mkdirs();
+		
+		excelTemplateFile.delete();
+		
 		Workbook sourceWorkbook = null;
 		WritableWorkbook destWorkbook = null;
 		
@@ -196,13 +210,31 @@ public class DepartmentManagerImpl extends AbstractManager<Department> implement
 	}
 
 	public void createWholeYearDepartmentExcelTemplate(Department department,
-			String currDepartmentWholeYearFolderPath, File sourceTemplateFile) {
+			File sourceTemplateFile) {
 
 		if(department.getLevel() != Department.LEVEL_DEPARTMENT){
 			throw new RuntimeException("只有车间才能创建反恐填报表excel模板");
 		}
+
+		long departmentId = department.getDepartmentId();
+		String wholeYearExcelTemplateFolderPath = 
+			getWholeYearExcelTemplateFolderPath(departmentId);
+		FileUtil.buildFolder(wholeYearExcelTemplateFolderPath, true);
+
+		String currDepartmentWholeYearZipFilePath = 
+			wholeYearExcelTemplateFolderPath + '/'
+			+ "wholeYearExcelTemplateZipFile_" + department.getDepartmentId() +".zip";
+		File currDepartmentWholeYearZipFile = new File(currDepartmentWholeYearZipFilePath);
+		if(currDepartmentWholeYearZipFile.exists()){
+			currDepartmentWholeYearZipFile.delete();
+		}
 		
 		int currYear = DateUtil.getCurrentYear();
+		
+		String currDepartmentWholeYearFolderPath = 
+			wholeYearExcelTemplateFolderPath + '/' 
+			+ department.getDepartmentName() +'_' +currYear+"年_反恐统计报表模板";
+		
 		int nextYear = currYear+1;
 		Calendar calendar = Calendar.getInstance();
 		calendar.set(currYear, Calendar.JANUARY, 1);
@@ -265,6 +297,26 @@ public class DepartmentManagerImpl extends AbstractManager<Department> implement
 			}
 		}
 			
+		ZipUtil.zipEntry(currDepartmentWholeYearZipFilePath, ""
+				, currDepartmentWholeYearFolderPath);
+		FileUtil.deleteFolder(new File(currDepartmentWholeYearFolderPath));
+		
+	}
+
+	public List<Department> getAllLevelDepartmentDepartmentList() {
+		
+		String hql = "from Department department where department.level=:level";
+		
+		List<ParameterObject> paraObjList = new ArrayList<ParameterObject>();
+		paraObjList.add(new ParameterObject("level",Department.LEVEL_DEPARTMENT));
+		
+		return findDataByHqlParameterListInList(hql, paraObjList);
+	}
+
+	public void regenerateDepartmentExcelTemplate(
+			List<Department> departmentLisit) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

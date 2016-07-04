@@ -25,15 +25,18 @@
 			alert("你没有选择数据");
 			return;
 		}
+		if(count>1){
+			alert("你没有选择数据");
+			return;
+		}
 		if(!window.confirm("你确定要删除这些数据")){
 			return;
 		}
-		if(count>0){
-			with(document.roleForm){
-				action="sta/staPeriodSecurity/customStaPeriodSecurityFunc.do?command=deleteRole";
-				method="post";
-				submit();
-			}
+		
+		with(document.roleForm){
+			action="basedata/role/roleFunc.do?command=deleteRole";
+			method="post";
+			submit();
 		}
 	}
 			

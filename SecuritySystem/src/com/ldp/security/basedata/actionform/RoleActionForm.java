@@ -14,6 +14,8 @@ public class RoleActionForm extends ActionForm{
 	
 	//角色类型
 	private String roleTypeId;
+	
+	private long[] selectFlag;
 
 	public long getRoleId() {
 		return roleId;
@@ -37,6 +39,14 @@ public class RoleActionForm extends ActionForm{
 
 	public void setRoleTypeId(String roleTypeId) {
 		this.roleTypeId = roleTypeId;
+	}
+
+	public long[] getSelectFlag() {
+		return selectFlag;
+	}
+
+	public void setSelectFlag(long[] selectFlag) {
+		this.selectFlag = selectFlag;
 	}
 
 	public void validateData() {

@@ -71,10 +71,10 @@
 				<hr width="97%" align="center" size=0>
 				
 				<c:set var="tdShortWidth" value="12" scope="page"></c:set>
-				<c:set var="tdBaseWidth" value="50" scope="page"></c:set>
+				<c:set var="tdBaseWidth" value="70" scope="page"></c:set>
 				<c:set var="tdLongWidth" value="20" scope="page"></c:set>
 				
-				<table width="95%" border="1" cellspacing="0" cellpadding="0"
+				<table width="55%" border="1" cellspacing="0" cellpadding="0"
 					align="center" class="table1">
 					<tr>
 						<td class="rd6" width="${tdBaseWidth }%">
@@ -93,7 +93,7 @@
 							
 						<tr>
 							<td class="rd7">${topResource.resourceName }</td>
-							<td class="rd8">							
+							<td class="rd7">							
 							<input type="checkbox" name="resourceId_${topResource.resourceId }_showMenu"
 								${authorityMap[topResource.resourceId].showMenu ? 'checked':'' }>
 							</td>
@@ -107,8 +107,8 @@
 							
 							<tr>
 								<td class="rd7">———${subResource.resourceName }</td>
-								<td class="rd8">
-								<input type="checkbox" name="resourceId_${subResource.resourceId }_showMenu"
+								<td class="rd7">
+								———<input type="checkbox" name="resourceId_${subResource.resourceId }_showMenu"
 									${authorityMap[subResource.resourceId].showMenu ? 'checked':'' }>
 								</td>
 																

@@ -69,4 +69,24 @@ public class RoleManagerImpl extends AbstractManager<Role>
 		return findDataByHqlParameterListInList(hql, paraObjList);
 	}
 
+	public boolean checkIsRoleUsedByUser(long roleId) {
+
+		String hql = "from User user where user.role.roleId=:roleId";
+		
+		List<ParameterObject> paraObjList = new ArrayList<ParameterObject>();
+		paraObjList.add(new ParameterObject("roleId",roleId));
+		
+		long count = getCountByHqlParameterListInPage(hql, paraObjList);
+		if(count>0){
+			return true;
+		}else{
+			return false;
+		}
+	}
+
+	public void deleteRole(Role role) {
+
+		roleDao.deleteRole(role);
+	}
+
 }

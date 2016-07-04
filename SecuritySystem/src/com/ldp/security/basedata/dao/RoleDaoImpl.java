@@ -26,4 +26,10 @@ public class RoleDaoImpl implements RoleDao{
 		conn.update(role);
 	}
 
+	public void deleteRole(Role role) {
+
+		HibernateTemplate conn = HibernateSessionHolder.getConn();
+		conn.delete(role);
+	}
+
 }

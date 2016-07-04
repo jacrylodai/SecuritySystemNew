@@ -44,7 +44,7 @@ public class RoleResourceAuthorityManagerImpl
 		}
 	}
 
-	public List<RoleResourceAuthority> getAuthorityListByRoleId(
+	public List<RoleResourceAuthority> getAuthorityListByResourceTypeRoleId(
 			int resourceType,long roleId) {
 
 		String hql = 
@@ -134,6 +134,18 @@ public class RoleResourceAuthorityManagerImpl
 		
 		List<ParameterObject> paraObjList = new ArrayList<ParameterObject>();
 		paraObjList.add(new ParameterObject("resourceId",resourceId));
+		
+		return findDataByHqlParameterListInList(hql, paraObjList);
+	}
+
+	public List<RoleResourceAuthority> getAuthorityListByRoleId(long roleId) {
+
+		String hql = 
+			"from RoleResourceAuthority authority" +
+			" where authority.role.roleId=:roleId";
+		
+		List<ParameterObject> paraObjList = new ArrayList<ParameterObject>();
+		paraObjList.add(new ParameterObject("roleId",roleId));
 		
 		return findDataByHqlParameterListInList(hql, paraObjList);
 	}

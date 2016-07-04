@@ -9,6 +9,8 @@ public interface RoleDao {
 	public void updateRole(Role role);
 	
 	public Role loadRoleById(long roleId);
+
+	public void deleteRole(Role role);
 	
 	
 }

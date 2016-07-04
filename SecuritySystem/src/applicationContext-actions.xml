@@ -85,6 +85,16 @@
 		<property name="userManager" ref="userManager"/>	
 	</bean>
 	
+	<bean name="/system/systemConfig/systemConfigFunc"
+		class="com.ldp.security.system.action.SystemConfigAction" scope="singleton">
+		
+		<property name="resourceManager" ref="resourceManager"></property>
+		<property name="roleResourceAuthorityManager" 
+			ref="roleResourceAuthorityManager"></property>
+			
+		<property name="departmentManager" ref="departmentManager"></property>
+	</bean>
+	
 	<!-- report -->
 		
 	<bean name="/report/securityForm/departmentSecurityFormFunc" 

@@ -24,7 +24,7 @@ public interface RoleResourceAuthorityManager {
 	 * @param roleId
 	 * @return
 	 */
-	public List<RoleResourceAuthority> getAuthorityListByRoleId(
+	public List<RoleResourceAuthority> getAuthorityListByResourceTypeRoleId(
 			int resourceType,long roleId);
 
 	/**
@@ -49,9 +49,21 @@ public interface RoleResourceAuthorityManager {
 	public RoleResourceAuthority loadRoleResourceAuthorityById(
 			long authorityId);
 
+	/**
+	 * 取得资源对应的所有权限，用于删除
+	 * @param resourceId
+	 * @return
+	 */
 	public List<RoleResourceAuthority> getAuthorityListByResourceId(
 			long resourceId);
 
 	public void deleteRoleResourceAuthority(RoleResourceAuthority authority);
+
+	/**
+	 * 取得角色对应的所有权限，用于删除
+	 * @param roleId
+	 * @return
+	 */
+	public List<RoleResourceAuthority> getAuthorityListByRoleId(long roleId);
 	
 }

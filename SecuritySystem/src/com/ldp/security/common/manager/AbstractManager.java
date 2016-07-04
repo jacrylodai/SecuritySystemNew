@@ -115,6 +115,33 @@ public abstract class AbstractManager<T> extends HibernateDaoSupport{
 		pageModel.setTotalCount((int)count);
 		return pageModel;
 	}
+	
+	protected long getCountByHqlParameterListInPage(
+			final String hql,final List<ParameterObject> parameterObjectList){
+
+		HibernateTemplate ht=(HibernateTemplate)HibernateSessionHolder.getConn();		
+		long count=(Long)ht.execute(new HibernateCallback(){
+			
+			public Object doInHibernate(Session session)
+					throws HibernateException, SQLException {
+				// TODO Auto-generated method stub
+				Query query=session.createQuery(getCountQuery(hql));
+				for(ParameterObject parameterObject:parameterObjectList){
+					String parameterName = parameterObject.getParameterName();
+					Object parameterValue = parameterObject.getParameterValue();
+					if(parameterValue instanceof Collection){
+						Collection valueList = (Collection) parameterValue;
+						query.setParameterList(parameterName, valueList);
+					}else{
+						query.setParameter(parameterName, parameterValue);
+					}
+				}
+				return query.uniqueResult();
+			}
+		});
+
+		return count;
+	}
 
 	protected PageModel<T> findDataByHqlParameterListInPage(
 			final String hql,final List<ParameterObject> parameterObjectList){

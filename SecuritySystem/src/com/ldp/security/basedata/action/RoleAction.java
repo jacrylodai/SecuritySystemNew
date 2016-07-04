@@ -92,7 +92,7 @@ public class RoleAction extends BaseAction{
 		List<Resource> resourceTree = resourceManager.getAllMenuResourceTreeInList();
 		
 		List<RoleResourceAuthority> authorityList = 
-			roleResourceAuthorityManager.getAuthorityListByRoleId(
+			roleResourceAuthorityManager.getAuthorityListByResourceTypeRoleId(
 					Resource.RESOURCE_TYPE_MENU,roleId);
 		
 		Map<Long, RoleResourceAuthority> authorityMap = 
@@ -209,7 +209,7 @@ public class RoleAction extends BaseAction{
 		List<Resource> resourceTree = resourceManager.getAllActionResourceTreeInList();
 		
 		List<RoleResourceAuthority> authorityList = 
-			roleResourceAuthorityManager.getAuthorityListByRoleId(
+			roleResourceAuthorityManager.getAuthorityListByResourceTypeRoleId(
 					Resource.RESOURCE_TYPE_ACTION_RESOURCE,roleId);
 		
 		Map<Long, RoleResourceAuthority> authorityMap = 
@@ -316,6 +316,36 @@ public class RoleAction extends BaseAction{
 		roleResourceAuthorityManager.updateOrSaveAuthorityList(authorityList);
 
 		request.setAttribute(Constants.MESSAGE_KEY, Constants.MESSAGE_UPDATE_SUCCESS);
+		request.setAttribute(Constants.REDIRECT_URL_KEY, LIST_ROLE_PATH);
+		
+		return mapping.findForward("showMessage");
+	}
+
+	public ActionForward deleteRole(ActionMapping mapping, ActionForm form,
+			HttpServletRequest request, HttpServletResponse response)
+			throws Exception {
+		
+		RoleActionForm actionForm = (RoleActionForm)form;
+		long[] roleIdArr = actionForm.getSelectFlag();
+		long roleId = roleIdArr[0];
+		
+		Role role = roleManager.loadRoleById(roleId);
+		boolean roleIsUsed = roleManager.checkIsRoleUsedByUser(roleId);
+		if(roleIsUsed){
+			throw new RuntimeException("角色:"+role.getRoleName()
+					+"已经被用户引用，无法删除");
+		}else{
+			
+			List<RoleResourceAuthority> authorityList = 
+				roleResourceAuthorityManager.getAuthorityListByRoleId(roleId);
+			for(RoleResourceAuthority authority:authorityList){
+				roleResourceAuthorityManager.deleteRoleResourceAuthority(authority);
+			}
+			
+			roleManager.deleteRole(role);
+		}
+		
+		request.setAttribute(Constants.MESSAGE_KEY, Constants.MESSAGE_DELETE_SUCCESS);
 		request.setAttribute(Constants.REDIRECT_URL_KEY, LIST_ROLE_PATH);
 		
 		return mapping.findForward("showMessage");

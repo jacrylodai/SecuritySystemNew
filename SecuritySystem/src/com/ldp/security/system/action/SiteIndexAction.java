@@ -35,7 +35,7 @@ public class SiteIndexAction extends BaseAction{
 		List<Resource> resourceTree = resourceManager.getAllMenuResourceTreeInList();
 		
 		List<RoleResourceAuthority> authorityList = 
-			roleResourceAuthorityManager.getAuthorityListByRoleId(
+			roleResourceAuthorityManager.getAuthorityListByResourceTypeRoleId(
 					Resource.RESOURCE_TYPE_MENU,role.getRoleId());
 		
 		Map<Long, RoleResourceAuthority> authorityMap = 

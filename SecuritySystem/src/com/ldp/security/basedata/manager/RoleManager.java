@@ -21,5 +21,14 @@ public interface RoleManager {
 	public PageModel<Role> listRoleInPage();
 
 	public List<Role> getRoleListByRoleTypeId(String roleTypeId);
+
+	/**
+	 * 检查角色是否被用户引用，包含被删除的用户，如被引用，则无法删除
+	 * @param roleId
+	 * @return
+	 */
+	public boolean checkIsRoleUsedByUser(long roleId);
+
+	public void deleteRole(Role role);
 	
 }

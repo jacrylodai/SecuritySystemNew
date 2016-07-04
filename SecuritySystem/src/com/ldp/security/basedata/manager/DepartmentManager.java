@@ -44,28 +44,40 @@ public interface DepartmentManager {
 	 * 创建车间的反恐填报表excel模板，用于填报数据
 	 * @param department
 	 * @param sourceTemplateFile
-	 * @param excelTemplateFile
 	 */
 	public void createDepartmentExcelTemplate(Department department,
-			File sourceTemplateFile, File excelTemplateFile);
+			File sourceTemplateFile);
 
 	/**
 	 * 根据参数得到反恐填报表模板的文件路径
-	 * @param systemDataFolder 系统文件存放目录
 	 * @param departmentId 部门id
 	 * @return
 	 */
 	public String getExcelTemplateFilePath(long departmentId);
 
+	/**
+	 * 根据部门id得到存放整年反恐填报表模板的文件路径
+	 * @param departmentId
+	 * @return
+	 */
 	public String getWholeYearExcelTemplateFolderPath(long departmentId);
 
 	/**
 	 * 生成整年反恐报表
 	 * @param department
-	 * @param currDepartmentWholeYearFolderPath
 	 * @param sourceTemplateFile
 	 */
 	public void createWholeYearDepartmentExcelTemplate(Department department,
-			String currDepartmentWholeYearFolderPath, File sourceTemplateFile);
+			File sourceTemplateFile);
+
+	/**
+	 * 取得所有的车间部门，用于更新反恐报表模板
+	 * @return
+	 */
+	public List<Department> getAllLevelDepartmentDepartmentList();
+
+	
+	public void regenerateDepartmentExcelTemplate(
+			List<Department> departmentLisit);
 	
 }

@@ -74,7 +74,7 @@
 				<c:set var="tdBaseWidth" value="40" scope="page"></c:set>
 				<c:set var="tdLongWidth" value="20" scope="page"></c:set>
 				
-				<table width="95%" border="1" cellspacing="0" cellpadding="0"
+				<table width="80%" border="1" cellspacing="0" cellpadding="0"
 					align="center" class="table1">
 					<tr>
 						<td class="rd6" width="${tdBaseWidth }%">

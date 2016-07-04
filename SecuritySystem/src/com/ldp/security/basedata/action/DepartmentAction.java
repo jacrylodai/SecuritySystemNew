@@ -130,21 +130,6 @@ public class DepartmentAction extends BaseAction {
 		
 		departmentManager.saveDepartment(department);
 		
-		createDepartmentExcelTemplate(request, department);
-
-		createWholeYearDepartmentExcelTemplate(request, department);
-		
-		request.setAttribute(Constants.MESSAGE_KEY, Constants.MESSAGE_SAVE_SUCCESS);
-		
-		String redirectUrl = LIST_DEPARTMENT_PATH + "&parentId=" + parentId;
-		request.setAttribute(Constants.REDIRECT_URL_KEY, redirectUrl);
-		
-		return mapping.findForward("showMessage");
-	}
-
-	private void createWholeYearDepartmentExcelTemplate(
-			HttpServletRequest request, Department department) {
-
 		//如果是车间，就创建车间的反恐填报表模板
 		if(department.getLevel() == Department.LEVEL_DEPARTMENT){
 
@@ -154,33 +139,19 @@ public class DepartmentAction extends BaseAction {
 			File sourceTemplateFile = new File(sourceTemplateFileFolderPath,
 					FileNameConstants.SOURCE_DEPARTMENT_TEMPLATE_FILE_NAME);
 			
-			long departmentId = department.getDepartmentId();
-			String wholeYearExcelTemplateFolderPath = 
-				departmentManager.getWholeYearExcelTemplateFolderPath(departmentId);
-			FileUtil.buildFolder(wholeYearExcelTemplateFolderPath, true);
-
-			String currDepartmentWholeYearZipFilePath = 
-				wholeYearExcelTemplateFolderPath + '/'
-				+ "wholeYearExcelTemplateZipFile_" + department.getDepartmentId() +".zip";
-			File currDepartmentWholeYearZipFile = new File(currDepartmentWholeYearZipFilePath);
-			if(currDepartmentWholeYearZipFile.exists()){
-				currDepartmentWholeYearZipFile.delete();
-			}
-			
-			int currYear = DateUtil.getCurrentYear();
-			
-			String currDepartmentWholeYearFolderPath = 
-				wholeYearExcelTemplateFolderPath + '/' 
-				+ department.getDepartmentName() +'_' +currYear+"年_反恐统计报表模板";
+			departmentManager.createDepartmentExcelTemplate(
+					department,sourceTemplateFile);
 			
 			departmentManager.createWholeYearDepartmentExcelTemplate(
-					department,currDepartmentWholeYearFolderPath,sourceTemplateFile);
-			
-			ZipUtil.zipEntry(currDepartmentWholeYearZipFilePath, ""
-					, currDepartmentWholeYearFolderPath);
-			FileUtil.deleteFolder(new File(currDepartmentWholeYearFolderPath));
-			
+					department,sourceTemplateFile);
 		}
+		
+		request.setAttribute(Constants.MESSAGE_KEY, Constants.MESSAGE_SAVE_SUCCESS);
+		
+		String redirectUrl = LIST_DEPARTMENT_PATH + "&parentId=" + parentId;
+		request.setAttribute(Constants.REDIRECT_URL_KEY, redirectUrl);
+		
+		return mapping.findForward("showMessage");
 	}
 
 	public ActionForward listDepartment(ActionMapping mapping, ActionForm form,
@@ -273,27 +244,7 @@ public class DepartmentAction extends BaseAction {
 		
 		departmentManager.updateDepartment(department);
 		
-		createDepartmentExcelTemplate(request,department);
 
-		createWholeYearDepartmentExcelTemplate(request, department);
-		
-		request.setAttribute(Constants.MESSAGE_KEY, Constants.MESSAGE_UPDATE_SUCCESS);
-
-		String redirectUrl = LIST_DEPARTMENT_PATH + "&parentId=" 
-			+ department.getParentDepartment().getDepartmentId();
-		request.setAttribute(Constants.REDIRECT_URL_KEY, redirectUrl);
-		
-		return mapping.findForward("showMessage");
-	}
-
-	/**
-	 * 创建部门的反恐报表模板，只有车间才能创建，在添加和修改时都需要创建
-	 * @param request
-	 * @param department
-	 */
-	private void createDepartmentExcelTemplate(HttpServletRequest request,
-			Department department) {
-		
 		//如果是车间，就创建车间的反恐填报表模板
 		if(department.getLevel() == Department.LEVEL_DEPARTMENT){
 
@@ -303,21 +254,20 @@ public class DepartmentAction extends BaseAction {
 			File sourceTemplateFile = new File(sourceTemplateFileFolderPath,
 					FileNameConstants.SOURCE_DEPARTMENT_TEMPLATE_FILE_NAME);
 			
-			long departmentId = department.getDepartmentId();
-			String excelTemplateFilePath = 
-				departmentManager.getExcelTemplateFilePath(departmentId);
-			
-			File excelTemplateFile = new File(excelTemplateFilePath);
-			
-			File excelTemplateFolder = excelTemplateFile.getParentFile();
-			excelTemplateFolder.mkdirs();
-			
-			excelTemplateFile.delete();
-			
 			departmentManager.createDepartmentExcelTemplate(
-					department,sourceTemplateFile,excelTemplateFile);
-		
+					department,sourceTemplateFile);
+			
+			departmentManager.createWholeYearDepartmentExcelTemplate(
+					department,sourceTemplateFile);
 		}
+		
+		request.setAttribute(Constants.MESSAGE_KEY, Constants.MESSAGE_UPDATE_SUCCESS);
+
+		String redirectUrl = LIST_DEPARTMENT_PATH + "&parentId=" 
+			+ department.getParentDepartment().getDepartmentId();
+		request.setAttribute(Constants.REDIRECT_URL_KEY, redirectUrl);
+		
+		return mapping.findForward("showMessage");
 	}
 
 	/**
