@@ -95,6 +95,9 @@ public class InitSystemServlet implements Servlet {
 		servletContext.setAttribute("RESOURCE_LEVEL_SECOND_RESOURCE"
 				, Resource.RESOURCE_LEVEL_SECOND_RESOURCE);
 		
+		servletContext.setAttribute("Resource_DEFAULT_PICTURE_URL_PATH"
+				, Resource.DEFAULT_PICTURE_URL_PATH);
+		
 	}
 
 	public void service(ServletRequest req, ServletResponse resp)

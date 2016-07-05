@@ -43,7 +43,7 @@ function logout(){
 </script>
 	</head>
 
-	<body class="boyd1" topmargin="0" leftmargin="0" onload="pageOnLoad()">
+	<body class="body1" topmargin="0" leftmargin="0" onload="pageOnLoad()">
 		<table width="100%" height="100%" border="0" cellpadding="0"
 			cellspacing="0" bgcolor="gray">
 			<tr>

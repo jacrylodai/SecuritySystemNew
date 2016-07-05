@@ -60,7 +60,8 @@
   			
   				<c:choose>
 	  				<c:when test="${authorityMap[subResource.resourceId].showMenu}">
-	  					p.addButton('images/netm.gif','${subResource.resourceName }','parent.frames.main.location.href="<%=basePath %>${subResource.resourceUrlPath }"');
+	  					p.addButton('${empty subResource.pictureUrlPath ? Resource_DEFAULT_PICTURE_URL_PATH:subResource.pictureUrlPath}'
+	  					,'${subResource.resourceName }','parent.frames.main.location.href="<%=basePath %>${subResource.resourceUrlPath }"');
 	  
 	  				</c:when>
   				</c:choose>

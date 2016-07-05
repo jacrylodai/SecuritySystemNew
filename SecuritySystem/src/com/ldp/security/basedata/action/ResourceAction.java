@@ -49,6 +49,7 @@ public class ResourceAction extends BaseAction{
 		
 		resource.setResourceName(actionForm.getResourceName());
 		resource.setResourceUrlPath(actionForm.getResourceUrlPath());
+		resource.setPictureUrlPath(actionForm.getPictureUrlPath());
 		
 		resource.setOrderNumber(actionForm.getOrderNumber());
 		
@@ -124,6 +125,7 @@ public class ResourceAction extends BaseAction{
 		
 		resource.setResourceName(actionForm.getResourceName());
 		resource.setResourceUrlPath(actionForm.getResourceUrlPath());
+		resource.setPictureUrlPath(actionForm.getPictureUrlPath());
 		
 		resource.setOrderNumber(actionForm.getOrderNumber());
 		

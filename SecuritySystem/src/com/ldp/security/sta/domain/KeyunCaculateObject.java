@@ -15,7 +15,7 @@ public class KeyunCaculateObject {
 	private int squareSpecialPeopleNum;
 
 	//预检人数
-	private int squareCheckPeopleNum;
+	private long squareCheckPeopleNum;
 
 	//危险品数量列表
 	private List<Integer> squareDangerousObjectNumList;
@@ -69,11 +69,11 @@ public class KeyunCaculateObject {
 		this.squareSpecialPeopleNum = squareSpecialPeopleNum;
 	}
 
-	public int getSquareCheckPeopleNum() {
+	public long getSquareCheckPeopleNum() {
 		return squareCheckPeopleNum;
 	}
 
-	public void setSquareCheckPeopleNum(int squareCheckPeopleNum) {
+	public void setSquareCheckPeopleNum(long squareCheckPeopleNum) {
 		this.squareCheckPeopleNum = squareCheckPeopleNum;
 	}
 
@@ -185,7 +185,7 @@ public class KeyunCaculateObject {
 		int squareSpecialPeopleNum = 0;
 
 		//预检人数
-		int squareCheckPeopleNum = 0;
+		long squareCheckPeopleNum = 0;
 
 		int dangerousObjectItemCount = 
 			XMLConfigReader.getInstance().getDataDictConfig()

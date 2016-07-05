@@ -43,6 +43,11 @@ public class Resource {
 	 * 资源级别，二级资源
 	 */
 	public static final int RESOURCE_LEVEL_SECOND_RESOURCE = 3;
+	
+	/**
+	 * 如果没有设置图片地址，则默认的图片url地址
+	 */
+	public static final String DEFAULT_PICTURE_URL_PATH = "images/netm.gif";
 
 	//资源id
 	private long resourceId;
@@ -55,6 +60,9 @@ public class Resource {
 
 	//资源URL地址
 	private String resourceUrlPath;
+	
+	//图片资源url地址
+	private String pictureUrlPath;
 	
 	//排序号
 	private int orderNumber;
@@ -129,6 +137,14 @@ public class Resource {
 
 	public void setResourceLevel(int resourceLevel) {
 		this.resourceLevel = resourceLevel;
+	}
+
+	public String getPictureUrlPath() {
+		return pictureUrlPath;
+	}
+
+	public void setPictureUrlPath(String pictureUrlPath) {
+		this.pictureUrlPath = pictureUrlPath;
 	}
 	
 }

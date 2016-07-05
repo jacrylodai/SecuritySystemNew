@@ -12,6 +12,7 @@
 		
 		<property name="resourceName" column="resource_name"/>	
 		<property name="resourceUrlPath" column="resource_url_path"/>	
+		<property name="pictureUrlPath" column="picture_url_path"/>	
 		<property name="orderNumber" column="order_number"/>
 		<property name="resourceType" column="resource_type"></property>
 		<property name="resourceLevel" column="resource_level"></property>	

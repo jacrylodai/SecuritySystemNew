@@ -18,6 +18,9 @@ public class ResourceActionForm extends ActionForm{
 	//资源URL地址
 	private String resourceUrlPath;
 	
+	//图片资源url地址
+	private String pictureUrlPath;
+	
 	//排序号
 	private int orderNumber;
 	
@@ -80,6 +83,14 @@ public class ResourceActionForm extends ActionForm{
 
 	public void setSelectFlag(long[] selectFlag) {
 		this.selectFlag = selectFlag;
+	}
+
+	public String getPictureUrlPath() {
+		return pictureUrlPath;
+	}
+
+	public void setPictureUrlPath(String pictureUrlPath) {
+		this.pictureUrlPath = pictureUrlPath;
 	}
 
 	public void validateData() {

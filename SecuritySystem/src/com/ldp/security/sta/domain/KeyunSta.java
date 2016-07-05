@@ -27,7 +27,7 @@ public class KeyunSta {
 	private int squareSpecialPeopleNum;
 
 	//预检人数
-	private int squareCheckPeopleNum;
+	private long squareCheckPeopleNum;
 
 	//危险品数量串
 	private String squareDangerousObjectNumString;
@@ -87,11 +87,11 @@ public class KeyunSta {
 		this.squareSpecialPeopleNum = squareSpecialPeopleNum;
 	}
 
-	public int getSquareCheckPeopleNum() {
+	public long getSquareCheckPeopleNum() {
 		return squareCheckPeopleNum;
 	}
 
-	public void setSquareCheckPeopleNum(int squareCheckPeopleNum) {
+	public void setSquareCheckPeopleNum(long squareCheckPeopleNum) {
 		this.squareCheckPeopleNum = squareCheckPeopleNum;
 	}
 

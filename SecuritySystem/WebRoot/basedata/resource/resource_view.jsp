@@ -93,6 +93,18 @@
 							 value="${resource.resourceUrlPath }">
 						</td>
 					</tr>
+					
+					<tr>
+						<td width="20%" height="30px" align="right">
+							图片Url地址:
+						</td>
+						<td align="left">
+							<input name="pictureUrlPath" type="text" class="text1"
+							 id="pictureUrlPath" size="30"
+							 value="${resource.pictureUrlPath }">
+						</td>
+					</tr>
+					
 					<tr>
 						<td width="20%" height="30px" align="right">
 							<font color="#FF0000">*</font>排序号:

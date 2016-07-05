@@ -269,7 +269,7 @@
 				
 				<hr width="97%" align="center" size=0>
 				
-                <h2>应急装备巡查</h2>                 
+                <h2>反恐装备巡查</h2>                 
 				
 				<table width="80%" border="0" cellpadding="0" cellspacing="0">
 					<tr>
