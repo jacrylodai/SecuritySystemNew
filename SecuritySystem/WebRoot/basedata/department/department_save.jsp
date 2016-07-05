@@ -32,6 +32,9 @@
 			var btnSave = document.getElementById("btnSave");
 			btnSave.disabled = true;
 			
+			var btnBack = document.getElementById("btnBack");
+			btnBack.disabled = true;
+			
 			with(document.departmentForm){
 				action="basedata/department/departmentFunc.do?command=saveDepartment";
 				method="post";

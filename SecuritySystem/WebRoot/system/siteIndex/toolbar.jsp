@@ -45,7 +45,7 @@ function logout(){
 
 	<body class="body1" topmargin="0" leftmargin="0" onload="pageOnLoad()">
 		<table width="100%" height="100%" border="0" cellpadding="0"
-			cellspacing="0" bgcolor="gray">
+			cellspacing="0" bgcolor="#C0C0C0">
 			<tr>
 				<td width="5%" nowrap>
 					
