@@ -6,6 +6,8 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<title>已导入-车站反恐报表维护</title>
 		<link rel="stylesheet" href="style/drp.css">
+		<script language="javascript" type="text/javascript" 
+			src="datePicker/WdatePicker.js"></script>
 		<script type="text/javascript">
 	
 	function importStationSecurityForm() {
@@ -125,6 +127,30 @@
 		}
 	}
 	
+	function querySecurityForm(){
+	
+		with(document.securityFormForm){
+			action="report/securityForm/stationSecurityFormFunc.do?command=listStationImportSecurityForm";
+			method="post";
+			submit();
+		}
+	}
+	
+	function clearQueryParam(){
+	
+		var startDateString = document.getElementById("startDateString");
+		startDateString.value = "";
+		
+		var endDateString = document.getElementById("endDateString");
+		endDateString.value = "";
+		
+		var departmentIdSelector = document.getElementById("departmentIdSelector");
+		var optionArr = departmentIdSelector.options;
+		optionArr[0].selected = true;
+		
+		querySecurityForm();
+	}
+	
 	function checkAll() {
 		var ifAll=document.getElementById("ifAll");
 		var checkFlags=document.getElementsByName("selectFlag");
@@ -133,10 +159,25 @@
 		}
 	}
 	
+	function pageOnLoad(){
+	
+		var departmentIdSelector = document.getElementById("departmentIdSelector");
+		var optionArr = departmentIdSelector.options;
+		
+		for(var i=0;i<optionArr.length;i++){
+			
+			var option = optionArr[i];
+			if(option.value == ${param.departmentId} ){
+				option.selected = true;
+				break;
+			}
+		}
+	}
+	
 </script>
 	</head>
 
-	<body class="body1">
+	<body class="body1" onload="pageOnLoad()">
 		<form name="securityFormForm" id="securityFormForm">
 			<div align="center">
 				<table width="95%" border="0" cellspacing="0" cellpadding="0"
@@ -168,6 +209,41 @@
 				
 			</div>
 				
+			<hr width="97%" align="center" size=0>			
+			                
+			<table width="80%" border="0" cellpadding="0" cellspacing="0">
+				<tr>
+					<td width="20%" height="30px" align="right">报表起始日期：</td>
+					<td width="30%" align="left">
+						<input id="startDateString" name="startDateString"
+							 class="Wdate" type="text" onClick="WdatePicker()"
+							 value="${param.startDateString }">
+					</td>
+					<td width="20%" height="30px" align="right">报表终止日期：</td>
+					<td width="30%" align="left">
+						<input id="endDateString" name="endDateString"
+							 class="Wdate" type="text" onClick="WdatePicker()"
+							 value="${param.endDateString }">
+					</td>
+				</tr>
+				
+				<tr>
+					<td width="20%" height="30px" align="right">选择车间：</td>
+					<td width="30%" align="left">
+						<select id="departmentIdSelector" name="departmentId">
+							<option value="-1">所有车间</option>
+							<c:forEach var="department" items="${subDepartmentList}">
+								<option value="${department.departmentId }">${department.departmentName }</option>
+							</c:forEach>
+						</select>
+					</td>
+					<td width="30%" align="left" colspan="2">
+						<input type="button" value="查询" onclick="querySecurityForm()">
+						<input type="button" value="清空搜索条件" onclick="clearQueryParam()">
+					</td>
+				</tr>
+			</table>  
+			
 			<hr width="97%" align="center" size=0>
 			
 			<c:set var="tdShortWidth" value="6" scope="page"></c:set>
@@ -276,7 +352,9 @@
 			            	maxIndexPages="10" export="currentPageNumber=pageNumber"
 			            	url="report/securityForm/stationSecurityFormFunc.do">
 			            <pg:param name="command" value="listStationImportSecurityForm"/>
-			            <pg:param name="parentId" value="${param.parentId }"/>
+			            <pg:param name="startDateString" value="${param.startDateString }"/>
+			            <pg:param name="endDateString" value="${param.endDateString }"/>
+			            <pg:param name="departmentId" value="${param.departmentId}"/>
 						<pg:first>
 							<a href="${pageUrl }">首页</a>
 						</pg:first>

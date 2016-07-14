@@ -49,7 +49,7 @@ public class StationSecurityFormAction extends BaseAction{
 		"report/securityForm/stationSecurityFormFunc.do?command=listStationVerifySecurityForm&startDateString=&endDateString=&departmentId=-1";
 
 	private static final String LIST_STATION_IMPORT_SECURITY_FORM_PATH = 
-		"report/securityForm/stationSecurityFormFunc.do?command=listStationImportSecurityForm";
+		"report/securityForm/stationSecurityFormFunc.do?command=listStationImportSecurityForm&startDateString=&endDateString=&departmentId=-1";
 
 	private DepartmentManager departmentManager;
 	
@@ -658,11 +658,7 @@ public class StationSecurityFormAction extends BaseAction{
 					String subFileName = subFile.getName();
 					String subFileNameSuffix = FileNameUtil.getFileNameSuffix(subFileName);
 					if(subFileNameSuffix.equals("xls")){
-						try{
-							securityFormManager.processSecurityFormImport(user, subFile);
-						}catch(RuntimeException ex){
-							logger.error("", ex);
-						}
+						securityFormManager.processSecurityFormImport(user, subFile);
 					}
 				}
 				//删除临时解压文件

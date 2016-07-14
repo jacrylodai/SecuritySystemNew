@@ -1,10 +1,8 @@
 package com.ldp.security.sta.domain;
 
-import java.lang.reflect.Type;
 import java.util.List;
 
 import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 import com.ldp.security.util.business.CaculateUtil;
 import com.ldp.security.util.gson.GsonUtil;
 
@@ -23,12 +21,6 @@ public class CommonSta {
 	private String securityMachineCheckNumString;
 	
 	private List<Integer> securityMachineCheckNumList;
-	
-	//自动安检仪检查信息列表串
-	private String securityMachineCheckInfoListGsonString;
-	
-	//自动安检仪检查信息列表
-	private List<SecurityMachineCheckInfo> securityMachineCheckInfoList;
 
 	//安检仪故障数
 	private int securityMachineTroubleNum;
@@ -186,29 +178,6 @@ public class CommonSta {
 
 	public void setPracticePeopleNum(int practicePeopleNum) {
 		this.practicePeopleNum = practicePeopleNum;
-	}
-
-	public String getSecurityMachineCheckInfoListGsonString() {
-		return securityMachineCheckInfoListGsonString;
-	}
-
-	public void setSecurityMachineCheckInfoListGsonString(
-			String securityMachineCheckInfoListGsonString) {
-		this.securityMachineCheckInfoListGsonString = securityMachineCheckInfoListGsonString;
-		securityMachineCheckInfoList = 
-			GsonUtil.convertFromGsonToListCheckInfo(
-					securityMachineCheckInfoListGsonString);
-	}
-
-	public List<SecurityMachineCheckInfo> getSecurityMachineCheckInfoList() {
-		return securityMachineCheckInfoList;
-	}
-
-	public void setSecurityMachineCheckInfoList(
-			List<SecurityMachineCheckInfo> securityMachineCheckInfoList) {
-		this.securityMachineCheckInfoList = securityMachineCheckInfoList;
-		securityMachineCheckInfoListGsonString = 
-			gson.toJson(securityMachineCheckInfoList);
 	}
 	
 }

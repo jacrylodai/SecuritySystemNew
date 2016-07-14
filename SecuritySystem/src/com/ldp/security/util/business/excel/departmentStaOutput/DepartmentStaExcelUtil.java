@@ -14,7 +14,6 @@ import jxl.write.biff.RowsExceededException;
 import com.ldp.security.basedata.domain.Department;
 import com.ldp.security.sta.domain.CommonSta;
 import com.ldp.security.sta.domain.KeyunSta;
-import com.ldp.security.sta.domain.SecurityMachineCheckInfo;
 import com.ldp.security.sta.domain.StaPeriodInfo;
 import com.ldp.security.sta.domain.StaPeriodSecurity;
 import com.ldp.security.util.business.excel.common.ContentPosition;
@@ -84,7 +83,7 @@ public class DepartmentStaExcelUtil {
 				, cellFormat);
 		
 		CommonSta commonSta = staPeriodSecurity.getCommonSta();
-		writeCommonStaToExcel(sheet,commonSta,cellFormat);
+		writeCommonStaToExcel(sheet,staPeriodSecurity,commonSta,cellFormat);
 		
 		KeyunSta keyunSta = staPeriodSecurity.getKeyunSta();
 		writeKeyunStaToExcel(sheet,keyunSta,cellFormat);
@@ -168,7 +167,8 @@ public class DepartmentStaExcelUtil {
 	}
 
 	private static void writeCommonStaToExcel(WritableSheet sheet,
-			CommonSta commonSta,WritableCellFormat cellFormat) 
+			StaPeriodSecurity staPeriodSecurity
+			, CommonSta commonSta,WritableCellFormat cellFormat) 
 			throws RowsExceededException, WriteException {
 		
 		ExcelWriteFuncUtil.addDoubleCell(sheet
@@ -216,18 +216,34 @@ public class DepartmentStaExcelUtil {
 		ExcelWriteFuncUtil.addDoubleCell(sheet, ImportantJobPosition.PRACTICE_PEOPLE_NUM
 				, commonSta.getPracticePeopleNum(),cellFormat);
 		
-		List<SecurityMachineCheckInfo> securityMachineCheckInfoList = 
-			commonSta.getSecurityMachineCheckInfoList();
-		for(int i=0;i<securityMachineCheckInfoList.size();i++){
+		//只有部门是车间时才有必要输出自动安检仪检查人数统计
+		List<Integer> securityMachineCheckNumList = 
+			commonSta.getSecurityMachineCheckNumList();
+		int excelIndex = 0;
+		Department staDepartment = staPeriodSecurity.getStaDepartment();
+		int staDepartmentLevel = staDepartment.getLevel();
+		
+		if(staDepartmentLevel == Department.LEVEL_DEPARTMENT){
 			
-			SecurityMachineCheckInfo checkInfo = securityMachineCheckInfoList.get(i);
-			ContentPosition machineNamePosition = 
-				CheckDangerousSecurityMachinePosition.getSecurityMachineCheckInfoNamePosition(i);
-			ContentPosition machineCheckNumPosition = 
-				CheckDangerousSecurityMachinePosition.getSecurityMachineCheckInfoCheckNumPosition(i);
-			
-			ExcelWriteFuncUtil.addLabelCell(sheet, machineNamePosition, checkInfo.getName());
-			ExcelWriteFuncUtil.addDoubleCell(sheet, machineCheckNumPosition, checkInfo.getCheckNum(),cellFormat);
+			for(int i=0;i<securityMachineCheckNumList.size();i++){
+				
+				int checkNum = securityMachineCheckNumList.get(i);
+				if(checkNum>0){
+					
+					ContentPosition machineNamePosition = 
+						CheckDangerousSecurityMachinePosition.getSecurityMachineCheckInfoNamePosition(excelIndex);
+					ContentPosition machineCheckNumPosition = 
+						CheckDangerousSecurityMachinePosition.getSecurityMachineCheckInfoCheckNumPosition(excelIndex);
+					
+					int machineNo = i+1;
+					String machineName = "自动安检仪_"+machineNo+"号机";
+
+					ExcelWriteFuncUtil.addLabelCell(sheet, machineNamePosition, machineName);
+					ExcelWriteFuncUtil.addDoubleCell(sheet, machineCheckNumPosition, checkNum,cellFormat);
+					
+					excelIndex++;
+				}
+			}
 		}
 		
 	}

@@ -6,6 +6,8 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<title>未上报-车间反恐报表维护</title>
 		<link rel="stylesheet" href="style/drp.css">
+		<script language="javascript" type="text/javascript" 
+			src="datePicker/WdatePicker.js"></script>
 		<script type="text/javascript">
 	
 	function saveDepartmentSecurityForm() {
@@ -121,6 +123,26 @@
 		}
 	}
 	
+	function querySecurityForm(){
+	
+		with(document.securityFormForm){
+			action="report/securityForm/departmentSecurityFormFunc.do?command=listDepartmentNotConfirmSecurityForm";
+			method="post";
+			submit();
+		}
+	}
+	
+	function clearQueryParam(){
+	
+		var startDateString = document.getElementById("startDateString");
+		startDateString.value = "";
+		
+		var endDateString = document.getElementById("endDateString");
+		endDateString.value = "";
+		
+		querySecurityForm();
+	}
+	
 </script>
 	</head>
 
@@ -156,6 +178,34 @@
 				
 			</div>
 				
+			<hr width="97%" align="center" size=0>
+			               
+			<table width="80%" border="0" cellpadding="0" cellspacing="0">
+				<tr>
+					<td width="20%" height="30px" align="right">报表起始日期：</td>
+					<td width="30%" align="left">
+						<input id="startDateString" name="startDateString"
+							 class="Wdate" type="text" onClick="WdatePicker()"
+							 value="${param.startDateString }">
+					</td>
+					<td width="20%" height="30px" align="right">报表终止日期：</td>
+					<td width="30%" align="left">
+						<input id="endDateString" name="endDateString"
+							 class="Wdate" type="text" onClick="WdatePicker()"
+							 value="${param.endDateString }">
+					</td>
+				</tr>
+				
+				<tr>
+					<td width="20%" height="30px" align="right"></td>
+					<td width="30%" align="left">
+						<input type="button" value="查询" onclick="querySecurityForm()">
+						<input type="button" value="清空搜索条件" onclick="clearQueryParam()">
+					</td>
+					
+				</tr>
+			</table>  
+			
 			<hr width="97%" align="center" size=0>
 			
 			<table width="95%" border="1" cellspacing="0" cellpadding="0"
@@ -235,7 +285,8 @@
 			            	maxIndexPages="10" export="currentPageNumber=pageNumber"
 			            	url="report/securityForm/departmentSecurityFormFunc.do">
 			            <pg:param name="command" value="listDepartmentNotConfirmSecurityForm"/>
-			            <pg:param name="parentId" value="${param.parentId }"/>
+			            <pg:param name="startDateString" value="${param.startDateString }"/>
+			            <pg:param name="endDateString" value="${param.endDateString }"/>
 						<pg:first>
 							<a href="${pageUrl }">首页</a>
 						</pg:first>

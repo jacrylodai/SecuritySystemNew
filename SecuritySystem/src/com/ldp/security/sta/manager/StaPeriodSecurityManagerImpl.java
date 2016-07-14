@@ -29,7 +29,6 @@ import com.ldp.security.sta.domain.CommonCaculateObject;
 import com.ldp.security.sta.domain.CommonSta;
 import com.ldp.security.sta.domain.KeyunCaculateObject;
 import com.ldp.security.sta.domain.KeyunSta;
-import com.ldp.security.sta.domain.SecurityMachineCheckInfo;
 import com.ldp.security.sta.domain.StaPeriodInfo;
 import com.ldp.security.sta.domain.StaPeriodSecurity;
 import com.ldp.security.util.PageModel;
@@ -38,6 +37,7 @@ import com.ldp.security.util.business.excel.departmentStaOutput.DepartmentStaExc
 import com.ldp.security.util.database.ParameterObject;
 import com.ldp.security.util.file.FileUtil;
 import com.ldp.security.util.validate.ClientValidate;
+import com.ldp.security.util.xml.XMLConfigReader;
 
 public class StaPeriodSecurityManagerImpl extends AbstractManager<StaPeriodSecurity>
 	implements StaPeriodSecurityManager{
@@ -112,31 +112,6 @@ public class StaPeriodSecurityManagerImpl extends AbstractManager<StaPeriodSecur
 			StaPeriodSecurity staPeriodSecurity = 
 				caculateSecurityFormList(securityFormList);
 			
-			CommonSta commonSta = staPeriodSecurity.getCommonSta();
-			//对各个车间的自动安检仪的数量分开统计
-			List<Integer> securityMachineCheckNumList = 
-				commonSta.getSecurityMachineCheckNumList();
-			List<SecurityMachineCheckInfo> securityMachineCheckInfoList = 
-				new ArrayList<SecurityMachineCheckInfo>();
-			for(int i=0;i<securityMachineCheckNumList.size();i++){
-				
-				int checkNum = securityMachineCheckNumList.get(i);
-				if(checkNum>0){
-					int machineNo = i+1;
-					String machineName = department.getDepartmentName()+"_自动安检仪_"+machineNo+"号机";
-					securityMachineCheckInfoList.add(
-							new SecurityMachineCheckInfo(machineName,checkNum));
-				}
-			}
-			commonSta.setSecurityMachineCheckInfoList(securityMachineCheckInfoList);
-			
-			//对自动安检仪检查人数列表清空，因为数量已经统计到自动安检仪信息列表里面
-			int capacity = securityMachineCheckNumList.size();
-			List<Integer> emptyNumList = new ArrayList<Integer>();
-			CaculateUtil.initialDataList(capacity, emptyNumList);
-			
-			commonSta.setSecurityMachineCheckNumList(emptyNumList);
-			
 			staPeriodSecurity.setStaDepartment(department);
 			
 			staPeriodSecurity.setStaPeriodInfo(staPeriodInfo);
@@ -161,41 +136,26 @@ public class StaPeriodSecurityManagerImpl extends AbstractManager<StaPeriodSecur
 			StaPeriodSecurity staPeriodSecurity = 
 				caculateStaPeriodSecurityList(subStaPeriodSecurityList);
 			
-			List<SecurityMachineCheckInfo> securityMachineCheckInfoList = 
-				addAllSecurityMachineCheckInfo(subStaPeriodSecurityList);
+			//自动安检仪检查人数这个统计，只有车间有意义，对于车站，路局没有意义
+			//所以把数值设置为0
+			int securityMachineMaxCount = 
+				XMLConfigReader.getInstance().getSystemConfig()
+				.getSecurityMachineMaxCount();
+			
+			List<Integer> emptyCheckNumList = 
+				new ArrayList<Integer>();
+			CaculateUtil.initialDataList(securityMachineMaxCount, emptyCheckNumList);
 			
 			CommonSta commonSta = staPeriodSecurity.getCommonSta();
-			commonSta.setSecurityMachineCheckInfoList(securityMachineCheckInfoList);
-				
+			commonSta.setSecurityMachineCheckNumList(emptyCheckNumList);
+			//end
+			
 			staPeriodSecurity.setStaDepartment(department);
 			staPeriodSecurity.setStaPeriodInfo(staPeriodInfo);
 			
 			saveStaPeriodSecurity(staPeriodSecurity);
 			return staPeriodSecurity;
 		}
-	}
-
-	/**
-	 * 对车间的自动安检仪检查信息类进行汇总
-	 * @param subStaPeriodSecurityList
-	 * @return
-	 */
-	private List<SecurityMachineCheckInfo> addAllSecurityMachineCheckInfo(
-			List<StaPeriodSecurity> subStaPeriodSecurityList) {
-		
-		List<SecurityMachineCheckInfo> securityMachineCheckInfoList = 
-			new ArrayList<SecurityMachineCheckInfo>();
-		
-		for(StaPeriodSecurity subStaPeriodSecurity:subStaPeriodSecurityList){
-			
-			CommonSta commonSta = subStaPeriodSecurity.getCommonSta();
-			List<SecurityMachineCheckInfo> subSecurityMachineCheckInfoList = 
-				commonSta.getSecurityMachineCheckInfoList();
-			if(subSecurityMachineCheckInfoList.size()>0){
-				securityMachineCheckInfoList.addAll(subSecurityMachineCheckInfoList);
-			}
-		}
-		return securityMachineCheckInfoList;
 	}
 
 	/**

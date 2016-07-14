@@ -100,29 +100,26 @@
                                
                 <h4>通过自动安检仪人数</h4>    
                 
-				<c:set var="checkInfoListLength" 
-					value="${fn:length(commonSta.securityMachineCheckInfoList) }"
-					scope="page"></c:set>    
-				
-				<c:choose>
-					<c:when test="${checkInfoListLength>0}">
-					
-						<table width="95%" border="0" cellpadding="0" cellspacing="0">
-				
-							<c:forEach varStatus="var" begin="0" end="${checkInfoListLength-1 }" step="2">
+                <c:choose>
+                	<c:when test="${staPeriodSecurity.staDepartment.level eq Department_LEVEL_DEPARTMENT}">
+                		
+                		<table width="80%" border="0" cellpadding="0" cellspacing="0">
+							<c:forEach varStatus="var" begin="0" end="${securityMachineMaxCount-1 }" step="2">
 							<tr>
 								<c:forEach varStatus="varInside" begin="${var.index}" 
-									end="${(var.index+1)>(checkInfoListLength-1) ? (checkInfoListLength-1):(var.index+1)}" step="1">
-									<td width="40%" height="30px" align="right">${commonSta.securityMachineCheckInfoList[varInside.index].name }：</td>
-									<td width="10%" align="left">${commonSta.securityMachineCheckInfoList[varInside.index].checkNum }</td>
+									end="${(var.index+1)>(securityMachineMaxCount-1) ? (securityMachineMaxCount-1):(var.index+1)}" step="1">
+									<td width="20%" height="30px" align="right">${varInside.index+1 }号机：</td>
+									<td width="13%" align="left">
+									<input name="securityMachineCheckNum_${varInside.index }"
+										 type="text" size="8" value="${commonSta.securityMachineCheckNumList[varInside.index] }">
+									</td>
 								</c:forEach>
 							</tr>
 							</c:forEach>
-							                    
 						</table>
-					</c:when>
-				</c:choose>
-				
+                	
+                	</c:when>
+                </c:choose>
 				
                 <h4>安检仪故障次数</h4>
                                 

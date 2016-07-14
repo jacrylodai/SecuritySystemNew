@@ -208,9 +208,14 @@ public class DepartmentSecurityFormAction extends BaseAction{
 		User user = (User) request.getSession().getAttribute(User.USER_SESSION_ID);
 		long departmentId = user.getDepartment().getDepartmentId();
 		
+		SecurityFormActionForm actionForm = (SecurityFormActionForm)form;
+		String startDateString = actionForm.getStartDateString();
+		String endDateString = actionForm.getEndDateString();
+		
 		PageModel<SecurityForm> pageModel = 
 			securityFormManager.listSecurityFormByParam(
-					null, departmentId, null, null, SecurityForm.STATE_NOT_CONFIRM);
+					null, departmentId, startDateString, endDateString
+					, SecurityForm.STATE_NOT_CONFIRM);
 
 		request.setAttribute("department", user.getDepartment());
 		request.setAttribute("reportUser", user);
@@ -243,9 +248,14 @@ public class DepartmentSecurityFormAction extends BaseAction{
 		User user = (User) request.getSession().getAttribute(User.USER_SESSION_ID);
 		long departmentId = user.getDepartment().getDepartmentId();
 
+		SecurityFormActionForm actionForm = (SecurityFormActionForm)form;
+		String startDateString = actionForm.getStartDateString();
+		String endDateString = actionForm.getEndDateString();
+		
 		PageModel<SecurityForm> pageModel = 
 			securityFormManager.listSecurityFormByParam(
-					null, departmentId, null, null, SecurityForm.STATE_CONFIRM);
+					null, departmentId, startDateString, endDateString
+					, SecurityForm.STATE_CONFIRM);
 
 		request.setAttribute("department", user.getDepartment());
 		request.setAttribute("reportUser", user);
@@ -261,9 +271,14 @@ public class DepartmentSecurityFormAction extends BaseAction{
 		User user = (User) request.getSession().getAttribute(User.USER_SESSION_ID);
 		long departmentId = user.getDepartment().getDepartmentId();
 
+		SecurityFormActionForm actionForm = (SecurityFormActionForm)form;
+		String startDateString = actionForm.getStartDateString();
+		String endDateString = actionForm.getEndDateString();
+		
 		PageModel<SecurityForm> pageModel = 
 			securityFormManager.listSecurityFormByParam(
-					null, departmentId, null, null, SecurityForm.STATE_VERIFY);
+					null, departmentId, startDateString, endDateString
+					, SecurityForm.STATE_VERIFY);
 
 		request.setAttribute("department", user.getDepartment());
 		request.setAttribute("pageModel", pageModel);
