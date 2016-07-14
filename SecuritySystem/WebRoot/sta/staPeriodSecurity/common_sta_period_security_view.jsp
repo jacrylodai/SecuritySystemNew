@@ -93,6 +93,28 @@
 						<td width="${tdInfoValueWidth }%" align="left"></td>
 					</tr>
 				</table>
+						
+				<h4>缺失的日期</h4>
+				
+				<c:set var="absentDaysListLength" value="${fn:length(staPeriodSecurity.absentDaysList)}" scope="page"></c:set>
+				<c:choose>
+					<c:when test="${absentDaysListLength gt 0}">
+					
+						<table width="70%" border="0" cellpadding="0" cellspacing="0">
+							<c:forEach varStatus="var" begin="0" end="${absentDaysListLength-1 }" step="3">
+							<tr>
+								<c:forEach varStatus="varInside" begin="${var.index}" 
+									end="${(var.index+2)>(absentDaysListLength-1) ? (absentDaysListLength-1):(var.index+2)}" step="1">
+									<td width="33%" height="30px" align="center">
+									${staPeriodSecurity.absentDaysList[varInside.index] }
+									</td>
+								</c:forEach>
+							</tr>
+							</c:forEach>
+						</table>
+					</c:when>
+				</c:choose>
+				
 										
 				<hr width="97%" align="center" size=0>	
 				

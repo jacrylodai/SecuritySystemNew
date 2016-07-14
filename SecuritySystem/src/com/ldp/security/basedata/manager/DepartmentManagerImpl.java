@@ -55,9 +55,6 @@ public class DepartmentManagerImpl extends AbstractManager<Department> implement
 	public Department loadDepartmentById(long departmentId) {
 		
 		Department department = departmentDao.loadDepartmentById(departmentId);
-		if(department == null){
-			throw new RuntimeException("车间id："+departmentId+" 所指向车间不存在");
-		}
 		return department;
 	}
 

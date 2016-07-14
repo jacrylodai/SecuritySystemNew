@@ -201,49 +201,51 @@ public class SecurityFormManagerImpl extends AbstractManager<SecurityForm>
 		Sheet[] sheetArr = workbook.getSheets();
 		for(Sheet sheet:sheetArr){
 		
-			SecurityFormSheet securityFormSheet = 
-				SecurityFormExcelImportUtil.readSecurityFormSheetFromExcel(sheet);
+			try{
 			
-			String reportDepartmentName = securityFormSheet.getReportDepartmentName();
-			long reportDepartmentId = securityFormSheet.getReportDepartmentId();
-			SecurityForm securityForm = securityFormSheet.getSecurityForm();
-			
-			
-			Department department = departmentManager.loadDepartmentById(reportDepartmentId);
-			if(department == null){
-				RuntimeException ex = new RuntimeException(
-						"导入错误，Excel表里的上报单位编码，在系统中没有找到对于的单位" +
-						"，请检查Excel表里的上报单位编码是否填写正确");
+				SecurityFormSheet securityFormSheet = 
+					SecurityFormExcelImportUtil.readSecurityFormSheetFromExcel(sheet);
+				
+				String reportDepartmentName = securityFormSheet.getReportDepartmentName();
+				long reportDepartmentId = securityFormSheet.getReportDepartmentId();
+				SecurityForm securityForm = securityFormSheet.getSecurityForm();
+				
+				
+				Department department = departmentManager.loadDepartmentById(reportDepartmentId);
+				if(department == null){
+					throw new RuntimeException(
+							"导入错误，Excel表里的上报单位编码，在系统中没有找到对于的单位" +
+							"，请检查Excel表里的上报单位编码是否填写正确");
+				}
+				
+				if(!department.getDepartmentName().equals(reportDepartmentName)){
+					throw new RuntimeException(
+							"导入错误，Excel表里的上报单位编码与上报单位名称不一致" +
+							"，Excel表已经被破坏，请重新在系统中下载对应车间的Excel表");
+				}
+				
+				if(department.getLevel()!=Department.LEVEL_DEPARTMENT){
+					throw new RuntimeException("只能导入车间级别的反恐报表");
+				}
+				
+				Department currReportUserDepartment = reportUser.getDepartment();
+				if(!departmentManager.compareDepartmentIsParentOfDepartment(
+						currReportUserDepartment, department)){
+					throw new RuntimeException(
+							"导入错误，当前用户只能导入其对应部门下面的子部门的数据");
+				}
+				
+				Department station = department.getParentDepartment();
+				
+				securityForm.setDepartment(department);
+				securityForm.setStation(station);
+				securityForm.setReportUser(reportUser);
+				
+				saveSecurityForm(securityForm);
+				
+			} catch(RuntimeException ex){
 				logger.error("", ex);
 			}
-			
-			if(!department.getDepartmentName().equals(reportDepartmentName)){
-				RuntimeException ex =  new RuntimeException(
-						"导入错误，Excel表里的上报单位编码与上报单位名称不一致" +
-						"，Excel表已经被破坏，请重新在系统中下载对应车间的Excel表");
-				logger.error("", ex);
-			}
-			
-			if(department.getLevel()!=Department.LEVEL_DEPARTMENT){
-				RuntimeException ex =  new RuntimeException("只能导入车间级别的反恐报表");
-				logger.error("", ex);
-			}
-			
-			Department currReportUserDepartment = reportUser.getDepartment();
-			if(!departmentManager.compareDepartmentIsParentOfDepartment(
-					currReportUserDepartment, department)){
-				RuntimeException ex =  new RuntimeException(
-						"导入错误，当前用户只能导入其对应部门下面的子部门的数据");
-				logger.error("", ex);
-			}
-			
-			Department station = department.getParentDepartment();
-			
-			securityForm.setDepartment(department);
-			securityForm.setStation(station);
-			securityForm.setReportUser(reportUser);
-			
-			saveSecurityForm(securityForm);
 		}
 
 		workbook.close();

@@ -17,6 +17,8 @@
 		<property name="estimateStaDays" column="estimate_sta_days"></property>
 		<property name="actualStaDays" column="actual_sta_days"></property>
 		
+		<property name="absentDaysString" column="absent_days_string"></property>
+		
 	</class>
 	
 </hibernate-mapping>

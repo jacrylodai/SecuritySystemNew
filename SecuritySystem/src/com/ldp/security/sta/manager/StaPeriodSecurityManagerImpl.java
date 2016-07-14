@@ -35,6 +35,7 @@ import com.ldp.security.util.PageModel;
 import com.ldp.security.util.business.CaculateUtil;
 import com.ldp.security.util.business.excel.departmentStaOutput.DepartmentStaExcelUtil;
 import com.ldp.security.util.database.ParameterObject;
+import com.ldp.security.util.date.DateUtil;
 import com.ldp.security.util.file.FileUtil;
 import com.ldp.security.util.validate.ClientValidate;
 import com.ldp.security.util.xml.XMLConfigReader;
@@ -117,6 +118,10 @@ public class StaPeriodSecurityManagerImpl extends AbstractManager<StaPeriodSecur
 			staPeriodSecurity.setStaPeriodInfo(staPeriodInfo);
 			staPeriodSecurity.setEstimateStaDays(staPeriodInfo.getLastDays());
 			
+			List<String> absentDaysList = 
+				caculateAbsentDaysList(startDateString,endDateString,securityFormList);
+			staPeriodSecurity.setAbsentDaysList(absentDaysList);
+			
 			saveStaPeriodSecurity(staPeriodSecurity);
 			return staPeriodSecurity;
 		}else{
@@ -153,9 +158,51 @@ public class StaPeriodSecurityManagerImpl extends AbstractManager<StaPeriodSecur
 			staPeriodSecurity.setStaDepartment(department);
 			staPeriodSecurity.setStaPeriodInfo(staPeriodInfo);
 			
+			//设置为空值
+			List<String> absentDaysList = new ArrayList<String>();
+			staPeriodSecurity.setAbsentDaysList(absentDaysList);
+			
 			saveStaPeriodSecurity(staPeriodSecurity);
 			return staPeriodSecurity;
 		}
+	}
+
+	private List<String> caculateAbsentDaysList(String startDateString,
+			String endDateString, List<SecurityForm> securityFormList) {
+		
+		int intervalDays = 
+			DateUtil.getIntervalDaysByDateString(startDateString, endDateString);
+		int allCaculateDays = intervalDays +1;
+		
+		boolean [] checkFlagDayArray = new boolean[allCaculateDays];
+		for(int i=0;i<allCaculateDays;i++){
+			checkFlagDayArray[i] = false;
+		}
+		
+		for(SecurityForm securityForm:securityFormList){
+			
+			String tempStartDateString = securityForm.getStartDateString();
+			String tempEndDateString = securityForm.getEndDateString();
+			int tempStartDayIndex = 
+				DateUtil.getIntervalDaysByDateString(startDateString, tempStartDateString);
+			int tempEndDayIndex = 
+				DateUtil.getIntervalDaysByDateString(startDateString, tempEndDateString);
+			
+			for(int j=tempStartDayIndex;j<=tempEndDayIndex;j++){
+				checkFlagDayArray[j] = true;
+			}
+		}
+		
+		List<String> absentDaysList = new ArrayList<String>();
+		for(int i=0;i<allCaculateDays;i++){
+			boolean checkFlagDay = checkFlagDayArray[i];
+			if(checkFlagDay == false){
+				String absentDay = DateUtil.getSpecifiedDayAfter(startDateString, i);
+				absentDaysList.add(absentDay);
+			}
+		}
+		
+		return absentDaysList;
 	}
 
 	/**

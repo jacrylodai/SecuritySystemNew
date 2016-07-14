@@ -1,7 +1,11 @@
 package com.ldp.security.sta.domain;
 
+import java.util.List;
+
+import com.google.gson.Gson;
 import com.ldp.security.basedata.domain.Department;
 import com.ldp.security.util.business.CaculateUtil;
+import com.ldp.security.util.gson.GsonUtil;
 
 /**
  * 反恐周期统计类
@@ -9,6 +13,8 @@ import com.ldp.security.util.business.CaculateUtil;
  *
  */
 public class StaPeriodSecurity {
+
+	private static final Gson gson = new Gson();
 
 	//id
 	private long staPeriodSecurityId;
@@ -30,6 +36,12 @@ public class StaPeriodSecurity {
 	
 	//实际统计天数
 	private int actualStaDays;
+	
+	//缺失的日期串
+	private String absentDaysString;
+	
+	//缺失的日期列表
+	private List<String> absentDaysList;
 
 	public long getStaPeriodSecurityId() {
 		return staPeriodSecurityId;
@@ -87,6 +99,24 @@ public class StaPeriodSecurity {
 		this.actualStaDays = actualStaDays;
 	}
 	
+	public String getAbsentDaysString() {
+		return absentDaysString;
+	}
+
+	public void setAbsentDaysString(String absentDaysString) {
+		this.absentDaysString = absentDaysString;
+		absentDaysList = GsonUtil.convertFromGsonToListString(absentDaysString);
+	}
+
+	public List<String> getAbsentDaysList() {
+		return absentDaysList;
+	}
+
+	public void setAbsentDaysList(List<String> absentDaysList) {
+		this.absentDaysList = absentDaysList;
+		absentDaysString = gson.toJson(absentDaysList);
+	}
+
 	/**
 	 * 安检违禁品总数量占旅客发送人数比例
 	 * @return

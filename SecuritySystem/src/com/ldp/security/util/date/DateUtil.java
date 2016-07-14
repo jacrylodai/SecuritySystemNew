@@ -63,8 +63,10 @@ public class DateUtil {
 			throw new RuntimeException(e);
 		}
 		c.setTime(date);
-		int day = c.get(Calendar.DATE);
-		c.set(Calendar.DATE, day - days);
+//		int day = c.get(Calendar.DATE);
+//		c.set(Calendar.DATE, day - days);
+
+		c.add(Calendar.DAY_OF_YEAR, -days);
 
 		String dayBefore = new SimpleDateFormat(DATE_FORMAT_PATTERN).format(c
 				.getTime());
@@ -95,8 +97,11 @@ public class DateUtil {
 			throw new RuntimeException(e);
 		}
 		c.setTime(date);
-		int day = c.get(Calendar.DATE);
-		c.set(Calendar.DATE, day + days);
+		
+//		int day = c.get(Calendar.DATE);
+//		c.set(Calendar.DATE, day + days);
+
+		c.add(Calendar.DAY_OF_YEAR, days);
 
 		String dayAfter = new SimpleDateFormat(DATE_FORMAT_PATTERN).format(c
 				.getTime());
