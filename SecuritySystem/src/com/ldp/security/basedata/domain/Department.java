@@ -10,7 +10,7 @@ public class Department {
 	/**
 	 * 根节点的id
 	 */
-	public static final long ID_ROOT = 0;
+	public static final long ID_ROOT = 101;
 
 	/**
 	 * 根节点

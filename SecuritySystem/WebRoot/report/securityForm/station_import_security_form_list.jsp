@@ -91,6 +91,18 @@
 		}
 	}
 	
+	function deleteAllStationSecurityForm() {
+		
+		if(!window.confirm("你确定要删除所有数据")){
+			return;
+		}
+		with(document.securityFormForm){
+			action="report/securityForm/stationSecurityFormFunc.do?command=deleteAllImportStationSecurityForm";
+			method="post";
+			submit();
+		}
+	}
+	
 	function verifyStationSecurityForm() {
 		var checkFlags=document.getElementsByName("selectFlag");
 		var count=0;
@@ -387,6 +399,8 @@
 							id="btnModify" value="修改" onClick="updateStationSecurityForm()">
 						<input name="btnDelete" class="button1" type="button"
 							id="btnDelete" value="删除" onClick="deleteStationSecurityForm()">
+						<input name="btnAllDelete" class="button1" type="button"
+							id="btnAllDelete" value="全部删除" onClick="deleteAllStationSecurityForm()">
 						<input name="btnVerify" class="button1" type="button"
 							id="btnVerify" value="审核" onClick="verifyStationSecurityForm()">
 						<input name="btnVerifyAll" class="button1" type="button"

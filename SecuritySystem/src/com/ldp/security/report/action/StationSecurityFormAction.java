@@ -456,9 +456,19 @@ public class StationSecurityFormAction extends BaseAction{
 		User user = (User) request.getSession().getAttribute(User.USER_SESSION_ID);
 		long stationId = user.getDepartment().getDepartmentId();
 
+		SecurityFormActionForm actionForm = (SecurityFormActionForm)form;
+		
+		String startDateString = actionForm.getStartDateString();
+		String endDateString = actionForm.getEndDateString();
+		Long departmentId = actionForm.getDepartmentId();
+
 		PageModel<SecurityForm> pageModel = 
 			securityFormManager.listSecurityFormByParam(
-					stationId, null, null, null, SecurityForm.STATE_IMPORT);
+					stationId, departmentId, startDateString, endDateString
+					, SecurityForm.STATE_IMPORT);
+
+		List<Department> subDepartmentList = 
+			departmentManager.getSubDepartmentListById(stationId);
 		
 		List<SecurityForm> securityFormList = pageModel.getData();
 		
@@ -467,10 +477,10 @@ public class StationSecurityFormAction extends BaseAction{
 			try{
 				securityForm.validateData();
 				
-				long departmentId = securityForm.getDepartment().getDepartmentId();
+				long tempDepartmentId = securityForm.getDepartment().getDepartmentId();
 				
 				boolean isConflict = securityFormManager.checkConflictDateByDepartmentId(
-						departmentId, securityForm.getStartDateString()
+						tempDepartmentId, securityForm.getStartDateString()
 						, securityForm.getEndDateString());
 				if(isConflict){
 					throw new RuntimeException("无法上报，报表起始日期" +
@@ -485,6 +495,7 @@ public class StationSecurityFormAction extends BaseAction{
 		
 		request.setAttribute("station", user.getDepartment());
 		request.setAttribute("pageModel", pageModel);
+		request.setAttribute("subDepartmentList", subDepartmentList);
 		
 		return mapping.findForward("listStationImportSecurityForm");
 	}
@@ -668,6 +679,29 @@ public class StationSecurityFormAction extends BaseAction{
 				throw new RuntimeException("不支持的文件格式");
 
 		request.setAttribute(Constants.MESSAGE_KEY, Constants.MESSAGE_UPLOAD_SUCCESS);
+		request.setAttribute(Constants.REDIRECT_URL_KEY, LIST_STATION_IMPORT_SECURITY_FORM_PATH);
+		
+		return mapping.findForward("showMessage");
+	}
+
+	public ActionForward deleteAllImportStationSecurityForm(ActionMapping mapping, ActionForm form,
+			HttpServletRequest request, HttpServletResponse response)
+			throws Exception {
+		
+		User user = (User) request.getSession().getAttribute(User.USER_SESSION_ID);
+		long stationId = user.getDepartment().getDepartmentId();
+
+		List<SecurityForm> securityFormList = 
+			securityFormManager.getSecurityFormListByParam(
+					stationId, null, null, null, SecurityForm.STATE_IMPORT);
+
+		for(SecurityForm securityForm:securityFormList){
+			
+			securityFormManager.deleteSecurityFormByEraseDataById(
+					securityForm.getSecurityFormId());
+		}
+
+		request.setAttribute(Constants.MESSAGE_KEY, Constants.MESSAGE_DELETE_SUCCESS);
 		request.setAttribute(Constants.REDIRECT_URL_KEY, LIST_STATION_IMPORT_SECURITY_FORM_PATH);
 		
 		return mapping.findForward("showMessage");

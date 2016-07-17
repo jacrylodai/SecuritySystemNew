@@ -36,6 +36,10 @@
 		if(!checkForm()){
 			return;
 		}else{
+		
+			var btnUpload = document.getElementById("btnUpload");
+			btnUpload.disabled = true;
+		
 			with(document.securityFormForm){
 				
 				action="report/securityForm/stationSecurityFormFunc.do?command=uploadStationSecurityForm";

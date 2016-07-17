@@ -27,22 +27,22 @@ public class DepartmentTemplateWithDayInfoExcelUtil {
 		ExcelWriteFuncUtil.addDoubleCell(sheet, TitlePosition.REPORT_DEPARTMENT_ID
 				, department.getDepartmentId());
 		
-		WritableFont font = new WritableFont(WritableFont.ARIAL, 12); 
-		WritableCellFormat unLockedCell = new WritableCellFormat(font);
-		unLockedCell.setLocked(false);
-		unLockedCell.setBackground(Colour.PALE_BLUE);
+//		WritableFont font = new WritableFont(WritableFont.ARIAL, 12); 
+//		WritableCellFormat unLockedCell = new WritableCellFormat(font);
+//		unLockedCell.setLocked(true);
+//		unLockedCell.setBackground(Colour.WHITE);
 		
-		ExcelWriteFuncUtil.addDoubleCell(sheet,TitlePosition.START_DATE_YEAR,year,unLockedCell);
+		ExcelWriteFuncUtil.addDoubleCell(sheet,TitlePosition.START_DATE_YEAR,year);
 		
-		ExcelWriteFuncUtil.addDoubleCell(sheet,TitlePosition.START_DATE_MONTH,month,unLockedCell);
+		ExcelWriteFuncUtil.addDoubleCell(sheet,TitlePosition.START_DATE_MONTH,month);
 		
-		ExcelWriteFuncUtil.addDoubleCell(sheet,TitlePosition.START_DATE_DAY,day,unLockedCell);
+		ExcelWriteFuncUtil.addDoubleCell(sheet,TitlePosition.START_DATE_DAY,day);
 
-		ExcelWriteFuncUtil.addDoubleCell(sheet,TitlePosition.END_DATE_YEAR,year,unLockedCell);
+		ExcelWriteFuncUtil.addDoubleCell(sheet,TitlePosition.END_DATE_YEAR,year);
 		
-		ExcelWriteFuncUtil.addDoubleCell(sheet,TitlePosition.END_DATE_MONTH,month,unLockedCell);
+		ExcelWriteFuncUtil.addDoubleCell(sheet,TitlePosition.END_DATE_MONTH,month);
 		
-		ExcelWriteFuncUtil.addDoubleCell(sheet,TitlePosition.END_DATE_DAY,day,unLockedCell);
+		ExcelWriteFuncUtil.addDoubleCell(sheet,TitlePosition.END_DATE_DAY,day);
 		
 	}
 }
