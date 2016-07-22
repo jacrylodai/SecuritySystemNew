@@ -172,6 +172,10 @@ public class DepartmentStaExcelUtil {
 			throws RowsExceededException, WriteException {
 		
 		ExcelWriteFuncUtil.addDoubleCell(sheet
+				, CheckDangerousPosition.ALL_SECURITY_MACHINE_CHECK_NUM
+				, commonSta.getAllSecurityMachineCheckNum(), cellFormat);
+		
+		ExcelWriteFuncUtil.addDoubleCell(sheet
 				, CheckDangerousPosition.SECURITY_MACHINE_TROUBLE_NUM
 				, commonSta.getSecurityMachineTroubleNum(),cellFormat);
 		

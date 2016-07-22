@@ -9,6 +9,7 @@
 		</id>
 		
 		<property name="securityMachineCheckNumString" column="security_machine_check_num_string"/>
+		<property name="allSecurityMachineCheckNum" column="all_security_machine_check_num"></property>
 		<property name="securityMachineTroubleNum" column="security_machine_trouble_num"/>
 		<property name="checkDangerousObjectNumString" column="check_dangerous_object_num_string"/>
 		<property name="zhanquCheckNum" column="zhanqu_check_num"/>

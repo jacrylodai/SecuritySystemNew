@@ -53,6 +53,20 @@ public class CaculateUtil {
 	}
 	
 	/**
+	 * 把指定list里的所有数据加总
+	 * @param dataList
+	 * @return
+	 */
+	public static long addAllDataFromListIntoLong(List<Integer> dataList){
+		
+		long result = 0;
+		for(Integer data:dataList){
+			result += data;
+		}
+		return result;
+	}
+	
+	/**
 	 * 计算numA除以numB的万分比
 	 * @param numA
 	 * @param numB

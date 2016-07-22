@@ -11,6 +11,9 @@ public class CheckDangerousPosition {
 		TitlePosition.TITLE_ROW + TitlePosition.TITLE_HEIGHT;
 	
 	protected static final int CHECK_DANGEROUS_HEIGHT = 23;
+
+	protected static final ContentPosition ALL_SECURITY_MACHINE_CHECK_NUM = 
+		new ContentPosition(2,CHECK_DANGEROUS_ROW+1);
 			
 	protected static final ContentPosition SECURITY_MACHINE_TROUBLE_NUM = 
 		new ContentPosition(1,CHECK_DANGEROUS_ROW+4);

@@ -11,6 +11,9 @@ public class CommonCaculateObject {
 
 	//自动安检仪检查人数列表
 	private List<Integer> securityMachineCheckNumList;
+	
+	//所有的自动安检仪检查总人数
+	private long allSecurityMachineCheckNum;
 
 	//安检仪故障数
 	private int securityMachineTroubleNum;
@@ -132,6 +135,14 @@ public class CommonCaculateObject {
 		this.practicePeopleNum = practicePeopleNum;
 	}
 
+	public long getAllSecurityMachineCheckNum() {
+		return allSecurityMachineCheckNum;
+	}
+
+	public void setAllSecurityMachineCheckNum(long allSecurityMachineCheckNum) {
+		this.allSecurityMachineCheckNum = allSecurityMachineCheckNum;
+	}
+
 	public static CommonCaculateObject caculateCommonCaculateObjectList(
 			List<CommonCaculateObject> commonCacuObjList) {
 		
@@ -142,6 +153,9 @@ public class CommonCaculateObject {
 		List<Integer> securityMachineCheckNumList = 
 			new ArrayList<Integer>();
 		CaculateUtil.initialDataList(securityMachineMaxCount, securityMachineCheckNumList);
+
+		//所有的自动安检仪检查总人数
+		long allSecurityMachineCheckNum = 0;
 		
 		//安检仪故障数
 		int securityMachineTroubleNum = 0;
@@ -188,6 +202,8 @@ public class CommonCaculateObject {
 			CaculateUtil.addDataFromOriginToDes(dangerousObjectItemCount
 					, checkDangerousObjectNumList, oriCheckDangObjNumList);
 			
+			allSecurityMachineCheckNum += commonCacuObj.getAllSecurityMachineCheckNum();
+			
 			securityMachineTroubleNum += commonCacuObj.getSecurityMachineTroubleNum();
 			zhanquCheckNum += commonCacuObj.getZhanquCheckNum();
 			cctvCheckNum += commonCacuObj.getCctvCheckNum();
@@ -201,6 +217,7 @@ public class CommonCaculateObject {
 		
 		CommonCaculateObject resultCommCacuObj = new CommonCaculateObject();
 		resultCommCacuObj.setSecurityMachineCheckNumList(securityMachineCheckNumList);
+		resultCommCacuObj.setAllSecurityMachineCheckNum(allSecurityMachineCheckNum);
 		resultCommCacuObj.setSecurityMachineTroubleNum(securityMachineTroubleNum);
 		resultCommCacuObj.setCheckDangerousObjectNumList(checkDangerousObjectNumList);
 		resultCommCacuObj.setZhanquCheckNum(zhanquCheckNum);

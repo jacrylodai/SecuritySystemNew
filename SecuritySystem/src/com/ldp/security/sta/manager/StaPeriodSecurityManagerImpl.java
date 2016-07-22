@@ -113,6 +113,14 @@ public class StaPeriodSecurityManagerImpl extends AbstractManager<StaPeriodSecur
 			StaPeriodSecurity staPeriodSecurity = 
 				caculateSecurityFormList(securityFormList);
 			
+			//计算出所有的自动安检仪检查总人数
+			CommonSta commonSta = staPeriodSecurity.getCommonSta();
+			long allSecurityMachineCheckNum = 
+				CaculateUtil.addAllDataFromListIntoLong(
+						commonSta.getSecurityMachineCheckNumList());
+			commonSta.setAllSecurityMachineCheckNum(allSecurityMachineCheckNum);
+			//end
+			
 			staPeriodSecurity.setStaDepartment(department);
 			
 			staPeriodSecurity.setStaPeriodInfo(staPeriodInfo);

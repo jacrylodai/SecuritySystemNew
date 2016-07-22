@@ -94,24 +94,36 @@
 					</tr>
 				</table>
 						
-				<h4>缺失的日期</h4>
 				
 				<c:set var="absentDaysListLength" value="${fn:length(staPeriodSecurity.absentDaysList)}" scope="page"></c:set>
 				<c:choose>
 					<c:when test="${absentDaysListLength gt 0}">
-					
+											
+						<h4>缺失的日期</h4>
+				
+						<c:set var="colCount" value="3" scope="page"></c:set>
+						<c:set var="rowCount" 
+							value="${absentDaysListLength%colCount == 0 ? absentDaysListLength/colCount : absentDaysListLength/colCount+1}" scope="page"></c:set>
+						
 						<table width="70%" border="0" cellpadding="0" cellspacing="0">
-							<c:forEach varStatus="var" begin="0" end="${absentDaysListLength-1 }" step="3">
+						<c:forEach begin="0" end="${rowCount}" step="1" varStatus="i">
 							<tr>
-								<c:forEach varStatus="varInside" begin="${var.index}" 
-									end="${(var.index+2)>(absentDaysListLength-1) ? (absentDaysListLength-1):(var.index+2)}" step="1">
+							<c:forEach begin="0" end="${colCount-1}" step="1" varStatus="j">
+								<c:set var="varIndex" value="${i.index*colCount + j.index}" scope="page"></c:set>
+								<c:choose>
+									<c:when test="${varIndex<absentDaysListLength}">
+									
 									<td width="33%" height="30px" align="center">
-									${staPeriodSecurity.absentDaysList[varInside.index] }
+									${staPeriodSecurity.absentDaysList[varIndex] }
 									</td>
-								</c:forEach>
-							</tr>
+									
+									</c:when>
+								</c:choose>
 							</c:forEach>
+							</tr>
+						</c:forEach>
 						</table>
+						
 					</c:when>
 				</c:choose>
 				
@@ -120,10 +132,12 @@
 				
 				<h2>安检查危</h2>                
                                
-                <h4>通过自动安检仪人数</h4>    
+                <h4>所有自动安检仪通过人数总和：${commonSta.allSecurityMachineCheckNum }</h4> 
                 
                 <c:choose>
                 	<c:when test="${staPeriodSecurity.staDepartment.level eq Department_LEVEL_DEPARTMENT}">
+                		
+                		<h4>通过自动安检仪人数</h4>   
                 		
                 		<table width="80%" border="0" cellpadding="0" cellspacing="0">
 							<c:forEach varStatus="var" begin="0" end="${securityMachineMaxCount-1 }" step="2">

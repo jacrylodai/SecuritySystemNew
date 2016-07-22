@@ -14,12 +14,26 @@ public interface RoleManager {
 	
 	public Role loadRoleById(long roleId);
 
+	/**
+	 * 取得所有的角色类别
+	 * @return
+	 */
 	public List<DataDict> getRoleTypeDataDictList();
 
+	/**
+	 * 根据条件，取得角色类别
+	 * @param roleTypeDataDictId 角色类别id
+	 * @return
+	 */
 	public DataDict getRoleTypeDataDictById(String roleTypeDataDictId);
 
 	public PageModel<Role> listRoleInPage();
 
+	/**
+	 * 根据条件，取得角色列表
+	 * @param roleTypeId 角色类别id
+	 * @return
+	 */
 	public List<Role> getRoleListByRoleTypeId(String roleTypeId);
 
 	/**

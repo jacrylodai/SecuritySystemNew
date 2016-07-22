@@ -21,6 +21,9 @@ public class CommonSta {
 	private String securityMachineCheckNumString;
 	
 	private List<Integer> securityMachineCheckNumList;
+	
+	//所有的自动安检仪检查总人数
+	private long allSecurityMachineCheckNum;
 
 	//安检仪故障数
 	private int securityMachineTroubleNum;
@@ -178,6 +181,14 @@ public class CommonSta {
 
 	public void setPracticePeopleNum(int practicePeopleNum) {
 		this.practicePeopleNum = practicePeopleNum;
+	}
+
+	public long getAllSecurityMachineCheckNum() {
+		return allSecurityMachineCheckNum;
+	}
+
+	public void setAllSecurityMachineCheckNum(long allSecurityMachineCheckNum) {
+		this.allSecurityMachineCheckNum = allSecurityMachineCheckNum;
 	}
 	
 }
