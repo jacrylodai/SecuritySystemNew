@@ -1,5 +1,7 @@
 package com.ldp.security.util.business.excel.common;
 
+import com.ldp.security.util.validate.ClientValidate;
+
 import jxl.Cell;
 import jxl.Sheet;
 
@@ -14,16 +16,23 @@ public class ExcelReadFuncUtil {
 
 	public static int readIntFromSheet(Sheet sheet,ContentPosition contentPosition){
 		
-		int value = 
-			Integer.parseInt(readStringFromSheet(sheet,contentPosition));
+		String valueStr = readStringFromSheet(sheet,contentPosition);
+		int value = 0;
+		if(!ClientValidate.isEmpty(valueStr)){
+			value = Integer.parseInt(valueStr);
+		}
 		return value;
 	}
 
 
 	public static long readLongFromSheet(Sheet sheet,ContentPosition contentPosition){
 		
-		long value = 
-			Long.parseLong(readStringFromSheet(sheet,contentPosition));
+		String valueStr = readStringFromSheet(sheet,contentPosition);
+		long value = 0L;
+		if(!ClientValidate.isEmpty(valueStr)){
+			value = Long.parseLong(valueStr);
+		}
+		
 		return value;
 	}
 	
