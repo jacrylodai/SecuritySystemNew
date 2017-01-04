@@ -13,6 +13,10 @@ public class ContentPosition {
 	//行index
 	private int row;
 
+	public ContentPosition() {
+		super();
+	}
+
 	public ContentPosition(int col, int row) {
 		super();
 		this.col = col;

@@ -18,7 +18,11 @@
 		<property name="equipmentCheckNum" column="equipment_check_num"/>
 		<property name="equipmentTroubleNum" column="equipment_trouble_num"/>
 		<property name="militiamanCheckNum" column="militiaman_check_num"/>
+		
+		<property name="trainningCount" column="trainning_count"/>
 		<property name="trainningPeopleNum" column="trainning_people_num"/>
+		
+		<property name="practiceCount" column="practice_count"/>
 		<property name="practicePeopleNum" column="practice_people_num"/>
 		
 	</class>

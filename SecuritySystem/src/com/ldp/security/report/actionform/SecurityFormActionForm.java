@@ -45,8 +45,14 @@ public class SecurityFormActionForm extends ActionForm {
 	//民兵巡逻次数
 	private int militiamanCheckNum;
 	
+	//反恐培训次数
+	private int trainningCount;
+	
 	//反恐培训人数
 	private int trainningPeopleNum;
+	
+	//反恐演练次数
+	private int practiceCount;
 
 	//反恐演练人数
 	private int practicePeopleNum;
@@ -401,6 +407,22 @@ public class SecurityFormActionForm extends ActionForm {
 
 	public void setSecurityFormFile(FormFile securityFormFile) {
 		this.securityFormFile = securityFormFile;
+	}
+
+	public int getTrainningCount() {
+		return trainningCount;
+	}
+
+	public void setTrainningCount(int trainningCount) {
+		this.trainningCount = trainningCount;
+	}
+
+	public int getPracticeCount() {
+		return practiceCount;
+	}
+
+	public void setPracticeCount(int practiceCount) {
+		this.practiceCount = practiceCount;
 	}
 
 	public void validateData() {

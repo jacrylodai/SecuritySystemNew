@@ -1,6 +1,9 @@
 package com.ldp.security.util.xml;
 
 import java.util.List;
+import java.util.Map;
+
+import com.ldp.security.util.business.excel.common.FormVersion;
 
 /**
  * 系统配置
@@ -17,6 +20,8 @@ public class SystemConfig {
 	
 	//系统文件目录
 	private String systemDataFolder;
+	
+	private Map<Integer, FormVersion> formVersionMap;
 
 	public int getPageSize() {
 		return pageSize;
@@ -40,6 +45,14 @@ public class SystemConfig {
 
 	public void setSystemDataFolder(String systemDataFolder) {
 		this.systemDataFolder = systemDataFolder;
+	}
+
+	public Map<Integer, FormVersion> getFormVersionMap() {
+		return formVersionMap;
+	}
+
+	public void setFormVersionMap(Map<Integer, FormVersion> formVersionMap) {
+		this.formVersionMap = formVersionMap;
 	}
 
 }

@@ -6,9 +6,6 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 
-import com.ldp.security.report.domain.SecurityFormSheet;
-import com.ldp.security.util.business.excel.securityFormImport.SecurityFormExcelImportUtil;
-
 import junit.framework.TestCase;
 import jxl.Sheet;
 import jxl.Workbook;
@@ -36,8 +33,8 @@ public class TestSecurityFormExcelImportUtil extends TestCase{
 		}
 		
 		Sheet sheet = workbook.getSheet(0);
-		SecurityFormSheet securityFormSheet = 
-			SecurityFormExcelImportUtil.readSecurityFormSheetFromExcel(sheet);
+//		SecurityFormSheet securityFormSheet = 
+//			SecurityFormExcelImportUtil.readSecurityFormSheetFromExcel(sheet);
 		System.out.println("test");
 	}
 

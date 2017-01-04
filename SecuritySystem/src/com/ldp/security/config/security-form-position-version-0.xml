@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<base-position-list>
+	<base-position name="TITLE_BASE_POSITION" height="9">
+		<sub-position name="VERSION_CODE" col="5" relativeRow="1" />
+		<sub-position name="REPORT_DEPARTMENT_NAME" col="1" relativeRow="2" />
+		<sub-position name="REPORT_DEPARTMENT_ID" col="1" relativeRow="3" />
+		<sub-position name="START_DATE_YEAR" col="1" relativeRow="5" />
+		<sub-position name="START_DATE_MONTH" col="2" relativeRow="5" />
+		<sub-position name="START_DATE_DAY" col="3" relativeRow="5" />
+		<sub-position name="END_DATE_YEAR" col="1" relativeRow="6" />
+		<sub-position name="END_DATE_MONTH" col="2" relativeRow="6" />
+		<sub-position name="END_DATE_DAY" col="3" relativeRow="6" />
+	</base-position>	
+	<base-position name="CHECK_DANGEROUS_BASE_POSITION" height="21">
+		<sub-position name="SECURITY_MACHINE_TROUBLE_NUM" col="1" relativeRow="4" />
+		<sub-position name="CHECK_DANGEROUS_OBJECT_NUM_FIRST" col="5" relativeRow="8" />
+	</base-position>	
+	<base-position name="ZHANQU_BASE_POSITION" height="5">
+		<sub-position name="ZHANQU_CHECK_NUM" col="1" relativeRow="2" />
+	</base-position>	
+	<base-position name="CCTV_BASE_POSITION" height="5">
+		<sub-position name="CCTV_CHECK_NUM" col="1" relativeRow="2" />
+		<sub-position name="CCTV_TROUBLE_NUM" col="3" relativeRow="2" />
+	</base-position>	
+	<base-position name="EQUIPMENT_BASE_POSITION" height="5">
+		<sub-position name="EQUIPMENT_CHECK_NUM" col="1" relativeRow="2" />
+		<sub-position name="EQUIPMENT_TROUBLE_NUM" col="3" relativeRow="2" />
+	</base-position>	
+	<base-position name="MILITIAMAN_BASE_POSITION" height="5">
+		<sub-position name="MILITIAMAN_CHECK_NUM" col="1" relativeRow="2" />
+	</base-position>	
+	<base-position name="IMPORTANT_JOB_BASE_POSITION" height="5">
+		<sub-position name="TRAINNING_PEOPLE_NUM" col="1" relativeRow="2" />
+		<sub-position name="PRACTICE_PEOPLE_NUM" col="3" relativeRow="2" />
+	</base-position>	
+	<base-position name="OTHER_WORK_BASE_POSITION" height="7">
+		<sub-position name="OTHER_WORK_INFO" col="0" relativeRow="2" />
+	</base-position>	
+	<base-position name="SQUARE_CHECK_BASE_POSITION" height="19">
+		<sub-position name="SQUARE_CHECK_PEOPLE_NUM" col="1" relativeRow="2" />
+		<sub-position name="SQUARE_SPECIAL_PEOPLE_NUM" col="3" relativeRow="2" />
+		<sub-position name="SQUARE_DANGEROUS_OBJECT_NUM_FIRST" col="5" relativeRow="6" />
+	</base-position>	
+	<base-position name="CHECK_DANGEROUS_MACHINE_BASE_POSITION" height="12">
+		<sub-position name="SECU_MACH_CHECK_NUM_FIRST" col="1" relativeRow="4" />
+	</base-position>	
+	<base-position name="CHECK_TICKET_IDENTITY_BASE_POSITION" height="23">
+		<sub-position name="SPECIAL_CODE_PEOPLE_NUM_FIRST" col="2" relativeRow="4" />
+		<sub-position name="YANZHENG_USING_FAKE_PAPER_NUM" col="1" relativeRow="16" />
+		<sub-position name="ARREST_PEOPLE_NUM" col="1" relativeRow="20" />
+		<sub-position name="FINE_PEOPLE_NUM" col="3" relativeRow="20" />
+		<sub-position name="STUDY_PEOPLE_NUM" col="5" relativeRow="20" />
+	</base-position>	
+	<base-position name="SALE_TICKET_BASE_POSITION" height="5">
+		<sub-position name="SALE_USING_FAKE_PAPER_NUM" col="1" relativeRow="2" />
+		<sub-position name="SALE_SPECIAL_PEOPLE_NUM" col="3" relativeRow="2" />
+	</base-position>	
+	<base-position name="WAITING_HALL_CHECK_BASE_POSITION" height="5">
+		<sub-position name="PERIOD_NUMBER_OF_PASSENGERS" col="1" relativeRow="2" />
+		<sub-position name="WAITING_HALL_CHECK_PEOPLE_NUM" col="3" relativeRow="2" />
+		<sub-position name="WAITING_HALL_XIANZA_PEOPLE_NUM" col="5" relativeRow="2" />
+	</base-position>		
+	<base-position name="JIANPIAO_BASE_POSITION" height="0">
+		<sub-position name="JIANPIAO_WEISUI_PEOPLE_NUM" col="1" relativeRow="2" />
+		<sub-position name="SPECIAL_TRAIN_IDENTITY_WRONG_PEOPLE_NUM" col="3" relativeRow="2" />
+		<sub-position name="SPECIAL_TRAIN_IDENTITY_WRONG_INFO" col="0" relativeRow="7" />
+	</base-position>		
+</base-position-list>

@@ -267,11 +267,25 @@
                 <h2>反恐重点工作开展情况</h2>                
                 
 				<table width="80%" border="0" cellpadding="0" cellspacing="0">
+					
 					<tr>
+						<td width="20%" height="30px" align="right">反恐培训参加次数：</td>
+						<td width="13%" align="left">
+						<input name="trainningCount" type="text" size="8"
+							value="${commonSta.trainningCount }"></td>
 						<td width="20%" height="30px" align="right">反恐培训参加人数：</td>
 						<td width="13%" align="left">
 						<input name="trainningPeopleNum" type="text" size="8"
 							value="${commonSta.trainningPeopleNum }"></td>
+						<td width="20%" height="30px" align="right"></td>
+						<td width="13%" align="left"></td>
+					</tr>
+					
+					<tr>
+						<td width="20%" height="30px" align="right">反恐演练参加次数：</td>
+						<td width="13%" align="left">
+						<input name="practiceCount" type="text" size="8"
+							value="${commonSta.practiceCount }"></td>
 						<td width="20%" height="30px" align="right">反恐演练参加人数：</td>
 						<td width="13%" align="left">
 						<input name="practicePeopleNum" type="text" size="8"

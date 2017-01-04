@@ -39,8 +39,14 @@ public class CommonCaculateObject {
 	//民兵巡逻次数
 	private int militiamanCheckNum;
 	
+	//反恐培训次数
+	private int trainningCount;
+	
 	//反恐培训人数
 	private int trainningPeopleNum;
+	
+	//反恐演练次数
+	private int practiceCount;
 
 	//反恐演练人数
 	private int practicePeopleNum;
@@ -143,6 +149,22 @@ public class CommonCaculateObject {
 		this.allSecurityMachineCheckNum = allSecurityMachineCheckNum;
 	}
 
+	public int getTrainningCount() {
+		return trainningCount;
+	}
+
+	public void setTrainningCount(int trainningCount) {
+		this.trainningCount = trainningCount;
+	}
+
+	public int getPracticeCount() {
+		return practiceCount;
+	}
+
+	public void setPracticeCount(int practiceCount) {
+		this.practiceCount = practiceCount;
+	}
+
 	public static CommonCaculateObject caculateCommonCaculateObjectList(
 			List<CommonCaculateObject> commonCacuObjList) {
 		
@@ -186,8 +208,14 @@ public class CommonCaculateObject {
 		//民兵巡逻次数
 		int militiamanCheckNum = 0;
 		
+		//反恐培训次数
+		int trainningCount = 0;
+		
 		//反恐培训人数
 		int trainningPeopleNum = 0;
+		
+		//反恐演练次数
+		int practiceCount = 0;
 
 		//反恐演练人数
 		int practicePeopleNum = 0;
@@ -211,7 +239,11 @@ public class CommonCaculateObject {
 			equipmentCheckNum += commonCacuObj.getEquipmentCheckNum();
 			equipmentTroubleNum += commonCacuObj.getEquipmentTroubleNum();
 			militiamanCheckNum += commonCacuObj.getMilitiamanCheckNum();
+			
+			trainningCount += commonCacuObj.getTrainningCount();
 			trainningPeopleNum += commonCacuObj.getTrainningPeopleNum();
+			
+			practiceCount += commonCacuObj.getPracticeCount();
 			practicePeopleNum += commonCacuObj.getPracticePeopleNum();
 		}
 		
@@ -226,7 +258,11 @@ public class CommonCaculateObject {
 		resultCommCacuObj.setEquipmentCheckNum(equipmentCheckNum);
 		resultCommCacuObj.setEquipmentTroubleNum(equipmentTroubleNum);
 		resultCommCacuObj.setMilitiamanCheckNum(militiamanCheckNum);
+		
+		resultCommCacuObj.setTrainningCount(trainningCount);
 		resultCommCacuObj.setTrainningPeopleNum(trainningPeopleNum);
+		
+		resultCommCacuObj.setPracticeCount(practiceCount);
 		resultCommCacuObj.setPracticePeopleNum(practicePeopleNum);
 		
 		return resultCommCacuObj;

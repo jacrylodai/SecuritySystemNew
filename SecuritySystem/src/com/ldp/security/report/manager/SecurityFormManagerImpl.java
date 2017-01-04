@@ -22,8 +22,7 @@ import com.ldp.security.report.dao.SecurityFormDao;
 import com.ldp.security.report.domain.SecurityForm;
 import com.ldp.security.report.domain.SecurityFormSheet;
 import com.ldp.security.util.PageModel;
-import com.ldp.security.util.business.excel.securityFormImport.SecurityFormExcelImportUtil;
-import com.ldp.security.util.constants.Constants;
+import com.ldp.security.util.business.excel.securityFormImportUtil.ExcelImportControl;
 import com.ldp.security.util.database.ParameterObject;
 import com.ldp.security.util.validate.ClientValidate;
 
@@ -204,7 +203,7 @@ public class SecurityFormManagerImpl extends AbstractManager<SecurityForm>
 			try{
 			
 				SecurityFormSheet securityFormSheet = 
-					SecurityFormExcelImportUtil.readSecurityFormSheetFromExcel(sheet);
+					ExcelImportControl.readSecurityFormSheetFromExcel(sheet);
 				
 				String reportDepartmentName = securityFormSheet.getReportDepartmentName();
 				long reportDepartmentId = securityFormSheet.getReportDepartmentId();

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<version-list>
+	<version>
+		<version-name>初始版本</version-name>
+		<version-code>0</version-code>
+		<version-date>2016-07-13</version-date>
+		<version-config-file-path>com/ldp/security/config/security-form-position-version-0.xml</version-config-file-path>
+		<version-class-path>com.ldp.security.util.business.excel.securityFormImportUtil.ExcelImportUtilVersion0</version-class-path>
+	</version>
+</version-list>

@@ -309,7 +309,11 @@ public class StationSecurityFormAction extends BaseAction{
 		commonForm.setEquipmentCheckNum(actionForm.getEquipmentCheckNum());
 		commonForm.setEquipmentTroubleNum(actionForm.getEquipmentTroubleNum());
 		commonForm.setMilitiamanCheckNum(actionForm.getMilitiamanCheckNum());
+		
+		commonForm.setTrainningCount(actionForm.getTrainningCount());
 		commonForm.setTrainningPeopleNum(actionForm.getTrainningPeopleNum());
+		
+		commonForm.setPracticeCount(actionForm.getPracticeCount());
 		commonForm.setPracticePeopleNum(actionForm.getPracticePeopleNum());
 		commonForm.setOtherWorkInfo(actionForm.getOtherWorkInfo());
 		
