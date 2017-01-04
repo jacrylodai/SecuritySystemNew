@@ -1,0 +1,35 @@
+show variables like '%char%';
+
+create database security default character set utf8;
+
+drop database security;
+create database security;
+use security;
+source H:\JavaPro\反恐统计\sql_db\db.sql
+
+INSERT INTO `t_department` VALUES (1,NULL,1,78,'全国'),(2,1,2,78,'成都铁路局'),(3,2,3,78,'重庆车站'),(4,2,3,78,'成都东站'),(5,2,3,78,'成都站'),(6,3,4,78,'重庆北站南客售车间'),(7,3,4,78,'重庆北站北行包车间'),(8,4,4,78,'成都东站客售车间');
+
+INSERT INTO `t_user` VALUES (1,78,77,3,'cqcz','4280d89a5a03f812751f504cc10ee8a5','','',''),(3,78,77,6,'nkscj','4280d89a5a03f812751f504cc10ee8a5','','',''),(4,78,77,2,'cdtlj','4280d89a5a03f812751f504cc10ee8a5','','',''),(5,78,77,1,'admin','4280d89a5a03f812751f504cc10ee8a5','','',''),(6,78,77,7,'bxbcj','4280d89a5a03f812751f504cc10ee8a5','','','');
+
+实施
+
+drop database security;
+create database security;
+use security;
+source H:\JavaPro\反恐统计\sql_db\db.sql
+
+INSERT INTO `t_department` VALUES (1,NULL,1,78,'全国'),(2,1,2,78,'成都铁路局'),(3,2,3,78,'重庆车站');
+
+INSERT INTO `t_user` VALUES (3,78,77,3,'cqcz','4280d89a5a03f812751f504cc10ee8a5','','',''),(2,78,77,2,'cdtlj','4280d89a5a03f812751f504cc10ee8a5','','',''),(1,78,77,1,'admin','4280d89a5a03f812751f504cc10ee8a5','','','');
+
+备份数据库：
+
+    mysqldump –user=root –password=root密码 –lock-all-tables 数据库名 > 备份文件.sql
+
+恢复数据库：
+
+    mysql -u root –password=root密码 数据库名 < 备份文件.sql
+    
+   mysqldump –user=root –password=root –lock-all-tables security > h:/backSecurity.sql
+   
+   mysqldump -u root -p security>h:/backSecurity.sql
