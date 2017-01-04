@@ -26,4 +26,10 @@ public class TestDateUtil extends TestCase{
 		assertEquals(estimateDate, dateAfter);
 	}
 	
+	public void testGetCurrentTime(){
+		
+		String dateStr = DateUtil.getCurrentTimeString();
+		System.out.println(dateStr);
+	}
+	
 }

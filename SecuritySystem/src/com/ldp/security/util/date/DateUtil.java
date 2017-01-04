@@ -17,7 +17,7 @@ public class DateUtil {
 	/**
 	 * 时间格式
 	 */
-	public static final String TIME_FORMAT_PATTERN = "yyyy-MM-dd HH:ss:mm";
+	public static final String TIME_FORMAT_PATTERN = "yyyy-MM-dd HH:mm:ss";
 
 	/**
 	 * 日期格式
@@ -32,9 +32,10 @@ public class DateUtil {
 	 */
 	public static String getCurrentTimeString() {
 
-		Date date = new Date();
-		SimpleDateFormat dateF = new SimpleDateFormat(TIME_FORMAT_PATTERN);
-		return dateF.format(date);
+		Calendar calendar = Calendar.getInstance();
+		SimpleDateFormat df = new SimpleDateFormat(TIME_FORMAT_PATTERN);
+		String dateStr = df.format(calendar.getTime());
+		return dateStr;
 	}
 
 	/**

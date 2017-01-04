@@ -7,4 +7,11 @@
 		<version-config-file-path>com/ldp/security/config/security-form-position-version-0.xml</version-config-file-path>
 		<version-class-path>com.ldp.security.util.business.excel.securityFormImportUtil.ExcelImportUtilVersion0</version-class-path>
 	</version>
+	<version>
+		<version-name>版本2</version-name>
+		<version-code>2</version-code>
+		<version-date>2017-01-04</version-date>
+		<version-config-file-path>com/ldp/security/config/security-form-position-version-2.xml</version-config-file-path>
+		<version-class-path>com.ldp.security.util.business.excel.securityFormImportUtil.ExcelImportUtilVersion2</version-class-path>
+	</version>
 </version-list>

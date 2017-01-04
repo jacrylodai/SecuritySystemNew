@@ -214,9 +214,14 @@ public class DepartmentStaExcelUtil {
 		
 		ExcelWriteFuncUtil.addDoubleCell(sheet, MilitiamanPosition.MILITIAMAN_CHECK_NUM
 				, commonSta.getMilitiamanCheckNum(),cellFormat);
-		
+
+		ExcelWriteFuncUtil.addDoubleCell(sheet, ImportantJobPosition.TRAINNING_COUNT
+				, commonSta.getTrainningCount(),cellFormat);
 		ExcelWriteFuncUtil.addDoubleCell(sheet, ImportantJobPosition.TRAINNING_PEOPLE_NUM
 				, commonSta.getTrainningPeopleNum(),cellFormat);
+		
+		ExcelWriteFuncUtil.addDoubleCell(sheet, ImportantJobPosition.PRACTICE_COUNT
+				, commonSta.getPracticeCount(),cellFormat);		
 		ExcelWriteFuncUtil.addDoubleCell(sheet, ImportantJobPosition.PRACTICE_PEOPLE_NUM
 				, commonSta.getPracticePeopleNum(),cellFormat);
 		

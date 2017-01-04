@@ -207,6 +207,11 @@ public class StaPeriodSecurityManagerImpl extends AbstractManager<StaPeriodSecur
 			if(checkFlagDay == false){
 				String absentDay = DateUtil.getSpecifiedDayAfter(startDateString, i);
 				absentDaysList.add(absentDay);
+				
+				//如果缺失的天数超过了365天，那就不在继续统计了
+				if(absentDaysList.size()>365){
+					break;
+				}					
 			}
 		}
 		

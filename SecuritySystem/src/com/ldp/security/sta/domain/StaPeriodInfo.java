@@ -18,8 +18,8 @@ public class StaPeriodInfo {
 
 	public static final int STA_TYPE_CUSTOM = 'C';
 	
-	//最长统计时间为1年的时间
-	public static final int MAX_LAST_DAYS = 370;
+	//最长统计时间为20年的时间
+	public static final int MAX_LAST_DAYS = 7300;
 
 	//统计周期id
 	private long staPeriodInfoId;
